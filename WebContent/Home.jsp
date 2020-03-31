@@ -474,14 +474,14 @@
 				</div>
 				<div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
 					<h5 class="text-center mb-4">Apply Now</h5>
-					<form action="StudentResistration" method="post">
+					<form action="StudentSignIn" method="post">
 						<div class="form-group">
 							<label>Email</label>
 							<input type="email" class="form-control" id="validationDefault02" required="required" name="email">
 						</div>
 
 						<div class="form-group mb-4">
-							<label class="mb-2">Enter Password</label>
+							<label class="mb-2">Enter Password&nbsp(*must[a-z,A-Z,0-9,@#$%])</label>
 							<input type="password" name="pswd" class="form-control" id="password1" placeholder="" required="">
 						</div>
 						<div class="form-group mb-4">
