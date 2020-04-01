@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@include file="CommonFile.jsp" %>
-<title>www.AnxietyCrashCourse.com</title>
+<title>AnxietyCrashCourse</title>
 </head>
 <body>
 <!-- home -->
@@ -473,20 +473,30 @@
 					<!-- apply section -->
 				</div>
 				<div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
-					<h5 class="text-center mb-4">Apply Now</h5>
+					<h5 class="text-center mb-4">Apply Now</h5>	
+								
 					<form action="StudentSignIn" method="post">
+						<div class="form-group">
+							<label>user Name</label>
+							<input type="text" class="form-control" id="validationDefault02" required="required" name="uname">
+							<span style="color:#FAD7A0 ;font-size:12px;margin-top: 10px;">
+							3 to 15 char use ( lower , digit ).</span>
+						</div>
 						<div class="form-group">
 							<label>Email</label>
 							<input type="email" class="form-control" id="validationDefault02" required="required" name="email">
+							
 						</div>
 
 						<div class="form-group mb-4">
-							<label class="mb-2">Enter Password&nbsp(*must[a-z,A-Z,0-9,@#$%])</label>
-							<input type="password" name="pswd" class="form-control" id="password1" placeholder="" required="">
+							<label class="mb-2">Enter Password</label>
+							<input type="password"  class="form-control" id="password1" placeholder="" required="required" name="pswd">
+							<span style="color:#FAD7A0 ;font-size:12px;margin-top: 10px;">
+							8 to 20 char use (one-upper,one-lower,one-digit and one-special).</span>
 						</div>
 						<div class="form-group mb-4">
-							<label class="mb-2"> Conform Password</label>
-							<input type="password" name="cpswd" class="form-control" id="password1" placeholder="" required="">
+							<label class="mb-2">Conform Password</label>
+							<input type="password" name="cpswd" class="form-control" id="password1" placeholder="" required="required">
 						</div>
 						<button type="submit" class="btn btn-primary submit mb-4">Register</button>
 					</form>
@@ -502,10 +512,10 @@
 
 							<div class="container">
 								<label for="uname"><b>Username or email</b></label>
-								<input type="text" class="form-control" id="validationDefault01" name="uname" required>
+								<input type="text" class="form-control" id="validationDefault01" name="uname" required="required">
 
 								<label for="psw"><b>Password</b></label>
-								<input type="password" class="form-control" id="password1" name="psw" required>
+								<input type="password" class="form-control" id="password1" name="psw" required="required">
 
 								<button type="submit" title="login">Login</button>
 								<label>
