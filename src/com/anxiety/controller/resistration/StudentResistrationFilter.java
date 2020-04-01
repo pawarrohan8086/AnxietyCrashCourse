@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -12,35 +13,58 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-@WebFilter(servletNames = { "StudentResistration" })
+@WebFilter("/StudentResistration")
 public class StudentResistrationFilter implements Filter {
 
    
 	public void destroy() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
-		
-		String uname=request.getParameter("name");
+		RequestDispatcher rd=null;
+		String name=request.getParameter("name");
 		String mobile=request.getParameter("mobile");
 		String address=request.getParameter("address");
-		String fees=request.getParameter("fees");
-		String adate=request.getParameter("adate");
-		String course=request.getParameter("course");
+		if((name!=null && mobile!=null) && address!=null) {
 		
-		HttpServletRequest req=(HttpServletRequest)request;
-		HttpSession session=req.getSession(false);
-		session.setAttribute("name", uname);
-		session.setAttribute("mobile", mobile);
-		session.setAttribute("address", address);
-		session.setAttribute("fees", fees);
-		session.setAttribute("adate", adate);
-		session.setAttribute("course", course);
-		chain.doFilter(request, response);
+			String vmob="(0/91)?[7-9][0-9]{9}";
+		
+			if(mobile.matches(vmob)) {
+					
+				chain.doFilter(request, response);
+			
+			}else{
+					if(request.getAttribute("flag")!=null) {
+						request.removeAttribute("flag");
+						request.setAttribute("flag","was-validated");
+						System.out.println("was valid");
+					}else {
+						request.removeAttribute("flag");
+						request.setAttribute("flag","was-validated");
+						
+					}
+					rd=request.getRequestDispatcher("StudentEnroll.jsp");
+					rd.forward(request, response);
+			}
+			
+		}else{
+			if(request.getAttribute("flag")!=null) {
+				request.removeAttribute("flag");
+				request.setAttribute("flag","was-validated");
+				System.out.println("was valid");
+			}else {
+				request.removeAttribute("flag");
+				request.setAttribute("flag","was-validated");
+				
+			}
+			rd=request.getRequestDispatcher("StudentEnroll.jsp");
+			rd.forward(request, response);
 	}
+		
+	}//do get
 
 	
 	public void init(FilterConfig fConfig) throws ServletException {
