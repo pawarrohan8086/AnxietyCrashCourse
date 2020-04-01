@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-@WebFilter(filterName="filter2", urlPatterns="/StudentSignIn")
+@WebFilter(filterName="filter1", urlPatterns="/StudentSignIn")
 public class SignInVerificationFilter implements Filter {
 
 	
@@ -22,37 +22,34 @@ public class SignInVerificationFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		HttpServletRequest req=(HttpServletRequest)request;
 		RequestDispatcher rd=null;
-		HttpSession session=req.getSession(false);
-		String validemail="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-		String validpass="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
-		
-		String email=request.getParameter("email");
-		String password=request.getParameter("pswd");
-		String cpassword=request.getParameter("cpswd");
-
-		
-		if( email.matches(validemail) && password.equals(cpassword)) {
+		final String validemail="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		final String validpass="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
+		final String validuname="^[a-z0-9_-]{3,15}$";
+		if(request.getParameter("email")!=null &&
+		( request.getParameter("pswd")!=null && request.getParameter("cpswd")!=null) ){
 			
-			if(password.matches(validpass)) {
+			if(request.getParameter("pswd").equals(request.getParameter("cpswd")) 
+					&& request.getParameter("uname").matches(validuname)) {
+			
+				if(request.getParameter("email").matches(validemail) && request.getParameter("pswd").matches(validpass)) {
 				
-				session.setAttribute("email",email );
-				session.setAttribute("password",password);
-			chain.doFilter(request, response);
-
-			}else 
-			{
-				session.invalidate();
+						chain.doFilter(request, response);
+				}
+				else{
+					
+					rd=request.getRequestDispatcher("Home.jsp");
+					rd.forward(request, response);
+				}
+				
+			}else {
 				rd=request.getRequestDispatcher("Home.jsp");
 				rd.forward(request, response);
-			}//innerelse
-		}else 
-		{
-			session.invalidate();
+			}
+		}else {
 			rd=request.getRequestDispatcher("Home.jsp");
 			rd.forward(request, response);
-		}//outerelse
+		}
 		
 	}
 	public void init(FilterConfig fConfig) throws ServletException {
