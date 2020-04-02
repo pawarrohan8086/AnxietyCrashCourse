@@ -2,7 +2,7 @@ package com.anxiety.bean.vo;
 
 public class StudentVO {
 	 
- private String username,email,password,sname,address,contact,course,admision_date,fees;
+ private String username,email,password,sname,address,contact,fees,admision_date,course;
 
 public String getUsername() {
 	return username;

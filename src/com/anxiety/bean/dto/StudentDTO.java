@@ -6,15 +6,14 @@ public class StudentDTO implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
-	
-	private long studentid;
-	private String username,email,password,sname,address,course,admision_date;
+	private String username,email,password,sname,address,course,admision_date,studentid;
 	private long contact;
+	private double fees;
 	 
-	public long getStudentid() {
+	public String getStudentid() {
 		return studentid;
 	}
-	public void setStudentid(long studentid) {
+	public void setStudentid(String studentid) {
 		this.studentid = studentid;
 	}
 	public String getUsername() {
@@ -64,5 +63,11 @@ public class StudentDTO implements Serializable {
 	}
 	public void setContact(long contact) {
 		this.contact = contact;
+	}
+	public double getFees() {
+		return fees;
+	}
+	public void setFees(double fees) {
+		this.fees = fees;
 	}
 }
