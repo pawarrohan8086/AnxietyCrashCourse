@@ -8,8 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
 @WebFilter(filterName="filter1", urlPatterns="/StudentSignIn")
@@ -53,7 +51,7 @@ public class SignInVerificationFilter implements Filter {
 		
 	}
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

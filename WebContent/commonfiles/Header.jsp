@@ -19,6 +19,7 @@
                 <label for="drop" class="toggle">Menu</label>
                 <input type="checkbox" id="drop" />
                 <ul class="menu mr-auto">
+                
                     <li class="active"><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li>
@@ -53,6 +54,7 @@
                             </li>
                         </ul>
                     </li>
+               </ul>
                 </nav>
                 <!-- //nav -->
             </div>

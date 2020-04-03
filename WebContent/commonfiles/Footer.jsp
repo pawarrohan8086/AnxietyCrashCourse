@@ -30,7 +30,7 @@
                         <h4 class="mb-4">Subscribe Us</h4>
                         <p class="mb-3">Subscribe to our newsletter</p>
                         <form action="#" method="post" class="d-flex newsletter-w3pvt">
-                            <input type="email" id="email" name="EMAIL" placeholder="Enter your email here" required="">
+                            <input type="email" id="email" name="EMAIL" placeholder="Enter your email here" required="required">
                             <button type="submit" class="btn">Subscribe</button>
                         </form>
                         <div class="icon-social mt-4">

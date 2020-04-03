@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@include file="CommonFile.jsp" %>
+<%@include file="/commonfiles/link.jsp" %>
 <title>AnxietyCrashCourse</title>
 </head>
 <body>
@@ -596,6 +596,6 @@
 	</section>
 	<!-- //testimonials -->
 
-<%@include file="Footer.jsp" %>
+<%@include file="/commonfiles/Footer.jsp" %>
 </body>
 </html>

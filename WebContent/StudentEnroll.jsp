@@ -4,10 +4,10 @@
 <html>
 <head>
 <title>Student Registration</title>
-<%@include file="CommonFile.jsp" %>
+<%@include file= "/commonfiles/link.jsp"%>
 </head>
 <body>
-<%@include file="Header.jsp" %>
+<%@include file="/commonfiles/Header.jsp" %>
         <!-- registration form -->
         <div class="container">
             <h2 style="color: #E84A5F;margin-bottom:50px">Student Registration Form</h2>
@@ -54,6 +54,6 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-<%@include file="Footer.jsp" %>
+<%@include file="/commonfiles/Footer.jsp" %>
 </body>
 </html>

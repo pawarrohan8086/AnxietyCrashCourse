@@ -45,14 +45,27 @@ public class StudentOpration implements StudentDeclaration {
 					System.out.println("class not found");
 				}
 	}//close constructor
-		
+	 	
+	 @Override
+	 public void closeConnection() {
+		 
+		 try {
+			 if(con==null) con.close();
+			 
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		 
+		 
+	 }
 	@Override
 	public int insertRecord(StudentBO obj) {
 		int c = 0;
 		if(tableFlag==1) {
 			try {
-				PreparedStatement pst=con.prepareStatement("insert into student values(?,?,?,?,?,?,?,?,?,?)");
 				
+				PreparedStatement pst=con.prepareStatement("insert into student values(?,?,?,?,?,?,?,?,?,?)");
 				pst.setString(1,obj.getStudentid());
 				pst.setString(2,obj.getSname());
 				pst.setLong(3, obj.getContact());
@@ -63,7 +76,6 @@ public class StudentOpration implements StudentDeclaration {
 				pst.setString(8,obj.getCourse());
 				pst.setDouble(9,obj.getFees());
 				pst.setDate(10,Date.valueOf(obj.getAdmision_date()));
-				
 				 c=pst.executeUpdate();
 				 con.commit();
 				 pst.close();
@@ -76,74 +88,131 @@ public class StudentOpration implements StudentDeclaration {
 	}
 
 	@Override
-	public StudentBO getRecord(int sid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<StudentBO> getAllRecord() {
-
-
-		Statement st;
+	public StudentBO getRecordById(String sid) {
+		StudentBO sbo=null;
+		String id=sid;
 		try {
-			st = con.createStatement();
-			ResultSet results = st.executeQuery("SELECT * FROM student");
-			while (results.next()) {
-				 
-				 
-				  // Get the data from the current row using the column index - column data are in the VARCHAR format
-				 
-				  String data = results.getString(1);
-				 
-				  System.out.println("Fetching data by column index for row " + results.getRow() + " : " + data);
-				 
-				 
-				  // Get the data from the current row using the column name - column data are in the VARCHAR format
-				 
-				  data = results.getString("test_col");
-				 
-				  System.out.println("Fetching data by column name for row " + results.getRow() + " : " + data);
-				 
-				 
+				Statement st = con.createStatement();
+				ResultSet results = st.executeQuery("select *student from table student where studentid='"+id+"'");
+				while (results.next()) {
+					
+					sbo=new StudentBO();
+					sbo.setUsername(results.getString(5));
+					sbo.setEmail(results.getString(4));
+					sbo.setPassword(results.getString(6));
+					sbo.setSname(results.getString(2));
+					sbo.setContact(results.getLong(3));
+					sbo.setAddress(results.getString(7));
+					sbo.setFees(results.getDouble(9));
+					sbo.setAdmision_date(results.getDate(10).toString());
+					sbo.setCourse(results.getString(8));
+					sbo.setStudentid(results.getString(1));
 				}
-		
+				st.close();
+				return sbo;
+				
 		} catch (SQLException e) {
 
 
 			e.printStackTrace();
-		}
-		 
-		
-		 
-		 
-
-		 
-
-		
-		
-		
-		
-		
-		
+		}	
 		return null;
+
 	}
+	@Override
+	public  StudentBO getRecordByName(String name){
+		StudentBO sbo=null;
+		String sname=name;
+		try {
+				Statement st = con.createStatement();
+				ResultSet results = st.executeQuery("select *student from table student where studentid='"+sname+"'");
+				while (results.next()) {
+					
+					sbo=new StudentBO();
+					sbo.setUsername(results.getString(5));
+					sbo.setEmail(results.getString(4));
+					sbo.setPassword(results.getString(6));
+					sbo.setSname(results.getString(2));
+					sbo.setContact(results.getLong(3));
+					sbo.setAddress(results.getString(7));
+					sbo.setFees(results.getDouble(9));
+					sbo.setAdmision_date(results.getDate(10).toString());
+					sbo.setCourse(results.getString(8));
+					sbo.setStudentid(results.getString(1));
+				}
+				st.close();
+				return sbo;
+				
+		} catch (SQLException e) {
+
+
+			e.printStackTrace();
+		}	
+		return null;
+
+	}
+	
+	@Override
+	public ArrayList<StudentBO> getAllRecord() {
+
+		ArrayList<StudentBO> al=null;
+		try {
+				Statement st = con.createStatement();
+				ResultSet results = st.executeQuery("SELECT * FROM student");
+				al=new ArrayList<StudentBO>();
+				while (results.next()) {
+					StudentBO sbo=new StudentBO();
+					sbo.setUsername(results.getString(5));
+					sbo.setEmail(results.getString(4));
+					sbo.setPassword(results.getString(6));
+					sbo.setSname(results.getString(2));
+					sbo.setContact(results.getLong(3));
+					sbo.setAddress(results.getString(7));
+					sbo.setFees(results.getDouble(9));
+					sbo.setAdmision_date(results.getDate(10).toString());
+					sbo.setCourse(results.getString(8));
+					sbo.setStudentid(results.getString(1));
+					al.add(sbo);
+				}
+				st.close();
+		} catch (SQLException e) {
+
+
+			e.printStackTrace();
+		}	
+		return al;
+		
+	}
+	
 
 	@Override
-	public int updateRecord(long sid, StudentBO obj) {
-		// TODO Auto-generated method stub
+	public int updateRecord(String sid, StudentBO obj) {
+		
 		return 0;
 	}
 
 	@Override
-	public int deleteRecord(long sid, StudentBO obj) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteRecord(String sid) {
+		String id=sid;
+		int c=0;
+		try {
+				Statement st = con.createStatement();
+				String query="delete from  student where sid='"+id+"'";
+				c=st.executeUpdate(query);
+				st.close();
+				return c;
+				
+		} catch (SQLException e) {
+
+
+			e.printStackTrace();
+		}	
+		return c;
 	}
 
 	@Override
 	public ArrayList<StudentBO> searchRecord(String name) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
 
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +23,7 @@ import com.anxiety.dao.StudentOpration;
 public class StudentResistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
@@ -72,19 +74,20 @@ public class StudentResistration extends HttpServlet {
 		StudentOpration so=new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 		int c=so.insertRecord(sbo);
 		PrintWriter out=response.getWriter();
+		 
 		if(c==1) {
 			
-				out.println("resister successfull");
-				out.println(sdata.getUsername()+"\n"+ sdto.getStudentid()
-				+sdata.getEmail()+"\n"
-				+sdata.getPassword()+"\n"
-				+sdata.getSname()+"\n"
-				+sdata.getContact()+"\n"
-				+sdata.getAddress()+"\n"
-				+sdata.getFees()+"\n"
-				+sdata.getAdmision_date()+"\n"
-				+sdata.getCourse());
-		}else out.println("not register");
+			out.println("resister successfull");
+		}else {
+			
+			out.println("not resister...!");
+		}
+		
+		so.closeConnection();
+			
+		response.sendRedirect("StudentData.jsp");
+
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

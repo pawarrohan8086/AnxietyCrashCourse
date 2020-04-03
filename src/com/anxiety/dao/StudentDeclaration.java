@@ -1,6 +1,5 @@
 package com.anxiety.dao;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.anxiety.bean.bo.StudentBO;
@@ -8,10 +7,11 @@ import com.anxiety.bean.bo.StudentBO;
 public interface StudentDeclaration {
 
 	public  int insertRecord(StudentBO obj);
-	public  StudentBO getRecord(int sid);
+	public  StudentBO getRecordById(String sid);
+	public  StudentBO getRecordByName(String name);
 	public  ArrayList<StudentBO> getAllRecord();
-	public  int updateRecord(long sid,StudentBO obj);
-	public  int deleteRecord(long sid,StudentBO obj);
+	public  int updateRecord(String sid,StudentBO obj);
+	public  int deleteRecord(String sid);
 	public  ArrayList<StudentBO> searchRecord(String name);
-	
+	public void closeConnection();
 }
