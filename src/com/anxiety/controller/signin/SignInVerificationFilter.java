@@ -36,16 +36,16 @@ public class SignInVerificationFilter implements Filter {
 				}
 				else{
 					
-					rd=request.getRequestDispatcher("Home.jsp");
+					rd=request.getRequestDispatcher("Home.jsp#apply");
 					rd.forward(request, response);
 				}
 				
 			}else {
-				rd=request.getRequestDispatcher("Home.jsp");
+				rd=request.getRequestDispatcher("Home.jsp#apply");
 				rd.forward(request, response);
 			}
 		}else {
-			rd=request.getRequestDispatcher("Home.jsp");
+			rd=request.getRequestDispatcher("Home.jsp#apply");
 			rd.forward(request, response);
 		}
 		

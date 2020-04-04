@@ -10,17 +10,26 @@
 <%@ page import="com.anxiety.dao.StudentOpration,java.util.ArrayList,com.anxiety.bean.bo.StudentBO,java.util.ListIterator" %> 
 <body>
 <%@include file="/commonfiles/Header.jsp" %>
-          <div class="stable table-responsive animate">
+   
+<div class="animate">
+			<br>
             <h2>Student Data</h2><br>
-            <table class="table table-sm table-hover">
-                <thead class="thead-dark table-bordered" >
+            <%
+    			String show=request.getParameter("alert");
+     			if(show==null){
+     				show="";
+     			}
+            %>
+           <p class="text-center">
+           <strong style="color: tomato;"><i><%=show %></i></strong>
+            <table class="table table-responsive table-bordered table-sm table-hover">
+                <thead class="thead-dark" >
                     <tr>
-                        <th>SID</th>                 
+                        <th >SID</th>                 
                         <th>SNAME</th>
                         <th>CONTACT</th>
                         <th>EMAIL</th>
                         <th>USERNAME</th>
-                        <th>PASSWORD</th>
                         <th>ADDRESS</th>
                         <th>COURSE</th>
                         <th>FEES</th>
@@ -30,20 +39,17 @@
                     </tr>
                 </thead>
   
-        
          <%
-        
+
         		ServletContext sc=getServletContext();
         		StudentOpration so=new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
         		 ArrayList<StudentBO> sal=so.getAllRecord();					
 				ListIterator<StudentBO> li=sal.listIterator();
 				StudentBO sd=null;
 				while(li.hasNext()){
-						sd=li.next();
-						out.println("hello");
-				
-				
-		%>   
+						sd=li.next();	
+		%> 
+  
               
                 <tbody>
                 <tr>
@@ -52,19 +58,32 @@
                     <td><%= sd.getContact() %></td>
                     <td><%= sd.getEmail()%></td>
                     <td><%=sd.getUsername() %> </td>
-                    <td><%=sd.getPassword() %></td>
                     <td><%= sd.getAddress()%></td>
                     <td><%=sd.getCourse() %></td>
                     <td><%=sd.getFees() %></td>
-                    <td><%=sd.getAdmision_date()	 %></td>
-                    <td><a href="Home.jsp">Edit</a></td>
-                    <td><a href="Home.jsp">Delete</a></td>
-                </tr>
-                <% } so.closeConnection(); %>
+                    <td><%=sd.getAdmision_date() %></td>
+                    <td>
+                    <form action="UpdateStudent.jsp" method="post">
+                    <input type="hidden" name=id value="<%=sd.getStudentid() %>">
+                    <input type="hidden" name=alert value=".change if necessary.">
+                    <button type="submit" class="btn btn-secondary">Edit</button>
+                    </form>
+                   </td>
+                    <td>
+                    <form action="DeleteStudent" method="post">
+                    <input type="hidden" name=id value="<%=sd.getStudentid() %>">
+                    <input type="hidden" name=alert value=".change if necessary.">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                   </td>    
+                                 
+					<% }  so.closeConnection(); %>             
+             </tr>
                 </tbody>
             </table>
-        </div>       
 
+        </div>       
+ 				
  
 <%@include file="/commonfiles/Footer.jsp" %>
 </body>

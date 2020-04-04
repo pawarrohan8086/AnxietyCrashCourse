@@ -479,8 +479,12 @@
 						<div class="form-group">
 							<label>user Name</label>
 							<input type="text" class="form-control" id="validationDefault02" required="required" name="uname">
-							<span style="color:#FAD7A0 ;font-size:12px;margin-top: 10px;">
-							3 to 15 char use ( lower , digit ).</span>
+							<span style="color: tomato;font-size:12px;margin-top: 10px;">
+							<div class="alert alert-info alert-dismissable">
+         					<a class="panel-close " data-dismiss="alert"></a> 
+          					<i class="fa fa-info-circle"></i>
+         					<strong>.Hint</strong>. use only lower case and digits.
+       						</div></span>
 						</div>
 						<div class="form-group">
 							<label>Email</label>
@@ -491,8 +495,12 @@
 						<div class="form-group mb-4">
 							<label class="mb-2">Enter Password</label>
 							<input type="password"  class="form-control" id="password1" placeholder="" required="required" name="pswd">
-							<span style="color:#FAD7A0 ;font-size:12px;margin-top: 10px;">
-							8 to 20 char use (one-upper,one-lower,one-digit and one-special).</span>
+							<span style="color: tomato;font-size:12px;margin-top: 10px;">
+							<div class="alert alert-info alert-dismissable">
+         					<a class="panel-close " data-dismiss="alert"></a> 
+          					<i class="fa fa-info-circle"></i>
+         					<strong>.Hint</strong>. Length 8 to 20 character<br>
+							use (one-upper,one-lower,one-digit and one-special).</div></span>
 						</div>
 						<div class="form-group mb-4">
 							<label class="mb-2">Conform Password</label>

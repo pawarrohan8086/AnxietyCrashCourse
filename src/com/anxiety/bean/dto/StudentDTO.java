@@ -21,6 +21,7 @@ public class StudentDTO implements Serializable {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+
 	}
 	public String getEmail() {
 		return email;
@@ -29,10 +30,13 @@ public class StudentDTO implements Serializable {
 		this.email = email;
 	}
 	public String getPassword() {
+		
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		String pswd=password;
+		this.password=PasswordEnrypt.hashpw(pswd,PasswordEnrypt.gensalt());
+		
 	}
 	public String getSname() {
 		return sname;

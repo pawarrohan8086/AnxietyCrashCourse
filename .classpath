@@ -18,5 +18,7 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry exported="true" kind="lib" path="D:/zar/j2ee.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/zar/servlet.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
