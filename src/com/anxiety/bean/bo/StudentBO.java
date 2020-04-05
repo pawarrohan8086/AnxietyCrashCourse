@@ -1,5 +1,6 @@
 package com.anxiety.bean.bo;
 
+
 public class StudentBO {
  private String username,email,password,sname,address,course,studentid,admision_date;
  private long contact;
@@ -24,16 +25,19 @@ public void setEmail(String email) {
 	this.email = email;
 }
 public String getPassword() {
+	
 	return password;
 }
 public void setPassword(String password) {
-	this.password = password;
+	
+	
+	this.password= password;
 }
 public String getSname() {
 	return sname;
 }
 public void setSname(String sname) {
-	this.sname = sname;
+	this.sname = sname.toLowerCase();
 }
 public String getAddress() {
 	return address;

@@ -24,7 +24,10 @@
       
                <%
                
-               	String show=request.getParameter("alert");
+               	String updateAlert=request.getParameter("alert");
+               if(updateAlert==null){
+            	   updateAlert="";
+               }
                	String sid=request.getParameter("id");
         		ServletContext sc=getServletContext();
         		StudentOpration so=new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
@@ -36,7 +39,7 @@
         <div class="alert alert-info alert-dismissable">
           <a class="panel-close" data-dismiss="alert"></a> 
           <i class="fa fa-graduation-cap"></i>
-           <strong>.Teacher &nbsp</strong> <%=show %>
+           <strong>.Teacher </strong> <%=updateAlert %>
         </div>
        
         
@@ -56,7 +59,7 @@
           <div class="row">
             <label class="col-lg-3 control-label text-info">Contact:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" name="contact" value="<%= sd.getContact() %>" maxlength="10" minlength="10" required>
+              <input class="form-control" type="text" name="contact" value="<%= sd.getContact() %>" maxlength="10"  minlength="10" required>
             </div>
           </div><br>
           <div class="row">

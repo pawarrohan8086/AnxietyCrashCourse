@@ -475,36 +475,36 @@
 				<div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
 					<h5 class="text-center mb-4">Apply Now</h5>	
 								
-					<form action="StudentSignIn" method="post">
+					<form action="StudentSignIn" class="needs-validation" method="post">
 						<div class="form-group">
 							<label>user Name</label>
 							<input type="text" class="form-control" id="validationDefault02" required="required" name="uname">
-							<span style="color: tomato;font-size:12px;margin-top: 10px;">
-							<div class="alert alert-info alert-dismissable">
-         					<a class="panel-close " data-dismiss="alert"></a> 
+							<span style="color: #2e5cdb;font-size:12px;margin-top: 10px;">
           					<i class="fa fa-info-circle"></i>
-         					<strong>.Hint</strong>. use only lower case and digits.
-       						</div></span>
+         					<strong>Hint</strong>. use only lower case and digits.
+       						</span>
 						</div>
 						<div class="form-group">
 							<label>Email</label>
-							<input type="email" class="form-control" id="validationDefault02" required="required" name="email">
-							
+							<input type="email" class="form-control" id="validationDefault02" placeholder="" required="required" name="email">
+							<div class="valid-feedback">Valid.</div>
+                    		<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
 
 						<div class="form-group mb-4">
 							<label class="mb-2">Enter Password</label>
 							<input type="password"  class="form-control" id="password1" placeholder="" required="required" name="pswd">
-							<span style="color: tomato;font-size:12px;margin-top: 10px;">
-							<div class="alert alert-info alert-dismissable">
-         					<a class="panel-close " data-dismiss="alert"></a> 
+							<span style="color: #2e5cdb;font-size:12px;margin-top: 10px;"> 
           					<i class="fa fa-info-circle"></i>
-         					<strong>.Hint</strong>. Length 8 to 20 character<br>
-							use (one-upper,one-lower,one-digit and one-special).</div></span>
+         					<strong>Hint</strong>.8 to 20 char(one-upper,one-lower,one-digit and one-special).</span>
+							<div class="valid-feedback">Valid.</div>
+                 		    <div class="invalid-feedback">Please fill out this field.</div>
 						</div>
 						<div class="form-group mb-4">
 							<label class="mb-2">Conform Password</label>
 							<input type="password" name="cpswd" class="form-control" id="password1" placeholder="" required="required">
+							<div class="valid-feedback">Valid.</div>
+                    		<div class="invalid-feedback">Please fill out this field.</div>					
 						</div>
 						<button type="submit" class="btn btn-primary submit mb-4">Register</button>
 					</form>

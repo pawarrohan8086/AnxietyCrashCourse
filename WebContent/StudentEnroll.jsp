@@ -13,7 +13,9 @@
             <h2 style="color: #E84A5F;margin-bottom:50px">Student Registration Form</h2>
             <%
             	String flag=request.getAttribute("flag").toString();
-            	
+            	if(flag==null){
+            		flag="";
+            	}
             %>
             <form action="StudentResistration" class="<%=flag%>">
                 <div class="form-group">

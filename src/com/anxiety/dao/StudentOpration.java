@@ -15,7 +15,7 @@ public class StudentOpration implements StudentDeclaration {
 
 	String driver, dburl, dbuser, dbpswd;
 	static Connection con;
-	static int tableFlag = 1;
+	static int tableFlag = 0;
 
 	public StudentOpration(String driver, String url, String user, String pswd) {
 		this.driver = driver;
@@ -28,8 +28,13 @@ public class StudentOpration implements StudentDeclaration {
 			if (tableFlag == 0) {
 				try {
 					Statement st = con.createStatement();
-					String query = "create table student(sid number(10) primary key,sname varchar(20) not null,contact number(10) unique,email varchar(20) unique,username varchar(20) not null,password varchar(20) not null,address varchar2(70) not null,course varchar2(20),fees number(8,2),admission_date date)";
-					tableFlag = st.executeUpdate(query);
+					String query = "create table student(sid varchar(10) primary key,sname varchar(20) not null,contact number(10) not null,email varchar(30) not null,username varchar(20) not null,password varchar(80) not null,address varchar2(100) not null,course varchar2(20),fees number(8,2),admission_date date)";
+					int flag = st.executeUpdate(query);
+					if(flag==0) {
+						StudentOpration.tableFlag=1;
+					}else {
+						StudentOpration.tableFlag=1;
+					}
 					st.close();
 
 				} catch (SQLException e) {
@@ -151,27 +156,38 @@ public class StudentOpration implements StudentDeclaration {
 
 	@Override
 	public ArrayList<StudentBO> getAllRecord() {
-
-		ArrayList<StudentBO> al = null;
+		int found=0;
+		ArrayList<StudentBO> al=null;
 		try {
+			
+			String query="select * from student";
 			Statement st = con.createStatement();
-			ResultSet results = st.executeQuery("SELECT * FROM student");
-			al = new ArrayList<StudentBO>();
-			while (results.next()) {
-				StudentBO sbo = new StudentBO();
-				sbo.setUsername(results.getString(5));
-				sbo.setEmail(results.getString(4));
-				sbo.setPassword(results.getString(6));
-				sbo.setSname(results.getString(2));
-				sbo.setContact(results.getLong(3));
-				sbo.setAddress(results.getString(7));
-				sbo.setFees(results.getDouble(9));
-				sbo.setAdmision_date(results.getDate(10).toString());
-				sbo.setCourse(results.getString(8));
-				sbo.setStudentid(results.getString(1));
-				al.add(sbo);
+			found= st.executeUpdate(query);
+			
+			if(found!=0) {
+				
+				ResultSet results=st.executeQuery(query);
+				al = new ArrayList<StudentBO>();
+				while (results.next()) {
+					StudentBO sbo = new StudentBO();
+					sbo.setUsername(results.getString(5));
+					sbo.setEmail(results.getString(4));
+					sbo.setPassword(results.getString(6));
+					sbo.setSname(results.getString(2));
+					sbo.setContact(results.getLong(3));
+					sbo.setAddress(results.getString(7));
+					sbo.setFees(results.getDouble(9));
+					sbo.setAdmision_date(results.getDate(10).toString());
+					sbo.setCourse(results.getString(8));
+					sbo.setStudentid(results.getString(1));
+					al.add(sbo);
+				}
+				
+			}else {
+					al=null;
 			}
-			st.close();
+				st.close();
+				
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -182,7 +198,7 @@ public class StudentOpration implements StudentDeclaration {
 
 	@Override
 	public int updateRecord(String sid, StudentBO obj) {
-		int c = 8;
+		int c = 0;
 		String id = sid;
 		try {
 
@@ -230,8 +246,45 @@ public class StudentOpration implements StudentDeclaration {
 
 	@Override
 	public ArrayList<StudentBO> searchRecord(String name) {
+		int found=0;
+		String sname=name;
+		ArrayList<StudentBO> al=null;
+		try {
+			
+			String query="select * from student where sname like '%"+sname+"%'";
+			Statement st = con.createStatement();
+			found= st.executeUpdate(query);
+			
+			if(found!=0) {
+				
+				ResultSet results=st.executeQuery(query);
+				al = new ArrayList<StudentBO>();
+				while (results.next()) {
+					StudentBO sbo = new StudentBO();
+					sbo.setUsername(results.getString(5));
+					sbo.setEmail(results.getString(4));
+					sbo.setPassword(results.getString(6));
+					sbo.setSname(results.getString(2));
+					sbo.setContact(results.getLong(3));
+					sbo.setAddress(results.getString(7));
+					sbo.setFees(results.getDouble(9));
+					sbo.setAdmision_date(results.getDate(10).toString());
+					sbo.setCourse(results.getString(8));
+					sbo.setStudentid(results.getString(1));
+					al.add(sbo);
+				}
+				
+			}else {
+					al=null;
+			}
+				st.close();
+				
+		} catch (SQLException e) {
 
-		return null;
+			e.printStackTrace();
+		}
+		return al;
+
 	}
 
 }

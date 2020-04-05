@@ -4,10 +4,13 @@ import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+
+import com.anxiety.dao.StudentOpration;
 
 
 @WebFilter(filterName="filter1", urlPatterns="/StudentSignIn")
@@ -31,7 +34,7 @@ public class SignInVerificationFilter implements Filter {
 					&& request.getParameter("uname").matches(validuname)) {
 			
 				if(request.getParameter("email").matches(validemail) && request.getParameter("pswd").matches(validpass)) {
-				
+						
 						chain.doFilter(request, response);
 				}
 				else{
