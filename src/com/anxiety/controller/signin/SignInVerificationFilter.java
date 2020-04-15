@@ -4,13 +4,11 @@ import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import com.anxiety.dao.StudentOpration;
 
 
 @WebFilter(filterName="filter1", urlPatterns="/StudentSignIn")
@@ -25,15 +23,15 @@ public class SignInVerificationFilter implements Filter {
 		
 		RequestDispatcher rd=null;
 		final String validemail="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-		final String validpass="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
-		final String validuname="^[a-z0-9_-]{3,15}$";
+		final String validpass="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$";
+		final String validuname="^[a-zA-Z0-9_-]{3,15}$";
 		if(request.getParameter("email")!=null &&
-		( request.getParameter("pswd")!=null && request.getParameter("cpswd")!=null) ){
+		( request.getParameter("psw")!=null && request.getParameter("cpsw")!=null) ){
 			
-			if(request.getParameter("pswd").equals(request.getParameter("cpswd")) 
+			if(request.getParameter("psw").equals(request.getParameter("cpsw")) 
 					&& request.getParameter("uname").matches(validuname)) {
 			
-				if(request.getParameter("email").matches(validemail) && request.getParameter("pswd").matches(validpass)) {
+				if(request.getParameter("email").matches(validemail) && request.getParameter("psw").matches(validpass)) {
 						
 						chain.doFilter(request, response);
 				}

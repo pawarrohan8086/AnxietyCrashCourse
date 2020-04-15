@@ -22,14 +22,14 @@ public class StudentSignIn extends HttpServlet {
 		 HttpSession session=request.getSession(true);
 		 session.setAttribute("uname", request.getParameter("uname"));
 		 session.setAttribute("email", request.getParameter("email"));
-		 session.setAttribute("pswd", request.getParameter("pswd"));
+		 session.setAttribute("pswd", request.getParameter("psw"));
 		 session.setAttribute("ipaddress",request.getRemoteAddr());
 		 session.setAttribute("hostname", request.getRemoteHost());
 		 session.setAttribute("date",new Date().toString());
 
 		//store into database
 		 request.setAttribute("flag","needs-validation");
-		RequestDispatcher rd=request.getRequestDispatcher(response.encodeURL("StudentEnroll.jsp"));
+		RequestDispatcher rd=request.getRequestDispatcher(response.encodeURL("student/StudentEnroll.jsp"));
 		rd.include(request, response);
 		
 	}

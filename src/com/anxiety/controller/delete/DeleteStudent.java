@@ -24,11 +24,11 @@ public class DeleteStudent extends HttpServlet {
 		int c=so.deleteRecord(sid);
 		if(c==1) {
 			String show="Record Deleted.";
-			response.sendRedirect("StudentData.jsp?alert="+show+"");	
+			response.sendRedirect("admin/AddStudent.jsp?alert="+show+"");	
 		}else {
 		
 			String show="Record not Found.";
-			response.sendRedirect("StudentData.jsp?alert="+show+"");
+			response.sendRedirect("admin/AddStudent.jsp.jsp?alert="+show+"");
 		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

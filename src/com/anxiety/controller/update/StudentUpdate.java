@@ -48,11 +48,11 @@ public class StudentUpdate extends HttpServlet {
 		int c=so.updateRecord(id,sbo);
 		if(c==1) {
 			String show="update Succesfully";
-			response.sendRedirect("UpdateStudent.jsp?alert="+show+"&id="+id+"");	
+			response.sendRedirect("admin/UpdateStudent.jsp?alert="+show+"&id="+id+"");	
 		}else {
 		
 			String show="same record Found";
-			response.sendRedirect("UpdateStudent.jsp?alert="+show+"&id="+id+"");
+			response.sendRedirect("admin/UpdateStudent.jsp?alert="+show+"&id="+id+"");
 		}
 		
 	}

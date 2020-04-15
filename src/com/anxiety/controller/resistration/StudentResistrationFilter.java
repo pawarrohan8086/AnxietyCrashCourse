@@ -35,29 +35,12 @@ public class StudentResistrationFilter implements Filter {
 				chain.doFilter(request, response);
 			
 			}else{
-					if(request.getAttribute("flag")!=null) {
-						request.removeAttribute("flag");
-						request.setAttribute("flag","was-validated");
-						System.out.println("was valid");
-					}else {
-						request.removeAttribute("flag");
-						request.setAttribute("flag","was-validated");
-						
-					}
 					rd=request.getRequestDispatcher("StudentEnroll.jsp");
 					rd.forward(request, response);
 			}
 			
 		}else{
-			if(request.getAttribute("flag")!=null) {
-				request.removeAttribute("flag");
-				request.setAttribute("flag","was-validated");
-				System.out.println("was valid");
-			}else {
-				request.removeAttribute("flag");
-				request.setAttribute("flag","was-validated");
-				
-			}
+
 			rd=request.getRequestDispatcher("StudentEnroll.jsp");
 			rd.forward(request, response);
 	}

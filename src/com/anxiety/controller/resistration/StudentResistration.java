@@ -85,9 +85,7 @@ public class StudentResistration extends HttpServlet {
 		
 		so.closeConnection();
 			
-		response.sendRedirect("StudentData.jsp");
-
-		
+		response.sendRedirect("student/profile.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

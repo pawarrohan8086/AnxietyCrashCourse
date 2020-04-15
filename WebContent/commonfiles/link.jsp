@@ -5,4 +5,5 @@
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="http://localhost:8080/AnxietyCrashCourse/web/css/bootstrap.css">
 <link href="http://localhost:8080/AnxietyCrashCourse/web/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/AnxietyCrashCourse/web/css/style.css" media="all">
