@@ -33,7 +33,7 @@ public class SignInVerificationFilter implements Filter {
 			
 				if(request.getParameter("email").matches(validemail) && request.getParameter("psw").matches(validpass)) {
 						
-						chain.doFilter(request, response);
+					chain.doFilter(request, response);
 				}
 				else{
 					

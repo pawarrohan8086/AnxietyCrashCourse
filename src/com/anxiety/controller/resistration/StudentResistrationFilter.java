@@ -31,17 +31,17 @@ public class StudentResistrationFilter implements Filter {
 			String vmob="(0/91)?[7-9][0-9]{9}";
 		
 			if(mobile.matches(vmob)) {
-					
+				
 				chain.doFilter(request, response);
 			
 			}else{
-					rd=request.getRequestDispatcher("StudentEnroll.jsp");
+					rd=request.getRequestDispatcher("student/StudentEnroll.jsp");
 					rd.forward(request, response);
 			}
 			
 		}else{
 
-			rd=request.getRequestDispatcher("StudentEnroll.jsp");
+			rd=request.getRequestDispatcher("student/StudentEnroll.jsp");
 			rd.forward(request, response);
 	}
 		

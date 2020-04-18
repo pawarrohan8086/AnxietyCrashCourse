@@ -14,4 +14,6 @@ public interface StudentDeclaration {
 	public  int deleteRecord(String sid);
 	public  ArrayList<StudentBO> searchRecord(String name);
 	public void closeConnection();
+	public String loginCheck(String email);
+	public ArrayList<Long> contactCheck();
 }

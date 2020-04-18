@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>student</title>
+<title>Questions data</title>
 <%@include file="/commonfiles/link.jsp" %>
 
 </head>
@@ -12,7 +12,7 @@
 		<!-- asidebar Holder -->
 		<div id="asidebar">
 			<div class="asidebar-header">
-				<h3>Anxiety Crash Course</h3>
+				<h3>Admin</h3>
 				<strong>RP</strong>
 			</div>
 			<ul class="list-unstyled components">

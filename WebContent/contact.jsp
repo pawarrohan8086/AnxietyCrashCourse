@@ -18,7 +18,7 @@
 				<!-- nav -->
                 <nav class="lavi-wthree">
                     <div id="logo">
-                        <h1> <small><a class="navbar-brand" href="Home.jsp">Anxiety</a></small>
+                        <h1><a class="navbar-brand" href="Home.jsp">Anxiety</a>
                         </h1>
                     </div>
 					<label for="drop" class="toggle">Menu</label>

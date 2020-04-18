@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>student</title>
+<title>Subject data</title>
 <%@include file="/commonfiles/link.jsp" %>
 
 </head>
@@ -12,7 +12,7 @@
 		<!-- asidebar Holder -->
 		<div id="asidebar">
 			<div class="asidebar-header">
-				<h3>Anxiety Crash Course</h3>
+				<h3>Admin</h3>
 				<strong>RP</strong>
 			</div>
 			<ul class="list-unstyled components">
@@ -44,15 +44,17 @@
 				</li>
 			</ul>
 		</div>
-
+		<%! String alert="Subject added successful"; %>
+		
 		<!-- Page Content Holder -->
 		<div id="content">
 			<button type="button" id="asidebarCollapse" class="btn btn-danger navbar-btn">
-				<i class="glyphicon glyphicon-align-justify"> </i>
+				<i class="glyphicon glyphicon-align-justify"></i>
 			</button>
+			<h4><i style="color:blue;margin-left:400px;"><%=alert %></i></h4>
 			<br><br>
 			<h2>Add Subject Details</h2><br>
-			<form action="#"> 
+			<form action="AddSubject"> 
 			<table class="table table-responsive table-borderless">
 				<tbody>
 					<tr>

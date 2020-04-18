@@ -2,9 +2,11 @@ package com.anxiety.controller.resistration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.UUID;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +24,25 @@ import com.anxiety.dao.StudentOpration;
 @WebServlet("/StudentResistration")
 public class StudentResistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int flag=0;
+		RequestDispatcher rd=null;	
+		ServletContext sc=getServletContext();
+		StudentOpration so=new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+		ArrayList<Long> mob=so.contactCheck();
+		ListIterator<Long> ltr=mob.listIterator();
+		while(ltr.hasNext()) {
+			Long contact=ltr.next();
+			if(contact==Long.parseLong(request.getParameter("mobile"))){
+				so.closeConnection();
+				flag=1;
+				rd=request.getRequestDispatcher("student/StudentEnroll.jsp");
+				rd.forward(request, response);
+				
+			}
+		}
+		if(flag==0){
 			
 		String[] uid = UUID.randomUUID().toString().split("-");
 		String sid=uid[0];
@@ -70,8 +87,7 @@ public class StudentResistration extends HttpServlet {
 		sbo.setStudentid(sdto.getStudentid());
 		
 		
-		ServletContext sc=getServletContext();
-		StudentOpration so=new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+
 		int c=so.insertRecord(sbo);
 		PrintWriter out=response.getWriter();
 		 
@@ -86,6 +102,7 @@ public class StudentResistration extends HttpServlet {
 		so.closeConnection();
 			
 		response.sendRedirect("student/profile.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

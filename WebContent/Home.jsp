@@ -16,7 +16,7 @@
 				<!-- nav -->
                 <nav class="lavi-wthree">
                     <div id="logo">
-                        <h1> <small><a class="navbar-brand" href="Home.jsp">Anxiety</a></small>
+                        <h1> <a class="navbar-brand" href="Home.jsp">Anxiety</a>
                         </h1>
                     </div>
 					<label for="drop" class="toggle">Menu</label>
@@ -480,7 +480,7 @@
 					</div>
 					<div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
 						<h5 class="text-center mb-4">Apply Now</h5>
-						<div class="container">
+						<div >
 							<form action="StudentSignIn" class="needs-validation"  novalidate>
 								<div id="username">
 									<p id="space" class="valid">A <b>space</b> not allowed</p>  
@@ -524,12 +524,12 @@
 							<button class="btn btn-primary slogin mb-4" onclick="document.getElementById('id01').style.display='block'">Login</button>
 							</div>
 							<div id="id01" class="modal"> 
-								<form class="modal-content animate needs-validation" action="#" method="Get" novalidate>
+								<form class="modal-content animate needs-validation" action="Login" method="Get" novalidate>
 									<div class="logincontainer">
 										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>
 										<h3>Login</h3>
 									</div>
-									<div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
+									<div class="login p-md-5 p-4 mx-auto bg-white mw-100">
 										<div class="form-group mb-4">
 											<div class="form-check-inline">	
 												<label class="form-check-label" for="radio1" style="color:#404747;">
@@ -545,13 +545,13 @@
 										</div>
 								<div class="form-group">
 									<label for="email">Email</label>
-									<input type="email" class="form-control" id="email"  name="email" value="pawarrohan8086@gmail.com" required>
+									<input type="email" class="form-control" id="email"  name="email" required>
 									<div class="valid-feedback">Valid.</div>
 									<div class="invalid-feedback">Please fill out this field.</div>
 								</div>
 									<div class="form-group">
 										<label for="pswd">Password</label>
-										<input type="password" class="form-control" id="pswd"  name="pswd" value="rohan" required>
+										<input type="password" class="form-control" id="pswd"  name="pswd"  required>
 										<div class="valid-feedback">Valid.</div>
 										<div class="invalid-feedback">Please fill out this field.</div>
 									</div>

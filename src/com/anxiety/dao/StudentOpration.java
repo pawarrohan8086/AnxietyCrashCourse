@@ -1,6 +1,7 @@
 package com.anxiety.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class StudentOpration implements StudentDeclaration {
 			if (tableFlag == 0) {
 				try {
 					Statement st = con.createStatement();
-					String query = "create table student(sid varchar(10) primary key,sname varchar(20) not null,contact number(10) not null,email varchar(30) not null,username varchar(20) not null,password varchar(80) not null,address varchar2(100) not null,course varchar2(20),fees number(8,2),admission_date date)";
+					String query = "create table student(sid varchar(10) primary key,sname varchar(20) not null,contact number(10) unique,email varchar(30) unique,username varchar(20) not null,password varchar(80) not null,address varchar2(100) not null,course varchar2(20),fees number(8,2),admission_date date)";
 					int flag = st.executeUpdate(query);
 					if(flag==0) {
 						StudentOpration.tableFlag=1;
@@ -285,6 +286,66 @@ public class StudentOpration implements StudentDeclaration {
 		}
 		return al;
 
+	}
+	@Override
+	public String loginCheck(String email){
+		int found=0;
+		String mail=email;
+		String pswd=null;
+		try {
+			
+			String query="select * from student where email='"+mail+"'";
+			Statement st = con.createStatement();
+			found= st.executeUpdate(query);
+			
+			if(found!=0) {
+				
+				ResultSet results=st.executeQuery(query);
+				while(results.next()) {
+				pswd= results.getString(6);
+				}
+			}else {
+					pswd=null;
+			}
+			
+			st.close();
+				
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return pswd;
+	}
+	
+	@Override
+	public ArrayList<Long> contactCheck(){
+		int found=0;
+		Long contact;
+		ArrayList<Long> al=null;
+		try {
+			
+			String query="select contact from student";
+			Statement st = con.createStatement();
+			found= st.executeUpdate(query);
+			
+			if(found!=0) {
+				al=new ArrayList<Long>();
+				ResultSet results=st.executeQuery(query);
+				while(results.next()){
+				contact=results.getLong(1);	
+				al.add(contact);
+				}
+			}else {
+				al=null;
+			}
+			
+			st.close();
+				
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return al;
 	}
 
 }
