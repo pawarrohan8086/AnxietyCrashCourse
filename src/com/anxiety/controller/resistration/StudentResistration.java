@@ -86,22 +86,17 @@ public class StudentResistration extends HttpServlet {
 		sbo.setCourse(sdto.getCourse());
 		sbo.setStudentid(sdto.getStudentid());
 		
-		
-
 		int c=so.insertRecord(sbo);
-		PrintWriter out=response.getWriter();
 		 
 		if(c==1) {
 			
-			out.println("resister successfull");
+			so.closeConnection();
+			response.sendRedirect("student/profile.jsp");
+			
 		}else {
-			
-			out.println("not resister...!");
-		}
+			response.sendRedirect("Home.jsp");
+			}
 		
-		so.closeConnection();
-			
-		response.sendRedirect("student/profile.jsp");
 		}
 	}
 

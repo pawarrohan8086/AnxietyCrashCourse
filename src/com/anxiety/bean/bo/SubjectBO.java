@@ -3,7 +3,8 @@ package com.anxiety.bean.bo;
 public class SubjectBO {
 
 	private String sub_name;
-	private int sub_id,sub_tmarks,sub_pmarks,sub_fees,sub_question,sub_duration,sub_offer;
+	private int sub_id,sub_tmarks,sub_pmarks,sub_question,sub_duration,sub_offer;
+	private double sub_fees;
 	
 	public int getSub_id() {
 		return sub_id;
@@ -29,10 +30,10 @@ public class SubjectBO {
 	public void setSub_pmarks(int sub_pmarks) {
 		this.sub_pmarks = sub_pmarks;
 	}
-	public int getSub_fees() {
+	public double getSub_fees() {
 		return sub_fees;
 	}
-	public void setSub_fees(int sub_fees) {
+	public void setSub_fees(double sub_fees) {
 		this.sub_fees = sub_fees;
 	}
 	public int getSub_question() {

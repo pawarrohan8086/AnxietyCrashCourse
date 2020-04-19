@@ -1,7 +1,10 @@
 package com.anxiety.dao;
 
-public interface SubjectDeclaration {
+import com.anxiety.bean.bo.SubjectBO;
 
+public interface SubjectDeclaration {
 	
+	public int addSubject(SubjectBO sbo);
+	public void closeConnection() ;
 	
 }

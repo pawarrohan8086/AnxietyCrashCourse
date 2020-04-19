@@ -6,14 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.anxiety.bean.bo.SubjectBO;
+import com.anxiety.bean.bo.OptionBO;
 
-public class SubjectOperation implements SubjectDeclaration {
+public class OptionOperation implements OptionDeclaration {
 	String driver, dburl, dbuser, dbpswd;
 	static Connection con;
 	static int tableFlag = 0;
 
-	public SubjectOperation(String driver, String url, String user, String pswd) {
+	public OptionOperation(String driver, String url, String user, String pswd) {
 		this.driver = driver;
 		this.dburl = url;
 		this.dbuser = user;
@@ -24,12 +24,12 @@ public class SubjectOperation implements SubjectDeclaration {
 			if (tableFlag == 0) {
 				try {
 					Statement st = con.createStatement();
-					String query = "create table subject(sub_id number(20) primary key,sub_name varchar(30) not null,sub_tmarks number(4),sub_pmarks number(4),sub_question number(10),sub_fees number(8,2),sub_offer number(10),sub_duration number(10))";
+					String query = "create table options(option_id number(1) not null,question_id number(5) unique,option_1 varchar(500),option_2 varchar(500),option_3 varchar(500),option_4 varchar(500))";
 					int flag = st.executeUpdate(query);
 					if(flag==0) {
-						SubjectOperation.tableFlag=1;
+						OptionOperation.tableFlag=1;
 					}else {
-						SubjectOperation.tableFlag=1;
+						OptionOperation.tableFlag=1;
 					}
 					st.close();
 
@@ -58,22 +58,19 @@ public class SubjectOperation implements SubjectDeclaration {
 		}
 
 	}
-
 	@Override 
-	public int addSubject(SubjectBO obj) {
+	public int addQuestion(OptionBO obo) {
 		int c = 0;
 		if (tableFlag == 1) {
 			try {
 
-				PreparedStatement pst = con.prepareStatement("insert into subject values(?,?,?,?,?,?,?,?)");
-				pst.setInt(1, obj.getSub_id());
-				pst.setString(2, obj.getSub_name());
-				pst.setInt(3, obj.getSub_tmarks());
-				pst.setInt(4, obj.getSub_pmarks());
-				pst.setDouble(6, obj.getSub_fees());
-				pst.setInt(5, obj.getSub_question());
-				pst.setInt(8, obj.getSub_duration());
-				pst.setInt(7, obj.getSub_offer());
+				PreparedStatement pst = con.prepareStatement("insert into options values(?,?,?,?,?,?)");
+				pst.setInt(1,obo.getOption_id());
+				pst.setInt(2,obo.getQue_id());
+				pst.setString(3,obo.getOption1());
+				pst.setString(4,obo.getOption2());
+				pst.setString(5,obo.getOption3());
+				pst.setString(6,obo.getOption4());
 				c = pst.executeUpdate();
 				con.commit();
 				pst.close();

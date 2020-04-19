@@ -44,7 +44,18 @@
 				</li>
 			</ul>
 		</div>
-		<%! String alert="Subject added successful"; %>
+		
+		<%! String alert="",q="";%>
+		<% q=request.getParameter("q");
+		if(q==null){
+			q="";
+		}
+		else if(q.equals("1")){
+				alert="Subject added successful";
+			}else{
+				alert="subject not added";
+			}
+		%>
 		
 		<!-- Page Content Holder -->
 		<div id="content">
@@ -54,7 +65,7 @@
 			<h4><i style="color:blue;margin-left:400px;"><%=alert %></i></h4>
 			<br><br>
 			<h2>Add Subject Details</h2><br>
-			<form action="AddSubject"> 
+			<form action="../addsub"> 
 			<table class="table table-responsive table-borderless">
 				<tbody>
 					<tr>

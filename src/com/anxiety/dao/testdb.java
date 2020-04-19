@@ -8,18 +8,13 @@ public class testdb {
 	
 	public static void main(String[] args) {
 	
-	StudentOpration so=new StudentOpration("oracle.jdbc.driver.OracleDriver","jdbc:oracle:thin:@localhost:1521:orcl","scott","tiger");
+		OptionOperation so=new OptionOperation("oracle.jdbc.driver.OracleDriver","jdbc:oracle:thin:@localhost:1521:orcl","scott","tiger");
 	System.out.println("table created");
-	ArrayList<Long> mob=so.contactCheck();
-	ListIterator<Long> ltr=mob.listIterator();
-	while(ltr.hasNext()) {
-		Long contact=ltr.next();
-		System.out.println(contact);
-	}
+
 	String[] uid = UUID.randomUUID().toString().split("-");
+	int num=Math.abs(UUID.randomUUID().hashCode());
 	
-	String sid=uid[0];
-	System.out.println(+UUID.randomUUID().hashCode());
+	System.out.println(num);
 	}
 
 }
