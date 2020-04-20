@@ -1,7 +1,6 @@
 package com.anxiety.controller.subject;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -48,9 +47,10 @@ public class AddSubject extends HttpServlet {
 		SubjectOperation subo=new SubjectOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 		int c=subo.addSubject(subbo);
 		if(c==1) {
+			subo.closeConnection();
 			response.sendRedirect("admin/AddSubject.jsp?q=1");	
 		}else {
-		
+			subo.closeConnection();
 			response.sendRedirect("admin/AddSubject.jsp?q=0");
 		}
 	

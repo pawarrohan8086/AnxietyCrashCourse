@@ -22,7 +22,7 @@
 						Student
 					</a>
 					<ul class="collapse list-unstyled" id="student">
-						<li ><a href="AddStudent.jsp">Add Student </a></li>
+						<li ><a href="ShowAllStudent.jsp">Show All Student </a></li>
 					</ul>
 				</li>
 				<li >
@@ -44,9 +44,9 @@
 				</li>
 			</ul>
 		</div>
-		
-		<%! String alert="",q="";%>
-		<% q=request.getParameter("q");
+		<% 
+		String alert="",q="";
+		q=request.getParameter("q");
 		if(q==null){
 			q="";
 		}
@@ -62,11 +62,11 @@
 			<button type="button" id="asidebarCollapse" class="btn btn-danger navbar-btn">
 				<i class="glyphicon glyphicon-align-justify"></i>
 			</button>
-			<h4><i style="color:blue;margin-left:400px;"><%=alert %></i></h4>
+			<h3><i style="color:blue;margin-left:35%;"><%=alert %></i></h3>
 			<br><br>
 			<h2>Add Subject Details</h2><br>
 			<form action="../addsub"> 
-			<table class="table table-responsive table-borderless">
+			<table class="table  table-borderless">
 				<tbody>
 					<tr>
 						<td>

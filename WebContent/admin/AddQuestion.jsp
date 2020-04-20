@@ -3,7 +3,8 @@
 <head>
 <title>Questions data</title>
 <%@include file="/commonfiles/link.jsp"%>
-
+<%@page
+	import="java.util.ArrayList,java.util.ListIterator,java.sql.ResultSet,com.anxiety.dao.SubjectOperation"%>
 </head>
 <body>
 	<%@include file="/commonfiles/Header.jsp"%>
@@ -21,7 +22,7 @@
 						class="glyphicon glyphicon-text-background"></i> Student
 				</a>
 					<ul class="collapse list-unstyled" id="student">
-						<li><a href="AddStudent.jsp">Add Student </a></li>
+						<li><a href="ShowAllStudent.jsp">Show All Student </a></li>
 					</ul></li>
 				<li class="active"><a href="#question" data-toggle="collapse"
 					aria-expanded="false"> <i
@@ -39,18 +40,30 @@
 					</ul></li>
 			</ul>
 		</div>
-
+		<% 
+		String alert="",q="";
+		q=request.getParameter("q");
+		if(q==null){
+			q="";
+		}
+		else if(q.equals("1")){
+				alert="Question added Successful";
+			}else{
+				alert="question not added";
+			}
+		%>
 		<!-- Page Content Holder -->
 		<div id="content">
 			<button type="button" id="asidebarCollapse"
 				class="btn btn-danger navbar-btn">
 				<i class="glyphicon glyphicon-align-justify"> </i>
 			</button>
-			<br> <br>
+			<h3><i style="color :blue;margin-left:35%;"><%=alert %></i></h3>
+			<br><br>
 			<h2>Add Question and Details</h2>
-			<br> <br>
+			<br>
 			<form action="../addque" method="post">
-				<table class="table table-responsive table-borderless">
+				<table class="table  table-borderless">
 					<tbody>
 						<tr>
 							<td><label for="subject">Select Subject :</label></td>
@@ -58,10 +71,22 @@
 								<div class="form-group">
 									<select class="form-control" name="sub_name" required>
 										<option value="">None</option>
-										<option value="java">java</option>
-										<option value="android">android</option>
-										<option value="java script">java script</option>
-										<option value="python">Python</option>
+										<%
+											ServletContext sc = getServletContext();
+											SubjectOperation subo = new SubjectOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
+													sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+											ArrayList<String> al = subo.getSubject();
+											if (al != null) {
+												ListIterator<String> ltr = al.listIterator();
+												while (ltr.hasNext()) {
+													String sub = ltr.next().toString();
+										%>
+										<option value="<%=sub%>"><%=sub%></option>
+										<%
+											}
+											}
+											subo.closeConnection();
+										%>
 									</select>
 								</div>
 							</td>
@@ -133,8 +158,9 @@
 							<td colspan="5">
 								<div class="form-group">
 									<input type="number" class="form-control" id="anstext"
-										name="ans_id" placeholder="enter option number for right answer" min="1" max="4"
-										required>
+										name="ans_id"
+										placeholder="enter option number which is right answer" min="1"
+										max="4" required>
 								</div>
 							</td>
 						</tr>

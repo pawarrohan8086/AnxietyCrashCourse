@@ -25,7 +25,7 @@
 						Student
 					</a>
 					<ul class="collapse list-unstyled" id="student">
-						<li  class="active"><a href="AddStudent.jsp">Add Student </a></li>
+						<li  class="active"><a href="ShowAllStudent.jsp">Show All Student.jsp</a></li>
 					</ul>
 				</li>
 				<li >
@@ -138,7 +138,7 @@
             <div class="col-md-8">
               <input type="submit" class="btn btn-success" value="Save Changes">
               <span></span>
-              <a href="AddStudent.jsp"><input type="button" class="btn btn-info" value="Back"></a>
+              <a href="ShowAllStudent.jsp"><input type="button" class="btn btn-info" value="Back"></a>
             </div>
           </div>
         </form>

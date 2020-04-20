@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search</title>
+<title>Student Data</title>
 <%@ page
 	import="com.anxiety.dao.StudentOpration,java.util.ArrayList,com.anxiety.bean.bo.StudentBO,java.util.ListIterator"%>
 <%@include file="/commonfiles/link.jsp"%>
@@ -23,8 +23,7 @@
 						class="glyphicon glyphicon-text-background"></i> Student
 				</a>
 					<ul class="collapse list-unstyled" id="student">
-						<li class="active"><a href="ShowAllStudent.jsp">Show All
-								Student </a></li>
+						<li class="active"><a href="ShowAllStudent.jsp">Show All Student </a></li>
 					</ul></li>
 				<li><a href="#question" data-toggle="collapse"
 					aria-expanded="false"> <i
@@ -47,81 +46,10 @@
 				class="btn btn-danger navbar-btn">
 				<i class="glyphicon glyphicon-align-justify"> </i>
 			</button>
-			<br>
-			<br>
+			<br> <br>
+
 			<h2>Student Data</h2>
 			<br>
-			<%!String alert = "";%>
-			<%
-				String q = request.getParameter("sq");
-				ServletContext sc1 = getServletContext();
-				StudentOpration so1 = new StudentOpration(sc1.getInitParameter("driver"), sc1.getInitParameter("dburl"),
-						sc1.getInitParameter("dbuser"), sc1.getInitParameter("dbpswd"));
-				ArrayList<StudentBO> sal1 = so1.searchRecord(q);
-				if (sal1 == null) {
-			%>
-			<p class="text-center">
-				<strong style="color: blue;"><i>No match found</i></strong>
-			</p>
-			<%
-				} else {
-			%>
-			<p class="text-center">
-				<strong style="color: blue;"><i><%=sal1.size()%>.Record
-						found</i></strong>
-			</p>
-			<table
-				class="table table-responsive table-sm table-bordered table-hover">
-				<thead class="table-dark">
-					<tr>
-						<th colspan="2">MODIFY</th>
-						<th>SID</th>
-						<th>SNAME</th>
-						<th>ADDRESS</th>
-						<th>CONTACT</th>
-						<th>EMAIL</th>
-						<th>USERNAME</th>
-						<th>COURSE</th>
-						<th>FEES</th>
-						<th>ADMISION_DATE</th>
-						<th>PASSWORD</th>
-					</tr>
-				</thead>
-
-				<%
-					ListIterator<StudentBO> li1 = sal1.listIterator();
-						StudentBO sd1 = null;
-						while (li1.hasNext()) {
-							sd1 = li1.next();
-				%>
-
-				<tbody>
-					<tr>
-						<td><a href="UpdateStudent.jsp?id=<%=sd1.getStudentid()%>">
-								<button type="button" class="btn btn-secondary">Edit</button>
-						</a></td>
-						<td><a href="../DeleteStudent?id=<%=sd1.getStudentid()%>"><button
-									type="button" class="btn btn-danger">Delete</button></a></td>
-						<td><%=sd1.getStudentid()%></td>
-						<td><%=sd1.getSname()%></td>
-						<td><%=sd1.getAddress()%></td>
-						<td><%=sd1.getContact()%></td>
-						<td><%=sd1.getEmail()%></td>
-						<td><%=sd1.getUsername()%></td>
-						<td><%=sd1.getCourse()%></td>
-						<td><%=sd1.getFees()%></td>
-						<td><%=sd1.getAdmision_date()%></td>
-						<td><%=sd1.getPassword()%></td>
-
-						<%
-							}
-								so1.closeConnection();
-							}
-						%>
-					</tr>
-				</tbody>
-			</table>
-
 			<form action="SearchStudent.jsp">
 				<div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
 					<div class="input-group">
@@ -138,13 +66,10 @@
 					</div>
 				</div>
 			</form>
-
-
 			<%
 				String deleteAlert = request.getParameter("alert");
 				if (deleteAlert == null) {
 					deleteAlert = "";
-
 				}
 			%>
 			<p class="text-center">

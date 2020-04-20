@@ -65,20 +65,19 @@ public class AddQuestion extends HttpServlet {
 		QuestionOperation queo=new QuestionOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 		int[] c=queo.addQuestion(qbo);
 		
-		byte qid=(byte)c[1];
-		obo.setQue_id(qid);
+		obo.setQue_id(c[1]);
 		
 		if(c[0]==1) {
 			
 			OptionOperation opto=new OptionOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 			int d=opto.addQuestion(obo);
 			if(d==1) {
-				
-				response.sendRedirect("admin/AddQuestion.jsp");
+				queo.closeConnection();
+				response.sendRedirect("admin/AddQuestion.jsp?q=1");
 			}
 		}else {
-			
-			response.sendRedirect("Error.jsp");
+			queo.closeConnection();
+			response.sendRedirect("admin/AddQuestion.jsp?q=0");
 		}
 	}
 

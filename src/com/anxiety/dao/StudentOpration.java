@@ -1,7 +1,6 @@
 package com.anxiety.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

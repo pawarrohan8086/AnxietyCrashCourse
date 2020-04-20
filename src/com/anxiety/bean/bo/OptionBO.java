@@ -2,13 +2,14 @@ package com.anxiety.bean.bo;
 
 public class OptionBO {
 	
-	private byte que_id,option_id;
+	private byte option_id;
+	private int que_id;
 	private String option1,option2,option3,option4;
 	
-	public byte getQue_id() {
+	public int getQue_id() {
 		return que_id;
 	}
-	public void setQue_id(byte que_id) {
+	public void setQue_id(int que_id) {
 		this.que_id = que_id;
 	}
 	public byte getOption_id() {

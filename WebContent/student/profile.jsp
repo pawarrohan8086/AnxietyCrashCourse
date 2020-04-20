@@ -3,7 +3,6 @@
 <head>
 <title>student</title>
 <%@include file="/commonfiles/link.jsp" %>
-
 </head>
 <body>
 <%@include file="/commonfiles/Header.jsp" %>
@@ -31,7 +30,7 @@
               
                     <h4>Personal Data</h4><br>
            
-                <table class="table bio-table">
+                <table class="table bio-table ">
                     <tbody>
                         <tr>      
                             <td>Student Id</td>
@@ -50,7 +49,7 @@
                             <td>:&nbsp;&nbsp; 6 March 1980</td>
                         </tr>
                         <tr>
-                            <td>Contact Number </td>
+                            <td>Contact  </td>
                             <td>:&nbsp;&nbsp; 983497345</td>
                         </tr>
                         <tr>

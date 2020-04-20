@@ -1,8 +1,7 @@
 package com.anxiety.bean.bo;
 
 public class QuestionBO {
-	private byte que_id;
-	private int que_marks;
+	private int que_marks,que_id;
 	private String sub_name,question_type,quetext,anstext;
 	
 	public int getQue_marks() {
@@ -36,10 +35,10 @@ public class QuestionBO {
 	public void setAnstext(String anstext) {
 		this.anstext = anstext;
 	}
-	public byte getQue_id() {
+	public int getQue_id() {
 		return que_id;
 	}
-	public void setQue_id(byte que_id) {
+	public void setQue_id(int que_id) {
 		this.que_id = que_id;
 	}
 	

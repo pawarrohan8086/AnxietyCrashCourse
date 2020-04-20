@@ -4,7 +4,7 @@
 <head>
 <title>Search</title>
 <%@ page
-	import="com.anxiety.dao.StudentOpration,java.util.ArrayList,com.anxiety.bean.bo.StudentBO,java.util.ListIterator"%>
+	import="com.anxiety.dao.SubjectOperation,java.util.ArrayList,com.anxiety.bean.bo.SubjectBO,java.util.ListIterator"%>
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
@@ -18,12 +18,12 @@
 				<strong>RP</strong>
 			</div>
 			<ul class="list-unstyled components">
-				<li class="active"><a href="#student" data-toggle="collapse"
+				<li><a href="#student" data-toggle="collapse"
 					aria-expanded="false"> <i
 						class="glyphicon glyphicon-text-background"></i> Student
 				</a>
 					<ul class="collapse list-unstyled" id="student">
-						<li class="active"><a href="ShowAllStudent.jsp">Show All
+						<li><a href="ShowAllStudent.jsp">Show All
 								Student </a></li>
 					</ul></li>
 				<li><a href="#question" data-toggle="collapse"
@@ -33,11 +33,12 @@
 					<ul class="collapse list-unstyled" id="question">
 						<li><a href="AddQuestion.jsp">Add Questions </a></li>
 					</ul></li>
-				<li><a href="#subject" data-toggle="collapse"
+				<li class="active"><a href="#subject" data-toggle="collapse"
 					aria-expanded="false"> <i class="glyphicon glyphicon-briefcase"></i>Subject
 				</a>
 					<ul class="collapse list-unstyled" id="subject">
 						<li><a href="AddSubject.jsp">Add Subject</a></li>
+						<li class="active"><a href="ShowAllSubjects.jsp">Show All Subject</a></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -47,104 +48,100 @@
 				class="btn btn-danger navbar-btn">
 				<i class="glyphicon glyphicon-align-justify"> </i>
 			</button>
-			<br>
-			<br>
+			<br> <br>
 			<h2>Student Data</h2>
 			<br>
 			<%!String alert = "";%>
 			<%
-				String q = request.getParameter("sq");
+				String searchq = request.getParameter("sq");
 				ServletContext sc1 = getServletContext();
-				StudentOpration so1 = new StudentOpration(sc1.getInitParameter("driver"), sc1.getInitParameter("dburl"),
+				SubjectOperation subo1 = new SubjectOperation(sc1.getInitParameter("driver"), sc1.getInitParameter("dburl"),
 						sc1.getInitParameter("dbuser"), sc1.getInitParameter("dbpswd"));
-				ArrayList<StudentBO> sal1 = so1.searchRecord(q);
-				if (sal1 == null) {
+				ArrayList<SubjectBO> subal1 =subo1.searchSubject(searchq);
+				if (subal1 == null) {
 			%>
 			<p class="text-center">
-				<strong style="color: blue;"><i>No match found</i></strong>
+				<strong style="color: blue;"><i>No subject found</i></strong>
 			</p>
 			<%
 				} else {
 			%>
 			<p class="text-center">
-				<strong style="color: blue;"><i><%=sal1.size()%>.Record
+				<strong style="color: blue;"><i><%=subal1.size()%>.subject
 						found</i></strong>
 			</p>
-			<table
-				class="table table-responsive table-sm table-bordered table-hover">
+			<table class=" table table-condensed table-success">
 				<thead class="table-dark">
 					<tr>
-						<th colspan="2">MODIFY</th>
-						<th>SID</th>
-						<th>SNAME</th>
-						<th>ADDRESS</th>
-						<th>CONTACT</th>
-						<th>EMAIL</th>
-						<th>USERNAME</th>
-						<th>COURSE</th>
+						<th>SUBJECT ID</th>
+						<th>SUBJECT NAME</th>
+						<th>TOTAL MARKS</th>
+						<th>PASSING MARKS</th>
+						<th>QUESTION</th>
 						<th>FEES</th>
-						<th>ADMISION_DATE</th>
-						<th>PASSWORD</th>
+						<th>DISCOUNT</th>
+						<th>DURATION</th>
+						<th colspan="2">MODIFY</th>
 					</tr>
-				</thead>
-
+				</thead>			
 				<%
-					ListIterator<StudentBO> li1 = sal1.listIterator();
-						StudentBO sd1 = null;
+					ListIterator<SubjectBO> li1 = subal1.listIterator();
+						SubjectBO subd1=null;
 						while (li1.hasNext()) {
-							sd1 = li1.next();
+							subd1 = li1.next();
 				%>
 
 				<tbody>
 					<tr>
-						<td><a href="UpdateStudent.jsp?id=<%=sd1.getStudentid()%>">
-								<button type="button" class="btn btn-secondary">Edit</button>
-						</a></td>
-						<td><a href="../DeleteStudent?id=<%=sd1.getStudentid()%>"><button
-									type="button" class="btn btn-danger">Delete</button></a></td>
-						<td><%=sd1.getStudentid()%></td>
-						<td><%=sd1.getSname()%></td>
-						<td><%=sd1.getAddress()%></td>
-						<td><%=sd1.getContact()%></td>
-						<td><%=sd1.getEmail()%></td>
-						<td><%=sd1.getUsername()%></td>
-						<td><%=sd1.getCourse()%></td>
-						<td><%=sd1.getFees()%></td>
-						<td><%=sd1.getAdmision_date()%></td>
-						<td><%=sd1.getPassword()%></td>
-
+						<td><%=subd1.getSub_id()%></td>
+						<td><%=subd1.getSub_name()%></td>
+						<td><%=subd1.getSub_tmarks()%></td>
+						<td><%=subd1.getSub_pmarks()%></td>
+						<td><%=subd1.getSub_question()%></td>
+						<td><%=subd1.getSub_fees()%></td>
+						<td><%=subd1.getSub_offer()%></td>
+						<td><%=subd1.getSub_duration()%></td>
+						<td>
+							<form action="UpdateSubject.jsp" method="post">
+								<input type="hidden" name=id value="<%=subd1.getSub_id()%>">
+								<button type="submit" class="btn btn-secondary">Edit</button>
+							</form>
+						</td>
+						<td>
+							<form action="../DeleteSubject" method="post">
+								<input type="hidden" name=id value="<%=subd1.getSub_id()%>">
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</form>
+						</td>
 						<%
 							}
-								so1.closeConnection();
+								subo1.closeConnection();
 							}
 						%>
 					</tr>
 				</tbody>
 			</table>
 
-			<form action="SearchStudent.jsp">
+			<form action="SearchSubject.jsp">
 				<div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
 					<div class="input-group">
 						<input type="search" name=sq
-							placeholder="What're you searching for student?"
+							placeholder="Don't find subject the click me?"
 							pattern="^(?!\s*$).+" aria-describedby="button-addon1"
 							class="form-control border-0 bg-light" required>
 						<div class="input-group-append">
 							<button id="button-addon1" type="submit"
 								class="btn btn-link text-primary">
-								<i class="fa fa-search"> Search Record</i>
+								<i class="fa fa-search"> Search subject</i>
 							</button>
 						</div>
 					</div>
 				</div>
 			</form>
-
-
 			<%
 				String deleteAlert = request.getParameter("alert");
 				if (deleteAlert == null) {
 					deleteAlert = "";
-
 				}
 			%>
 			<p class="text-center">
@@ -154,71 +151,67 @@
 
 			<%
 				ServletContext sc = getServletContext();
-				StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
+				SubjectOperation subo = new SubjectOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 						sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
-				ArrayList<StudentBO> sal = so.getAllRecord();
-				if (sal == null) {
+				ArrayList<SubjectBO> subal = subo.getAllSubject();
+				if (subal == null) {
 			%>
 			<p class="text-center">
 				<strong style="color: #009e73;"><i>Sorry no data
-						found...please insert Record.</i></strong>
+						found...please insert subject.</i></strong>
 			</p>
 
 			<%
 				} else {
 			%>
-			<table
-				class=" table table-responsive table-sm table-bordered table-hover">
+			<table class=" table table-condensed table-success">
 				<thead class="table-dark">
 					<tr>
-						<th colspan="2">MODIFY</th>
-						<th>SID</th>
-						<th>SNAME</th>
-						<th>ADDRESS</th>
-						<th>CONTACT</th>
-						<th>EMAIL</th>
-						<th>USERNAME</th>
-						<th>COURSE</th>
+						<th>SUBJECT ID</th>
+						<th>SUBJECT NAME</th>
+						<th>TOTAL MARKS</th>
+						<th>PASSING MARKS</th>
+						<th>QUESTION</th>
 						<th>FEES</th>
-						<th>ADMISION_DATE</th>
-						<th>PASSWORD</th>
+						<th>DISCOUNT</th>
+						<th>DURATION</th>
+						<th colspan="2">MODIFY</th>
 					</tr>
 				</thead>
 				<%
-					ListIterator<StudentBO> li = sal.listIterator();
-						StudentBO sd = null;
+					ListIterator<SubjectBO> li = subal.listIterator();
+						SubjectBO subd = null;
 						while (li.hasNext()) {
-							sd = li.next();
+							subd = li.next();
 				%>
 
 
 				<tbody>
+
 					<tr>
+						<td><%=subd.getSub_id()%></td>
+						<td><%=subd.getSub_name()%></td>
+						<td><%=subd.getSub_tmarks()%></td>
+						<td><%=subd.getSub_pmarks()%></td>
+						<td><%=subd.getSub_question()%></td>
+						<td><%=subd.getSub_fees()%></td>
+						<td><%=subd.getSub_offer()%></td>
+						<td><%=subd.getSub_duration()%></td>
 						<td>
-							<form action="UpdateStudent.jsp" method="post">
-								<input type="hidden" name=id value="<%=sd.getStudentid()%>">
+							<form action="UpdateSubject.jsp" method="post">
+								<input type="hidden" name=id value="<%=subd.getSub_id()%>">
 								<button type="submit" class="btn btn-secondary">Edit</button>
 							</form>
 						</td>
 						<td>
-							<form action="../DeleteStudent" method="post">
-								<input type="hidden" name=id value="<%=sd.getStudentid()%>">
+							<form action="../DeleteSubject" method="post">
+								<input type="hidden" name=id value="<%=subd.getSub_id()%>">
 								<button type="submit" class="btn btn-danger">Delete</button>
 							</form>
 						</td>
-						<td><%=sd.getStudentid()%></td>
-						<td><%=sd.getSname()%></td>
-						<td><%=sd.getAddress()%></td>
-						<td><%=sd.getContact()%></td>
-						<td><%=sd.getEmail()%></td>
-						<td><%=sd.getUsername()%></td>
-						<td><%=sd.getCourse()%></td>
-						<td><%=sd.getFees()%></td>
-						<td><%=sd.getAdmision_date()%></td>
-						<td><%=sd.getPassword()%></td>
 						<%
 							}
-								so.closeConnection();
+								subo.closeConnection();
 						%>
 					</tr>
 				</tbody>
