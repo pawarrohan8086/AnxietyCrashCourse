@@ -15,7 +15,6 @@ import com.anxiety.bean.vo.OptionVO;
 import com.anxiety.bean.vo.QuestionVO;
 import com.anxiety.dao.OptionOperation;
 import com.anxiety.dao.QuestionOperation;
-import com.anxiety.dao.SubjectOperation;
 
 @WebServlet("/addque")
 public class AddQuestion extends HttpServlet {

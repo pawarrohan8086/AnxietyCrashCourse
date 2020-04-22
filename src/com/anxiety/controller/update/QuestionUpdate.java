@@ -2,6 +2,7 @@ package com.anxiety.controller.update;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,8 +33,8 @@ public class QuestionUpdate extends HttpServlet {
 				sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 		int c =qo.updateQuestion(qbo);
 		if (c == 1) {
-			String show = "Question Updated";
-			response.sendRedirect("admin/ShowAllQuestions.jsp?alert=" + show + "");
+			RequestDispatcher rd=request.getRequestDispatcher("admin/UpdateOption.jsp?id="+qbo.getQue_id()+"");
+			rd.include(request, response);
 		} else {
 
 			String show = "somthing goes wrong....!";

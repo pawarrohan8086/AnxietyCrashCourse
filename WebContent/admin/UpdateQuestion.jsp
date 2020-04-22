@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page
-	import="com.anxiety.dao.QuestionOperation,java.util.ArrayList,com.anxiety.bean.bo.QuestionBO,java.util.ListIterator"%>
+	import="com.anxiety.dao.QuestionOperation,com.anxiety.dao.SubjectOperation,java.util.ArrayList,com.anxiety.bean.bo.QuestionBO,java.util.ListIterator"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,59 +10,24 @@
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
-	<%@include file="/commonfiles/Header.jsp"%>
+	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
+		<%@include file="common/asidebar.jsp"%>
 
-		<!-- asidebar Holder -->
-		<div id="asidebar">
-			<div class="asidebar-header">
-				<h3>Admin</h3>
-				<strong>RP</strong>
-			</div>
-			<ul class="list-unstyled components">
-				<li><a href="#student" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Student
-				</a>
-					<ul class="collapse list-unstyled" id="student">
-						<li><a href="ShowAllStudent.jsp">Show All Student.jsp</a></li>
-					</ul></li>
-				<li class="active"><a href="#question" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Question
-				</a>
-					<ul class="collapse list-unstyled" id="question">
-						<li><a href="AddQuestion.jsp">Add Questions </a></li>
-						<li class="active"><a href="ShowAllQuestions.jsp"> Show All
-								Question</a></li>
-					</ul></li>
-				<li><a href="#subject" data-toggle="collapse"
-					aria-expanded="false"> <i class="glyphicon glyphicon-briefcase"></i>Subject
-				</a>
-					<ul class="collapse list-unstyled" id="subject">
-						<li><a href="AddSubject.jsp">Add Subject</a></li>
-						<li><a href="ShowAllSubject.jsp"> Show All
-								Subject</a></li>
-
-					</ul></li>
-			</ul>
-		</div>
 		<!-- Page Content Holder -->
 		<div id="content">
 			<button type="button" id="asidebarCollapse"
 				class="btn btn-danger navbar-btn">
 				<i class="glyphicon glyphicon-align-justify"> </i>
 			</button>
-			<br>
-			<br>
+			<br> <br>
 			<!-- Edit Student data -->
 			<div class="container">
 				<h1>Update Question</h1>
 				<hr>
 				<div class="row">
 					<h3 class="text-muted">Question info</h3>
-					<br>
-					<br>
+					<br> <br>
 					<%
 						int qid = Integer.parseInt(request.getParameter("id"));
 						ServletContext sc = getServletContext();
@@ -78,8 +43,24 @@
 								<label class="col-lg-3 control-label text-info">Subject
 									Name:</label>
 								<div class="col-lg-8">
-									<input class="form-control" type="text" name="subname"
-										value="<%=qd.getSub_name() %>" required>
+									<select class="form-control" name="subname" required>
+										<option value="<%=qd.getSub_name()%>"><%=qd.getSub_name()%></option>
+										<%
+											SubjectOperation subo = new SubjectOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
+													sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+											ArrayList<String> al = subo.getSubject();
+											if (al != null) {
+												ListIterator<String> ltr = al.listIterator();
+												while (ltr.hasNext()) {
+													String sub = ltr.next().toString();
+										%>
+										<option value="<%=sub%>"><%=sub%></option>
+										<%
+											}
+											}
+											subo.closeConnection();
+										%>
+									</select>
 								</div>
 							</div>
 							<br>
@@ -88,36 +69,26 @@
 									Mark:</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="number" name="qmark"
-										max="100" min="1" value="<%=qd.getQue_marks() %>" required>
+										max="100" min="1" value="<%=qd.getQue_marks()%>" required>
 								</div>
 							</div>
-							<br>
-							<div class="row">
-								<label class="col-lg-3 control-label text-info">Question 
-									Type</label>
-								<div class="col-lg-8">
-									<input class="form-control" type="text" name="qtype"
-									 value="<%=qd.getQuestion_type() %>" disabled required>
-								</div>
-							</div>
-							<br>
+							<br> <input type="hidden" name="qtype"
+								value="<%=qd.getQuestion_type()%>">
 							<div class="row">
 								<label class="col-lg-3 control-label text-info">
 									Question:</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="text" name="qtext"
-								 value="<%=qd.getQuetext() %>"
-										required>
+										value="<%=qd.getQuetext()%>" required>
 								</div>
 							</div>
 							<br>
 							<div class="row">
-								<label class="col-lg-3 control-label text-info">
-									Answer:</label>
+								<label class="col-lg-3 control-label text-info"> Answer:</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="text" name="atext"
-								 value="<%=qd.getAnstext() %>" required>
-									<input type="hidden" name="qid" value="<%=qid%>">
+										value="<%=qd.getAnstext()%>" required> <input
+										type="hidden" name="qid" value="<%=qid%>">
 								</div>
 							</div>
 							<br>
@@ -129,7 +100,7 @@
 								<label class="col-md-3 control-label"></label>
 								<div class="col-md-8">
 									<input type="submit" class="btn btn-success"
-										value="Save Changes"> <span></span> <a
+										value="Next Changes"> <span></span> <a
 										href="ShowAllQuestions.jsp"><input type="button"
 										class="btn btn-info" value="Back"></a>
 								</div>
@@ -141,16 +112,6 @@
 			<hr>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#asidebarCollapse').on('click', function() {
-				$('#asidebar').toggleClass('active');
-			});
-		});
-	</script>
 	<%@include file="/commonfiles/Footer.jsp"%>
 </body>
 </html>

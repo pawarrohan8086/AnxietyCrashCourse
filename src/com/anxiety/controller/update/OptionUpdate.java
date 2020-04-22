@@ -30,11 +30,11 @@ public class OptionUpdate extends HttpServlet {
 		int c =opo.updateOption(obo);
 		if (c == 1) {
 			String show = "Question Updated";
-			response.sendRedirect("admin/ShowAllOptions.jsp?alert=" + show + "");
+			response.sendRedirect("admin/ShowAllQuestions.jsp?alert=" + show + "");
 		} else {
 
 			String show = "somthing goes wrong....!";
-			response.sendRedirect("admin/ShowAllOptions.jsp?alert=" + show + "");
+			response.sendRedirect("admin/ShowAllQuestions.jsp?alert=" + show + "");
 		}
 	}
 

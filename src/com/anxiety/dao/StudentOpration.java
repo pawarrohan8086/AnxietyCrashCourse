@@ -32,8 +32,6 @@ public class StudentOpration implements StudentDeclaration {
 					int flag = st.executeUpdate(query);
 					if(flag==0) {
 						StudentOpration.tableFlag=1;
-					}else {
-						StudentOpration.tableFlag=1;
 					}
 					st.close();
 

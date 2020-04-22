@@ -49,13 +49,17 @@
 								aria-hidden="true"></span> &nbsp;Student <span
 								class="fa fa-angle-down" aria-hidden="true"></span>
 						</label> <a href="#"> <span class="fa fa-user-circle-o"
-								aria-hidden="true"></span> &nbsp;Login <span
+								aria-hidden="true"></span> &nbsp;admin <span
 								class="fa fa-angle-down" aria-hidden="true"></span>
 						</a> <input type="checkbox" id="drop-3" />
 							<ul>
-								<li><a href="Home.jsp#apply">Login</a></li>
-								<li><a href="Home.jsp#apply">Sign up</a></li>
-							</ul></li>
+								<li><a href="../ShowAllStudent.jsp">Student</a></li>
+								<li><a href="../ShowAllSubjects.jsp">Subject</a></li>
+								<li><a href="../ShowAllQuestions.jsp">Question</a></li>
+								<li><a href="../ShowAllOptions.jsp">Option</a></li>
+								<li><a href="/AnxietyCrashCourse/Home.jsp">Logout</a></li>
+							</ul>
+						</li>
 					</ul>
 				</nav>
 			</div>
@@ -288,35 +292,35 @@
 
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid team-gd mt-4">
-                                <img src="web/images/t1.jpg" alt="" class="img-fluid image1">
+                                <img src="/AnxietyCrashCourse/web/images/t1.jpg" alt="img" class="img-fluid image1">
                                 <p class="mt-3">Professor 1</p>
                             </div>
                             <div class="serve-grid team-gd mt-4">
-                                <img src="web/images/t2.jpg" alt="" class="img-fluid image1">
+                                <img src="/AnxietyCrashCourse/web/images/t2.jpg" alt="img" class="img-fluid image1">
                                 <p class="mt-3">Professor 2 </p>
                             </div>
                         </div>
                         <div class="col-sm-4 service-1-w3ls serve-gd3">
                             <div class="serve-grid team-gd mt-4">
-                                <img src="web/images/t3.jpg" alt="" class="img-fluid image1">
+                                <img src="/AnxietyCrashCourse/web/images/t3.jpg" alt="img" class="img-fluid image1">
                                 <p class="mt-3">Professor 3</p>
                             </div>
                             <div class="serve-grid  team-gd mt-4">
-                                <img src="web/images/t4.jpg" alt="" class="img-fluid image1">
+                                <img src="/AnxietyCrashCourse/web/images/t4.jpg" alt="img" class="img-fluid image1">
                                 <p class="text-li mt-2">Professor 4 </p>
                             </div>
                             <div class="serve-grid team-gd mt-4">
-                                <img src="web/images/t5.jpg" alt="" class="img-fluid image1">
+                                <img src="/AnxietyCrashCourse/web/images/t5.jpg" alt="img" class="img-fluid image1">
                                 <p class="mt-3">Professor 5</p>
                             </div>
                         </div>
                         <div class="col-sm-4 service-1-w3ls serve-gd2">
                             <div class="serve-grid team-gd mt-4">
-                                <img src="web/images/t6.jpg" alt="" class="img-fluid image1">
+                                <img src="/AnxietyCrashCourse/web/images/t6.jpg" alt="img" class="img-fluid image1">
                                 <p class="mt-3">Professor 6 </p>
                             </div>
                             <div class="serve-grid team-gd mt-4">
-                                <img src="web/images/t1.jpg" alt="" class="img-fluid image1">
+                                <img src="/AnxietyCrashCourse/web/images/t1.jpg" alt="img" class="img-fluid image1">
                                 <p class="mt-3">Professor 7 </p>
                             </div>
                         </div>

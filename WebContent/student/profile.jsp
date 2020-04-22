@@ -5,10 +5,16 @@
 <%@include file="/commonfiles/link.jsp" %>
 </head>
 <body>
+<%
+response.setHeader("Cache-Control","no-store");
+response.setHeader("Pragma","no-cache");
+response.setHeader ("Expires", "0"); //prevents caching at the proxy server
+%>
 <%@include file="/commonfiles/Header.jsp" %>
 
 <div class="wrapper">
     <div id="mySidebar" class="sidebar ">
+    
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <img src="http://localhost:8080/AnxietyCrashCourse/web/images/studentlogo.jpg" class="rounded-circle mx-auto d-block" alt="user logo" width="150" height="150"> 
         <br>

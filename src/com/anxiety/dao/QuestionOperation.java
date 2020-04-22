@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.anxiety.bean.bo.QuestionBO;
-import com.anxiety.bean.bo.SubjectBO;
 
 public class QuestionOperation implements QuestionDeclaration {
 	String driver, dburl, dbuser, dbpswd;

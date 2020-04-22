@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
 			
 			if(email.equals("admin123@gmail.com") && pswd.equals("admin")) {
 				
-				response.sendRedirect("admin/AddStudent.jsp");
+				response.sendRedirect("admin/ShowAllStudent.jsp");
 			}else {
 				response.sendRedirect("Home.jsp#apply");
 			}

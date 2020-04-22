@@ -126,7 +126,7 @@ public class OptionOperation implements OptionDeclaration {
 		OptionBO obo = null;
 		int queid = qid;
 		try {
-			PreparedStatement pst = con.prepareStatement("select * from  options where QUE_ID=?");
+			PreparedStatement pst = con.prepareStatement("select * from  options where  QUESTION_ID=?");
 			pst.setInt(1, queid);
 			ResultSet results = pst.executeQuery();
 			while (results.next()) {
@@ -155,7 +155,7 @@ public class OptionOperation implements OptionDeclaration {
 		int c = 0;
 		try {
 			Statement st = con.createStatement();
-			String query = "delete from options where  QUE_ID='" +queid+ "'";
+			String query = "delete from options where   QUESTION_ID='" +queid+ "'";
 			c = st.executeUpdate(query);
 			con.commit();
 			st.close();
@@ -171,7 +171,7 @@ public class OptionOperation implements OptionDeclaration {
 		int c = 0;
 		try {      
 			
-			PreparedStatement pst = con.prepareStatement("UPDATE options set OPT_ID=?,OPT_1=?,OPT_2=?,OPT_3=?,OPT_4=? where QUE_ID=?");
+			PreparedStatement pst = con.prepareStatement("UPDATE options set OPTION_ID=?,OPTION_1=?,OPTION_2=?,OPTION_3=?,OPTION_4=? where  QUESTION_ID=?");
 			pst.setInt(1,obo.getOption_id());
 			pst.setInt(6,obo.getQue_id());
 			pst.setString(2,obo.getOption1());
@@ -187,41 +187,5 @@ public class OptionOperation implements OptionDeclaration {
 		}
 
 		return c;
-	}
-	@Override
-	public ArrayList<OptionBO> searchOption(String option) {
-		int found=0;
-		String otext=option;
-		ArrayList<OptionBO> al=null;
-		try {
-			
-			String query="select * from options where  OPT_4 like '%"+otext+"%'";
-			Statement st = con.createStatement();
-			found= st.executeUpdate(query);
-			if(found!=0) {
-				ResultSet results=st.executeQuery(query);
-				al = new ArrayList<OptionBO>();
-				while (results.next()) {
-					OptionBO obo = new OptionBO();
-					obo.setOption_id((byte)results.getInt(1));
-					obo.setQue_id(results.getInt(2));
-					obo.setOption1(results.getString(3));
-					obo.setOption2(results.getString(4));
-					obo.setOption3(results.getString(5));
-					obo.setOption4(results.getString(6));
-					al.add(obo);
-				}
-				
-			}else {
-					al=null;
-			}
-				st.close();
-				
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		return al;
-
 	}
 }

@@ -10,57 +10,24 @@
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
-	<%@include file="/commonfiles/Header.jsp"%>
+	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
+<%@include file="common/asidebar.jsp"%>
 
-		<!-- asidebar Holder -->
-		<div id="asidebar">
-			<div class="asidebar-header">
-				<h3>Admin</h3>
-				<strong>RP</strong>
-			</div>
-			<ul class="list-unstyled components">
-				<li><a href="#student" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Student
-				</a>
-					<ul class="collapse list-unstyled" id="student">
-						<li><a href="ShowAllStudent.jsp">Show All Student.jsp</a></li>
-					</ul></li>
-				<li><a href="#question" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Question
-				</a>
-					<ul class="collapse list-unstyled" id="question">
-						<li><a href="AddQuestion.jsp">Add Questions </a></li>
-					</ul></li>
-				<li class="active"><a href="#subject" data-toggle="collapse"
-					aria-expanded="false"> <i class="glyphicon glyphicon-briefcase"></i>Subject
-				</a>
-					<ul class="collapse list-unstyled" id="subject">
-						<li><a href="AddSubject.jsp">Add Subject</a></li>
-						<li class="active"><a href="ShowAllSubject.jsp"> Show All
-								Subject</a></li>
-
-					</ul></li>
-			</ul>
-		</div>
 		<!-- Page Content Holder -->
 		<div id="content">
 			<button type="button" id="asidebarCollapse"
 				class="btn btn-danger navbar-btn">
 				<i class="glyphicon glyphicon-align-justify"> </i>
 			</button>
-			<br>
-			<br>
+			<br> <br>
 			<!-- Edit Student data -->
 			<div class="container">
 				<h1>Update Subject</h1>
 				<hr>
 				<div class="row">
 					<h3 class="text-muted">Subject info</h3>
-					<br>
-					<br>
+					<br> <br>
 					<%
 						int sub_id = Integer.parseInt(request.getParameter("id"));
 						ServletContext sc = getServletContext();
@@ -104,8 +71,7 @@
 									Questions:</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="number" name="exque"
-										max="100" min="1" value="<%=subd.getSub_question()%>"
-										required>
+										max="100" min="1" value="<%=subd.getSub_question()%>" required>
 								</div>
 							</div>
 							<br>
@@ -156,16 +122,6 @@
 			<hr>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#asidebarCollapse').on('click', function() {
-				$('#asidebar').toggleClass('active');
-			});
-		});
-	</script>
 	<%@include file="/commonfiles/Footer.jsp"%>
 </body>
 </html>

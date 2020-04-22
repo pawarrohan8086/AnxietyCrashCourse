@@ -7,41 +7,9 @@
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
-	<%@include file="/commonfiles/Header.jsp"%>
+	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
-
-		<!-- asidebar Holder -->
-		<div id="asidebar">
-			<div class="asidebar-header">
-				<h3>Admin</h3>
-				<strong>RP</strong>
-			</div>
-			<ul class="list-unstyled components">
-				<li><a href="#student" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Student
-				</a>
-					<ul class="collapse list-unstyled" id="student">
-						<li><a href="ShowAllStudent.jsp">Show All Student </a></li>
-					</ul></li>
-				<li class="active"><a href="#question" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Question
-				</a>
-					<ul class="collapse list-unstyled" id="question">
-						<li><a href="AddQuestion.jsp">Add Questions </a></li>
-						<li class="active"><a href="ShowAllQuestions.jsp">Show
-								All Question</a></li>
-					</ul></li>
-				<li><a href="#subject" data-toggle="collapse"
-					aria-expanded="false"> <i class="glyphicon glyphicon-briefcase"></i>Subject
-				</a>
-					<ul class="collapse list-unstyled" id="subject">
-						<li><a href="AddSubject.jsp">Add Subject</a></li>
-						<li><a href="ShowAllSubject.jsp">Show All Subject</a></li>
-					</ul></li>
-			</ul>
-		</div>
+	<%@include file="common/asidebar.jsp"%>
 		<!-- Page Content Holder -->
 		<div id="content">
 			<button type="button" id="asidebarCollapse"
@@ -145,16 +113,6 @@
 			%>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#asidebarCollapse').on('click', function() {
-				$('#asidebar').toggleClass('active');
-			});
-		});
-	</script>
 	<%@include file="/commonfiles/Footer.jsp"%>
 </body>
 </html>

@@ -11,5 +11,4 @@ public interface OptionDeclaration {
 	public OptionBO getOptionByQId(int qid);
 	public int deleteOption(int  qid);
 	public int updateOption(OptionBO obo);
-	public ArrayList<OptionBO> searchOption(String option);
 }

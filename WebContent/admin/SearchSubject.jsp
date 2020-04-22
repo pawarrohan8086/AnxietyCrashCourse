@@ -8,40 +8,11 @@
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
-	<%@include file="/commonfiles/Header.jsp"%>
+	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
 
-		<!-- asidebar Holder -->
-		<div id="asidebar">
-			<div class="asidebar-header">
-				<h3>Admin</h3>
-				<strong>RP</strong>
-			</div>
-			<ul class="list-unstyled components">
-				<li><a href="#student" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Student
-				</a>
-					<ul class="collapse list-unstyled" id="student">
-						<li><a href="ShowAllStudent.jsp">Show All
-								Student </a></li>
-					</ul></li>
-				<li><a href="#question" data-toggle="collapse"
-					aria-expanded="false"> <i
-						class="glyphicon glyphicon-text-background"></i> Question
-				</a>
-					<ul class="collapse list-unstyled" id="question">
-						<li><a href="AddQuestion.jsp">Add Questions </a></li>
-					</ul></li>
-				<li class="active"><a href="#subject" data-toggle="collapse"
-					aria-expanded="false"> <i class="glyphicon glyphicon-briefcase"></i>Subject
-				</a>
-					<ul class="collapse list-unstyled" id="subject">
-						<li><a href="AddSubject.jsp">Add Subject</a></li>
-						<li class="active"><a href="ShowAllSubjects.jsp">Show All Subject</a></li>
-					</ul></li>
-			</ul>
-		</div>
+		<%@include file="common/asidebar.jsp"%>
+
 		<!-- Page Content Holder -->
 		<div id="content">
 			<button type="button" id="asidebarCollapse"
@@ -49,7 +20,7 @@
 				<i class="glyphicon glyphicon-align-justify"> </i>
 			</button>
 			<br> <br>
-			<h2>Student Data</h2>
+			<h2>Subject Data</h2>
 			<br>
 			<%!String alert = "";%>
 			<%
@@ -57,7 +28,7 @@
 				ServletContext sc1 = getServletContext();
 				SubjectOperation subo1 = new SubjectOperation(sc1.getInitParameter("driver"), sc1.getInitParameter("dburl"),
 						sc1.getInitParameter("dbuser"), sc1.getInitParameter("dbpswd"));
-				ArrayList<SubjectBO> subal1 =subo1.searchSubject(searchq);
+				ArrayList<SubjectBO> subal1 = subo1.searchSubject(searchq);
 				if (subal1 == null) {
 			%>
 			<p class="text-center">
@@ -83,10 +54,10 @@
 						<th>DURATION</th>
 						<th colspan="2">MODIFY</th>
 					</tr>
-				</thead>			
+				</thead>
 				<%
 					ListIterator<SubjectBO> li1 = subal1.listIterator();
-						SubjectBO subd1=null;
+						SubjectBO subd1 = null;
 						while (li1.hasNext()) {
 							subd1 = li1.next();
 				%>
@@ -221,16 +192,6 @@
 			%>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#asidebarCollapse').on('click', function() {
-				$('#asidebar').toggleClass('active');
-			});
-		});
-	</script>
 	<%@include file="/commonfiles/Footer.jsp"%>
 </body>
 </html>
