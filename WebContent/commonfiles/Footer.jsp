@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+	response.setHeader("Pragma", "no-cache");
+	response.setDateHeader("Expires", 0);
+%>
 <!-- footer -->
 <footer class="py-5">
 	<div class="container py-sm-3">
 		<div class="row footer-grids">
 			<div class="col-lg-3 col-sm-6 mb-lg-0 mb-sm-5 mb-4">
-				<h2>
-					<a class="navbar-brand mb-3" href="#home">Anxiety</a>
-				</h2><br><br><br>
-				<p class="mb-3">World largest online education. website
-					portal,roaksh is begine here.</p>
+				<h2><a class="navbar-brand mb-4" href="#home">Anxiety</a></h2>
+				<p><br><br><br>World largest online education. website portal,roaksh is
+					begine here.</p>
 				<h5>
 					Trusted by <span>500+ People</span>
 				</h5>
@@ -25,8 +28,7 @@
 					<span class="fa mr-2 fa-phone"></span> +(91) 9975057282
 				</p>
 				<p>
-					<span class="fa mr-2 fa-envelope"></span><a
-						href="#">pawarrohan8086@gmail.com</a>
+					<span class="fa mr-2 fa-envelope"></span><a href="#">pawarrohan8086@gmail.com</a>
 				</p>
 			</div>
 			<div class="col-lg-2 col-sm-6 mb-lg-0 mb-sm-5 mb-4">

@@ -38,7 +38,7 @@
 					<!-- edit form column -->
 					<div class="col-md-9 personal-info">
 						<form class="form-horizontal" action="../QuestionUpdate"
-							role="form" method="get">
+							role="form" method="post">
 							<div class="row">
 								<label class="col-lg-3 control-label text-info">Subject
 									Name:</label>

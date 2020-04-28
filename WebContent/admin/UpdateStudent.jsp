@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>update student</title>
+<title>Update Student</title>
 
 <%@include file="/commonfiles/link.jsp"%>
 </head>

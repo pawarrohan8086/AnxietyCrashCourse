@@ -1,6 +1,7 @@
 package com.anxiety.controller.signin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -14,44 +15,47 @@ import javax.servlet.http.HttpSession;
 
 import com.anxiety.dao.StudentOpration;
 
-@WebServlet(name = "StudentSignIn", urlPatterns = {"/StudentSignIn"})
+@WebServlet(name = "StudentSignIn", urlPatterns = { "/StudentSignIn" })
 public class StudentSignIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		RequestDispatcher rd=null;
-		String email=request.getParameter("email");
-		ServletContext sc=getServletContext();
-		StudentOpration so=new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"), sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
-		String checkpswd=so.loginCheck(email);
-		
-		//return null when email not exist
-		if(checkpswd==null) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher rd = null;
+		String email = request.getParameter("email");
+		ServletContext sc = getServletContext();
+		StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
+				sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+		String checkmail = so.loginCheck(email);
+
+		// return null when email not exist
+		if (checkmail == null) {
+
+			HttpSession session = request.getSession(true);
+			session.setAttribute("uname", request.getParameter("uname"));
+			session.setAttribute("email", email);
+			session.setAttribute("pswd", request.getParameter("psw"));
+			session.setAttribute("ipaddress", request.getRemoteAddr());
+			session.setAttribute("hostname", request.getRemoteHost());
+			session.setAttribute("date", new Date().toString());
+
+			request.setAttribute("flag", "needs-validation");
+			rd = request.getRequestDispatcher(response.encodeURL("student/StudentEnroll.jsp"));
+			rd.include(request, response);
+		} else {
 			
-		 HttpSession session=request.getSession(true);
-		 session.setAttribute("uname", request.getParameter("uname"));
-		 session.setAttribute("email", email);
-		 session.setAttribute("pswd", request.getParameter("psw"));
-		 session.setAttribute("ipaddress",request.getRemoteAddr());
-		 session.setAttribute("hostname", request.getRemoteHost());
-		 session.setAttribute("date",new Date().toString());
-		
-		 request.setAttribute("flag","needs-validation");
-		 rd=request.getRequestDispatcher(response.encodeURL("student/StudentEnroll.jsp"));
-		rd.include(request, response);
-		}else
-		{
-			rd=request.getRequestDispatcher("Home.jsp#apply");
-			rd.forward(request, response);
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Mail Id already exist');window.location='Home.jsp#apply'");
+			out.println("</script>");
 		}
-		
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

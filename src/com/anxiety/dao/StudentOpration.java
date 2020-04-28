@@ -28,7 +28,7 @@ public class StudentOpration implements StudentDeclaration {
 			if (tableFlag == 0) {
 				try {
 					Statement st = con.createStatement();
-					String query = "create table student(sid varchar(10) primary key,sname varchar(20) not null,contact number(10) unique,email varchar(30) unique,username varchar(20) not null,password varchar(80) not null,address varchar2(100) not null,course varchar2(20),fees number(8,2),admission_date date)";
+					String query = "create table student(sid number(30) primary key,sname varchar(20) not null,contact number(10) unique,email varchar(30) unique,username varchar(20) not null,password varchar(80) not null,address varchar2(100) not null,course varchar2(20),fees number(8,2),admission_date date)";
 					int flag = st.executeUpdate(query);
 					if(flag==0) {
 						StudentOpration.tableFlag=1;
@@ -68,7 +68,7 @@ public class StudentOpration implements StudentDeclaration {
 			try {
 
 				PreparedStatement pst = con.prepareStatement("insert into student values(?,?,?,?,?,?,?,?,?,?)");
-				pst.setString(1, obj.getStudentid());
+				pst.setLong(1, obj.getStudentid());
 				pst.setString(2, obj.getSname());
 				pst.setLong(3, obj.getContact());
 				pst.setString(4, obj.getEmail());
@@ -139,7 +139,7 @@ public class StudentOpration implements StudentDeclaration {
 				sbo.setFees(results.getDouble(9));
 				sbo.setAdmision_date(results.getDate(10).toString());
 				sbo.setCourse(results.getString(8));
-				sbo.setStudentid(results.getString(1));
+				sbo.setStudentid(results.getLong(1));
 			}
 			st.close();
 			return sbo;
@@ -177,7 +177,7 @@ public class StudentOpration implements StudentDeclaration {
 					sbo.setFees(results.getDouble(9));
 					sbo.setAdmision_date(results.getDate(10).toString());
 					sbo.setCourse(results.getString(8));
-					sbo.setStudentid(results.getString(1));
+					sbo.setStudentid(results.getLong(1));
 					al.add(sbo);
 				}
 				
@@ -268,7 +268,7 @@ public class StudentOpration implements StudentDeclaration {
 					sbo.setFees(results.getDouble(9));
 					sbo.setAdmision_date(results.getDate(10).toString());
 					sbo.setCourse(results.getString(8));
-					sbo.setStudentid(results.getString(1));
+					sbo.setStudentid(results.getLong(1));
 					al.add(sbo);
 				}
 				

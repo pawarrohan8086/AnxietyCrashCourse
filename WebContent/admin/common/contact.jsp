@@ -7,6 +7,12 @@
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+	%>
 	<!-- home -->
 	<div id="home" class="inner-w3pvt-page">
 		<div class="overlay-innerpage">
@@ -51,14 +57,13 @@
 									aria-hidden="true"></span> &nbsp;admin <span
 									class="fa fa-angle-down" aria-hidden="true"></span>
 							</a> <input type="checkbox" id="drop-3" />
-							<ul>
-								<li><a href="../ShowAllStudent.jsp">Student</a></li>
-								<li><a href="../ShowAllSubjects.jsp">Subject</a></li>
-								<li><a href="../ShowAllQuestions.jsp">Question</a></li>
-								<li><a href="../ShowAllOptions.jsp">Option</a></li>
-								<li><a href="/AnxietyCrashCourse/Home.jsp">Logout</a></li>
-							</ul>
-							</li>
+								<ul>
+									<li><a href="../ShowAllStudent.jsp">Student</a></li>
+									<li><a href="../ShowAllSubjects.jsp">Subject</a></li>
+									<li><a href="../ShowAllQuestions.jsp">Question</a></li>
+									<li><a href="../ShowAllOptions.jsp">Option</a></li>
+									<li><a href="/AnxietyCrashCourse/Home.jsp">Logout</a></li>
+								</ul></li>
 						</ul>
 					</nav>
 					<!-- //nav -->

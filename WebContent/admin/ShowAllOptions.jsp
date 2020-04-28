@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Question Data</title>
+<title>Option Data</title>
 <%@ page
 	import="com.anxiety.dao.OptionOperation,java.util.ArrayList,com.anxiety.bean.bo.OptionBO,java.util.ListIterator"%>
 <%@include file="/commonfiles/link.jsp"%>

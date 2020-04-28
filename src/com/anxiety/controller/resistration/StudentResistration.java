@@ -1,6 +1,7 @@
 package com.anxiety.controller.resistration;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.UUID;
@@ -26,34 +27,38 @@ public class StudentResistration extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int flag = 5;
-		RequestDispatcher rd = null;
 		ServletContext sc = getServletContext();
 		StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 				sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 		ArrayList<Long> mob = so.contactCheck();
-		if (mob==null) {
+		if (mob == null) {
 			flag = 0;
 		} else {
-			ListIterator<Long> ltr =mob.listIterator();
+			ListIterator<Long> ltr = mob.listIterator();
 			while (ltr.hasNext()) {
 				Long contact = ltr.next();
 				if (contact == Long.parseLong(request.getParameter("mobile"))) {
 					so.closeConnection();
 					flag = 1;
-					rd = request.getRequestDispatcher("student/StudentEnroll.jsp");
-					rd.forward(request, response);
+					PrintWriter out = response.getWriter();
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Mobile number already Resister');window.location='student/StudentEnroll.jsp'");
+					out.println("</script>");
 
-				}else {
-					flag=0;
+				} else {
+					flag = 0;
 				}
 			}
 		}
 		if (flag == 0) {
 
-			String[] uid = UUID.randomUUID().toString().split("-");
-			String sid = uid[0];
+			int sid = Math.abs(UUID.randomUUID().hashCode());
 			HttpSession session = request.getSession(false);
-
+			String value=request.getParameter("course");
+			String[] cvalue=value.split("-");
+			 String course=cvalue[0];
+			 String fees=cvalue[1];
+			
 			// hold the data
 			StudentVO sdata = new StudentVO();
 			sdata.setUsername(session.getAttribute("uname").toString());
@@ -62,9 +67,9 @@ public class StudentResistration extends HttpServlet {
 			sdata.setSname(request.getParameter("name"));
 			sdata.setContact(request.getParameter("mobile"));
 			sdata.setAddress(request.getParameter("address"));
-			sdata.setFees(request.getParameter("fees"));
+			sdata.setFees(fees);
 			sdata.setAdmision_date(request.getParameter("adate"));
-			sdata.setCourse(request.getParameter("course"));
+			sdata.setCourse(course);
 
 			// dto class
 			StudentDTO sdto = new StudentDTO();
@@ -97,10 +102,14 @@ public class StudentResistration extends HttpServlet {
 			if (c == 1) {
 
 				so.closeConnection();
-				RequestDispatcher rd1=request.getRequestDispatcher("student/profile.jsp");
+				request.setAttribute("sid",sid);
+				RequestDispatcher rd1 = request.getRequestDispatcher("student/profile.jsp");
 				rd1.include(request, response);
 			} else {
-				response.sendRedirect("Home.jsp");
+				PrintWriter out = response.getWriter();
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Sorry Something went to wrong please try again');window.location='Home.jsp#apply'");
+				out.println("</script>");
 			}
 
 		}

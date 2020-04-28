@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Subject data</title>
+<title>Add Subject</title>
 <%@include file="/commonfiles/link.jsp"%>
 
 </head>
@@ -34,7 +34,7 @@
 			<br>
 			<h2>Add Subject Details</h2>
 			<br>
-			<form action="../addsub">
+			<form action="../addsub" method="post">
 				<table class="table  table-borderless">
 					<tbody>
 						<tr>

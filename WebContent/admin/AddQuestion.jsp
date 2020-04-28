@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Questions data</title>
+<title>Add Question</title>
 <%@include file="/commonfiles/link.jsp"%>
 <%@page
 	import="java.util.ArrayList,java.util.ListIterator,java.sql.ResultSet,com.anxiety.dao.SubjectOperation"%>

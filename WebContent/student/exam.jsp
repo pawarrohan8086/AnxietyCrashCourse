@@ -10,7 +10,7 @@
 
 <div class="wrapper">
     <div id="mySidebar" class="sidebar ">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
         <img src="http://localhost:8080/AnxietyCrashCourse/web/images/studentlogo.jpg" class="rounded-circle mx-auto d-block" alt="user logo" width="150" height="150"> 
         <br>
         <h3 style="color:#FCF6F5FF;text-align: center;"> Student Name</h3><br>
@@ -27,7 +27,7 @@
         <button type="button" class="openbtn btn btn-primary" onclick="openNav()">
             <i class="fa fa-bars"> Open</i>
         </button>  
-                <br><br>
+          <br> <br><br><br>
 					
                             <h4>Exam tour</h4>
                     

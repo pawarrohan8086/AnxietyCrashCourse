@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search</title>
+<title>Searching</title>
 <%@ page
 	import="com.anxiety.dao.QuestionOperation,java.util.ArrayList,com.anxiety.bean.bo.QuestionBO,java.util.ListIterator"%>
 <%@include file="/commonfiles/link.jsp"%>

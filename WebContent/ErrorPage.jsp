@@ -3,50 +3,138 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700"
+	rel="stylesheet">
 <title>AnxietyCrashCourse</title>
 <%@include file="/commonfiles/link.jsp"%>
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style type="text/css">
-body {
-	background-image:
-		url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);
+* {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.error-template {
-	padding: 200px;
+body {
+	padding: 0;
+	margin: 0;
+}
+
+#notfound {
+	position: relative;
+	height: 100vh;
+}
+
+#notfound .notfound {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.notfound {
+	max-width: 520px;
+	width: 100%;
+	line-height: 1.4;
 	text-align: center;
 }
 
-.error-actions {
-	margin-top: 15px;
-	margin-bottom: 15px;
+.notfound .notfound-404 {
+	position: relative;
+	height: 200px;
+	margin: 0px auto 20px;
+	z-index: -1;
 }
 
-.error-actions .btn {
-	margin-right: 10px;
+.notfound .notfound-404 h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 236px;
+	font-weight: 200;
+	margin: 0px;
+	color: #211b19;
+	text-transform: uppercase;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.notfound .notfound-404 h2 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 28px;
+	font-weight: 400;
+	text-transform: uppercase;
+	color: #211b19;
+	background: #fff;
+	padding: 10px 5px;
+	margin: auto;
+	display: inline-block;
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+}
+
+.notfound a {
+	font-family: 'Montserrat', sans-serif;
+	display: inline-block;
+	font-weight: 700;
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 13px 23px;
+	background: #ff6300;
+	font-size: 18px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+}
+
+.notfound a:hover {
+	color: #ff6300;
+	background: #211b19;
+}
+
+@media only screen and (max-width: 767px) {
+	.notfound .notfound-404 h1 {
+		font-size: 148px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.notfound .notfound-404 {
+		height: 148px;
+		margin: 0px auto 10px;
+	}
+	.notfound .notfound-404 h1 {
+		font-size: 86px;
+	}
+	.notfound .notfound-404 h2 {
+		font-size: 16px;
+	}
+	.notfound a {
+		padding: 7px 15px;
+		font-size: 14px;
+	}
 }
 </style>
+
 </head>
+
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="error-template">
-					<h1>Oops!</h1>
-					<h2>404 Not Found</h2>
-					<div class="error-details">Sorry, an error has occured,
-						Requested page not found!</div>
-					<div class="error-actions">
-						<a href="Home.jsp" class="btn btn-primary btn-lg"><span
-							class="glyphicon glyphicon-home"></span> Take Me Home </a><a href="#"
-							class="btn btn-default btn-lg"><span
-							class="glyphicon glyphicon-envelope"></span> Contact Support </a>
-					</div>
-				</div>
+
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>Oops!</h1>
+				<h2>404 - The Page can't be found</h2>
 			</div>
+			<a href="http://localhost:8080/AnxietyCrashCourse/Home.jsp">Go TO Homepage</a>
 		</div>
 	</div>
+
 </body>
+
 </html>

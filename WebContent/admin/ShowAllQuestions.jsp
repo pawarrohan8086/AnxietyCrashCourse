@@ -20,7 +20,7 @@
 
 			<h2>Question Data</h2>
 			<br>
-			<form action="SearchQuestion.jsp">
+			<form action="SearchQuestion.jsp" method="post">
 				<div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
 					<div class="input-group">
 						<input type="search" name=sq

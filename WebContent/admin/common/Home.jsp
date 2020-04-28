@@ -7,6 +7,12 @@
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+	%>
 	<!-- home -->
 	<div id="home">
 		<!-- banner -->
@@ -54,8 +60,7 @@
 								<li><a href="../ShowAllQuestions.jsp">Question</a></li>
 								<li><a href="../ShowAllOptions.jsp">Option</a></li>
 								<li><a href="/AnxietyCrashCourse/Home.jsp">Logout</a></li>
-							</ul>
-						</li>
+							</ul></li>
 					</ul>
 				</nav>
 				<!-- //nav -->
@@ -65,10 +70,10 @@
 		<!-- banner slider -->
 		<div id="homepage-slider" class="st-slider">
 			<input type="radio" class="cs_anchor radio" name="slider" id="play1"
-				checked /> <input type="radio" class="cs_anchor radio" name="slider"
-				id="slide1" /> <input type="radio" class="cs_anchor radio"
-				name="slider" id="slide2" /> <input type="radio"
-				class="cs_anchor radio" name="slider" id="slide3" />
+				checked /> <input type="radio" class="cs_anchor radio"
+				name="slider" id="slide1" /> <input type="radio"
+				class="cs_anchor radio" name="slider" id="slide2" /> <input
+				type="radio" class="cs_anchor radio" name="slider" id="slide3" />
 			<div class="images">
 				<div class="images-inner">
 					<div class="image-slide">
@@ -338,30 +343,36 @@
 				ad minim veniam, quis nostrud exercitation</p>
 			<div class="row no-gutters">
 				<div class="col-md-6 gal-img">
-					<a href="#gal1"><img src="/AnxietyCrashCourse/web/images/g1.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal1"><img
+						src="/AnxietyCrashCourse/web/images/g1.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-3 gal-img">
-					<a href="#gal2"><img src="/AnxietyCrashCourse/web/images/g2.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal2"><img
+						src="/AnxietyCrashCourse/web/images/g2.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-3 gal-img">
-					<a href="#gal3"><img src="/AnxietyCrashCourse/web/images/g3.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal3"><img
+						src="/AnxietyCrashCourse/web/images/g3.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 
 
 				<div class="col-md-3 gal-img ml-auto">
-					<a href="#gal5"><img src="/AnxietyCrashCourse/web/images/g5.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal5"><img
+						src="/AnxietyCrashCourse/web/images/g5.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-3 gal-img mr-auto">
-					<a href="#gal6"><img src="/AnxietyCrashCourse/web/images/g6.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal6"><img
+						src="/AnxietyCrashCourse/web/images/g6.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-6 gal-img">
-					<a href="#gal4"><img src="/AnxietyCrashCourse/web/images/g4.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal4"><img
+						src="/AnxietyCrashCourse/web/images/g4.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 			</div>
 
@@ -370,7 +381,8 @@
 			<!-- popup-->
 			<div id="gal1" class="pop-overlay animate">
 				<div class="popup">
-					<img src="/AnxietyCrashCourse/web/images/g1.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g1.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -380,7 +392,8 @@
 			<!-- popup-->
 			<div id="gal2" class="pop-overlay animate">
 				<div class="popup">
-					<img src="/AnxietyCrashCourse/web/images/g2.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g2.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -390,7 +403,8 @@
 			<!-- popup-->
 			<div id="gal3" class="pop-overlay animate">
 				<div class="popup">
-					<img src="/AnxietyCrashCourse/web/images/g3.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g3.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -400,7 +414,8 @@
 			<!-- popup-->
 			<div id="gal4" class="pop-overlay animate">
 				<div class="popup">
-					<img src="/AnxietyCrashCourse/web/images/g4.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g4.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -410,7 +425,8 @@
 			<!-- popup-->
 			<div id="gal5" class="pop-overlay animate">
 				<div class="popup">
-					<img src="/AnxietyCrashCourse/web/images/g5.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g5.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -420,7 +436,8 @@
 			<!-- popup-->
 			<div id="gal6" class="pop-overlay animate">
 				<div class="popup">
-					<img src="/AnxietyCrashCourse/web/images/g6.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g6.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -472,7 +489,7 @@
 				<div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
 					<h5 class="text-center mb-4">Apply Now</h5>
 					<div>
-						<form action="StudentSignIn" class="needs-validation" novalidate>
+						<form action="../StudentSignIn" class="needs-validation" method="post" novalidate>
 							<div id="username">
 								<p id="space" class="valid">
 									A <b>space</b> not allowed
@@ -531,7 +548,7 @@
 					</div>
 					<div id="id01" class="modal">
 						<form class="modal-content animate needs-validation"
-							action="Login" method="Get" novalidate>
+							action="../Login" method="post" novalidate>
 							<div class="logincontainer">
 								<span
 									onclick="document.getElementById('id01').style.display='none'"
@@ -599,7 +616,8 @@
 						</p>
 						<div class="row mt-4">
 							<div class="col-3 testi-img-res">
-								<img src="/AnxietyCrashCourse/web/images/te1.jpg" alt=" " class="img-fluid" />
+								<img src="/AnxietyCrashCourse/web/images/te1.jpg" alt=" "
+									class="img-fluid" />
 							</div>
 							<div class="col-9 testi_grid">
 								<h5 class="mb-2">anjali mehata</h5>
@@ -617,7 +635,8 @@
 						</p>
 						<div class="row mt-4">
 							<div class="col-3 testi-img-res">
-								<img src="/AnxietyCrashCourse/web/images/te2.jpg" alt=" " class="img-fluid" />
+								<img src="/AnxietyCrashCourse/web/images/te2.jpg" alt=" "
+									class="img-fluid" />
 							</div>
 							<div class="col-9 testi_grid">
 								<h5 class="mb-2">saurabh bagul</h5>
@@ -635,7 +654,8 @@
 						</p>
 						<div class="row mt-4">
 							<div class="col-3 testi-img-res">
-								<img src="/AnxietyCrashCourse/web/images/te3.jpg" alt=" " class="img-fluid" />
+								<img src="/AnxietyCrashCourse/web/images/te3.jpg" alt=" "
+									class="img-fluid" />
 							</div>
 							<div class="col-9 testi_grid">
 								<h5 class="mb-2">Akshay pawar</h5>

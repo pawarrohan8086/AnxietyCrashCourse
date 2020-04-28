@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>update Question</title>
+<title>update Option</title>
 
 <%@include file="/commonfiles/link.jsp"%>
 </head>
@@ -37,7 +37,7 @@
 					<!-- edit form column -->
 					<div class="col-md-9 personal-info">
 						<form class="form-horizontal" action="OptionUpdate"
-							role="form" method="get">
+							role="form" method="post">
 							<div class="row">
 								<label class="col-lg-3 control-label text-info">Right
 									Answer:</label>

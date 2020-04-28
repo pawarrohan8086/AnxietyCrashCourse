@@ -4,7 +4,6 @@
   <welcome-file-list>
     <welcome-file>Home.jsp</welcome-file>
   </welcome-file-list>
-  
   <context-param>
   	<param-name>driver</param-name>
   	<param-value>oracle.jdbc.driver.OracleDriver</param-value>
@@ -21,5 +20,4 @@
   <param-name>dbpswd</param-name>
   <param-value>tiger</param-value>
   </context-param>
-  
 </web-app>

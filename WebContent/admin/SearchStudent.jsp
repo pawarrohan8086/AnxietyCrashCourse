@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search</title>
+<title>Searching</title>
 <%@ page
 	import="com.anxiety.dao.StudentOpration,java.util.ArrayList,com.anxiety.bean.bo.StudentBO,java.util.ListIterator"%>
 <%@include file="/commonfiles/link.jsp"%>
@@ -92,7 +92,7 @@
 				</tbody>
 			</table>
 
-			<form action="SearchStudent.jsp">
+			<form action="SearchStudent.jsp" method="post">
 				<div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
 					<div class="input-group">
 						<input type="search" name=sq

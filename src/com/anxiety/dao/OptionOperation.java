@@ -26,7 +26,7 @@ public class OptionOperation implements OptionDeclaration {
 			if (tableFlag == 0) {
 				try {
 					Statement st = con.createStatement();
-					String query = "create table options(option_id number(1) not null,question_id number(5) unique,option_1 varchar(500),option_2 varchar(500),option_3 varchar(500),option_4 varchar(500))";
+					String query = "create table options(option_id number(1) not null,question_id number(5) unique,option_1 varchar2(4000),option_2 varchar2(4000),option_3 varchar2(4000),option_4 varchar2(4000))";
 					int flag = st.executeUpdate(query);
 					if(flag==0) {
 						OptionOperation.tableFlag=1;

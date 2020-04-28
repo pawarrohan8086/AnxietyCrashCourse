@@ -2,14 +2,14 @@ package com.anxiety.bean.bo;
 
 
 public class StudentBO {
- private String username,email,password,sname,address,course,studentid,admision_date;
- private long contact;
+ private String username,email,password,sname,address,course,admision_date;
+ private long contact,studentid;
  private double fees;
  
-public String getStudentid() {
+public long getStudentid() {
 	return studentid;
 }
-public void setStudentid(String studentid) {
+public void setStudentid(long studentid) {
 	this.studentid = studentid;
 }
 public String getUsername() {

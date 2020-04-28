@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
@@ -13,11 +14,13 @@ public class Logout extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setHeader("Cache-Control","no-store");
-		response.setHeader("Pragma","no-cache");
-		response.setHeader ("Expires", "0"); 
-		//prevents caching at the proxy server
-		response.sendRedirect("Home.jsp");
+		HttpSession session=request.getSession(false);
+		session.invalidate(); 
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+		response.sendRedirect("http://localhost:8080/AnxietyCrashCourse/Home.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
