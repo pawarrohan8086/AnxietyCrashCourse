@@ -9,7 +9,7 @@
 	import="java.util.ArrayList,java.util.ListIterator,java.sql.ResultSet,com.anxiety.dao.SubjectOperation,com.anxiety.bean.bo.SubjectBO"%>
 </head>
 <body>
-	<%@include file="/commonfiles/Header.jsp"%>
+	<%@include file="common/Header.jsp"%>
 
 	<div class="wrapper">
 		<div id="mySidebar" class="sidebar ">
@@ -18,13 +18,21 @@
 				src="http://localhost:8080/AnxietyCrashCourse/web/images/studentlogo.jpg"
 				class="rounded-circle mx-auto d-block" alt="user logo" width="150"
 				height="150"> <br>
-			<h3 style="color: #FCF6F5FF; text-align: center;">Student Name</h3>
+			<%
+				String sid = session.getAttribute("id").toString();
+				ServletContext sc = getServletContext();
+				StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
+						sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+				StudentBO sbo = so.getRecordById(sid);
+			%>
+			<h3 style="color: #FCF6F5FF; text-align: center;">
+				<%=sbo.getSname()%></h3>
 			<br>
 			<hr style="color: black;">
 			<ul>
 				<li><a href="profile.jsp"><i class="fa fa-fw fa-user"></i>
 						Profile</a></li>
-				<li class="active"><a href="seprofile.jsp"><i
+				<li class="active"><a href="UpdateProfile.jsp"><i
 						class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a></li>
 				<li><a href="exam.jsp"><i class="fa fa-book"
 						aria-hidden="true"></i> Exam</a></li>
@@ -42,14 +50,8 @@
 
 			<h4>Edit your profile</h4>
 			<br>
-			<%
-				String sid = request.getParameter("id").toString();
-				ServletContext sc = getServletContext();
-				StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
-						sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
-				StudentBO sbo = so.getRecordById(sid);
-			%>
-			<form class="form-horizontal" action="#" role="form">
+			<form class="form-horizontal" action="../ProfileUpdate" role="form"
+				method="post">
 				<div class="row">
 					<label class="col-lg-3 control-label text-info">Name:</label>
 					<div class="col-lg-8">
@@ -73,39 +75,15 @@
 						<input class="form-control" type="number" name="contact"
 							pattern="(0/91)?[7-9][0-9]{9}" maxlength="10" minlength="10"
 							value="<%=sbo.getContact()%>" required>
+					<input type="hidden" name="oldcontact" value="<%=sbo.getContact()%>">
 					</div>
 				</div>
 				<br>
 				<div class="row">
 					<label for="course" class="col-lg-3 control-label text-info">Course:</label>
 					<div class="col-lg-8">
-						<select class="form-control" name="course" required>
-							<option value="<%=sbo.getCourse()%>"><%=sbo.getCourse()%></option>
-							<%
-								SubjectOperation subo = new SubjectOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
-										sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
-								ArrayList<SubjectBO> al = subo.getAllSubject();
-								if (al != null) {
-									%><option value="">None</option><%
-									ListIterator<SubjectBO> ltr = al.listIterator();
-									while (ltr.hasNext()) {
-
-										SubjectBO sbo1 = ltr.next();
-										String sub = sbo1.getSub_name();
-										double fee = sbo1.getSub_fees();
-										int discount = sbo1.getSub_offer();
-										double fees = (fee - (fee * ((double) discount / 100.0)));
-							%>
-							<option value="<%=sub%>-<%=fees%>"><%=sub%></option>
-							<%
-								}
-								}else{
-									%>
-									<option value="">Subject not Available</option>
-									<%
-								}
-							%>
-						</select>
+						<input type="text" class="form-control" name="course"
+							value="<%=sbo.getCourse()%>" required readonly>
 					</div>
 				</div>
 				<br>
@@ -114,7 +92,7 @@
 						Date:</label>
 					<div class="col-lg-8">
 						<input class="form-control" type="date" name="adate"
-							value="<%=sbo.getAdmision_date()%>" required>
+							value="<%=sbo.getAdmision_date()%>" required readonly>
 					</div>
 				</div>
 				<br>
@@ -123,6 +101,7 @@
 					<div class="col-lg-8">
 						<input class="form-control" type="email" name="email"
 							value="<%=sbo.getEmail()%>" required>
+							 <input type="hidden" name="oldemail" value="<%=sbo.getEmail()%>">
 					</div>
 				</div>
 				<br>
@@ -138,8 +117,9 @@
 					<label class="col-md-3 control-label text-info"> Change
 						Password:</label>
 					<div class="col-md-8">
-						<input class="form-control" type="Password" name="Password"
-							value="<%=sbo.getPassword()%>" required>
+						<input class="form-control" type="password" name="password"
+							value="<%=sbo.getPassword()%>" required> 
+							<input type="hidden" name="oldpassword" value="<%=sbo.getPassword()%>">
 					</div>
 				</div>
 				<br>
@@ -147,8 +127,8 @@
 					<label class="col-md-3 control-label"></label>
 					<div class="col-md-8">
 						<input type="submit" class="btn btn-primary" value="Save Changes">
-						<span></span> <a href="profile.jsp"><input type="button" class="btn btn-dark"
-							value="Back"></a>
+						<span></span> <a href="profile.jsp"><input type="button"
+							class="btn btn-dark" value="Back"></a>
 					</div>
 				</div>
 			</form>

@@ -11,7 +11,6 @@
 <body>
 	<%@include file="/commonfiles/Header.jsp"%>
 	<!-- registration form -->
-
 	<div class="row">
 		<div class="col-75">
 			<div class="rtable">
@@ -33,31 +32,34 @@
 							<div class="row">
 								<div class="form-group col-50">
 									<label for="course"><i class="fa fa-mortar-board"></i>
-										Choose a Course</label>
-										 <select id="rtableselect" name=course required>
+										Choose a Course</label> <select id="rtableselect" name=course required>
 										<%
+											String uname=request.getAttribute("uname").toString();
+											String email=request.getAttribute("email").toString();
+											String pswd=request.getAttribute("pswd").toString();
 											ServletContext sc = getServletContext();
 											SubjectOperation subo = new SubjectOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 													sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 											ArrayList<SubjectBO> al = subo.getAllSubject();
 											if (al != null) {
-												%><option value="">None</option><% 
-												ListIterator<SubjectBO> ltr = al.listIterator();
+										%><option value="">None</option>
+										<%
+											ListIterator<SubjectBO> ltr = al.listIterator();
 												while (ltr.hasNext()) {
-										
+
 													SubjectBO sbo = ltr.next();
 													String sub = sbo.getSub_name();
-													double fee=sbo.getSub_fees();
-													int discount=sbo.getSub_offer();
-													double fees=(fee-(fee*((double)discount/100.0)));
+													double fee = sbo.getSub_fees();
+													int discount = sbo.getSub_offer();
+													double fees = (fee - (fee * ((double) discount / 100.0)));
 										%>
 										<option value="<%=sub%>-<%=fees%>"><%=sub%></option>
 										<%
 											}
-											}else{
-												%>
-												<option value="">Subject not Available</option>
-												<%
+											} else {
+										%>
+										<option value="">Subject not Available</option>
+										<%
 											}
 										%>
 									</select>
@@ -66,7 +68,10 @@
 							<label for="inputdefault"><i class="fa fa-calendar"></i>
 								Admission Date</label> <input type="date" id="rtableselect" name="adate"
 								required>
-								<input id="rtableselect" type="submit"
+								<input type="hidden" name="uname" value="<%=uname %>">
+								<input type="hidden" name="email" value="<%=email %>">
+								<input type="hidden" name="pswd" value="<%=pswd %>">
+								 <input id="rtableselect" type="submit"
 								value="Resister" class="btn btn-primary">
 						</div>
 						<div class="col-50">
@@ -78,6 +83,9 @@
 									</h4>
 									<p></p>
 									<%
+									request.removeAttribute(uname);
+									request.removeAttribute(email);
+									request.removeAttribute(pswd);
 										if (al != null) {
 											ListIterator<SubjectBO> ltr = al.listIterator();
 											while (ltr.hasNext()) {
@@ -88,15 +96,16 @@
 									<p>
 										<%=sub%><span class="price"><%=dis%> <i
 											class="fa fa-percent"></i></span>
-										<%
-											}
-											}else{
-												%>
-												<h5 style="color:blue;">No data Available</h5>
-												<%
-											}
-										%>
 									</p>
+									<%
+										}
+										} else {
+									%>
+									<h5 style="color: blue;">No data Available</h5>
+									<%
+										}
+									%>
+
 								</div>
 							</div>
 							<div class="col-25">
@@ -117,15 +126,16 @@
 									<p>
 										<%=sub%><span class="price"><%=fees%> <i
 											class="fa fa-rupee"></i></span>
+									</p>
 										<%
 											}
-											}else{
-												%>
-												<h5 style="color:blue;">No data Available</h5>
-												<%
-											}
+											} else {
 										%>
-									</p>
+									
+									<h5 style="color: blue;">No data Available</h5>
+									<%
+										}
+									%>
 								</div>
 							</div>
 						</div>

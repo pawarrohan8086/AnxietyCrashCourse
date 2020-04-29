@@ -3,10 +3,11 @@
 <head>
 <title>student</title>
 <%@include file="/commonfiles/link.jsp"%>
-<%@page import="java.util.ArrayList,java.util.ListIterator,java.sql.ResultSet,com.anxiety.dao.StudentOpration,com.anxiety.bean.bo.StudentBO" %>
+<%@page
+	import="java.util.ArrayList,java.util.ListIterator,java.sql.ResultSet,com.anxiety.dao.StudentOpration,com.anxiety.bean.bo.StudentBO"%>
 </head>
 <body>
-	<%@include file="/commonfiles/Header.jsp"%>
+	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
 		<div id="mySidebar" class="sidebar">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
@@ -14,13 +15,21 @@
 				src="http://localhost:8080/AnxietyCrashCourse/web/images/studentlogo.jpg"
 				class="rounded-circle mx-auto d-block" alt="user logo" width="150"
 				height="150"> <br>
-			<h3 style="color: #FCF6F5FF; text-align: center;">Student Name</h3>
+			<%
+				String sid = session.getAttribute("id").toString();
+				ServletContext sc = getServletContext();
+				StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
+						sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+				StudentBO sbo = so.getRecordById(sid);
+			%>
+			<h3 style="color: #FCF6F5FF; text-align: center;">
+				<%=sbo.getSname()%></h3>
 			<br>
 			<hr style="color: black;">
 			<ul>
 				<li class="active"><a href="profile.jsp"><i
 						class="fa fa-fw fa-user"></i> Profile</a></li>
-				<li><a href="seprofile.jsp"><i class="fa fa-pencil"
+				<li><a href="UpdateProfile.jsp"><i class="fa fa-pencil"
 						aria-hidden="true"></i> Edit Profile</a></li>
 				<li><a href="exam.jsp"><i class="fa fa-book"
 						aria-hidden="true"></i> Exam</a></li>
@@ -35,60 +44,63 @@
 				<i class="fa fa-bars"> Open</i>
 			</button>
 			<br> <br>
-			<br>
-			<br>
-
-			<h4>Personal Data</h4>
-			<br>
 			<%
-				//request.setAttribute("sid","974516138");
-				String sid=request.getAttribute("sid").toString();
-			ServletContext sc = getServletContext();
-			StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
-					sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
-			StudentBO sbo=so.getRecordById(sid);
+				String updateAlert = request.getParameter("alert");
+				if (updateAlert == null) {
+					updateAlert = "";
+				}
 			%>
-			<table class="table bio-table ">
+			<div class="alert alert-info alert-dismissable">
+				<a class="panel-close" data-dismiss="alert"></a> <i
+					class="fa fa-fw fa-user"></i>Personal Data
+			</div>
+			<h4>
+				<strong style="color: blue; align: center;"><%=updateAlert%></strong>
+			</h4>
+			<br>
+			<table class="table  table-sm table-success">
+
 				<tbody>
 					<tr>
-						<td>Student Id</td>
-						<td>:&nbsp;&nbsp; <%=sid %></td>
+						<td><strong>Student Id</strong></td>
+						<td>:&nbsp;&nbsp; <%=sid%></td>
 					</tr>
 					<tr>
-						<td>Name</td>
-						<td>:&nbsp;&nbsp; <%=sbo.getSname() %></td>
+						<td><strong>Name</strong></td>
+						<td>:&nbsp;&nbsp; <%=sbo.getSname()%></td>
 					</tr>
 					<tr>
-						<td>Address</td>
-						<td>:&nbsp;&nbsp; <%=sbo.getAddress() %></td>
+						<td><strong>Address</strong></td>
+						<td>:&nbsp;&nbsp; <%=sbo.getAddress()%></td>
 					</tr>
 					<tr>
-						<td>Admission Date</td>
-						<td>:&nbsp;&nbsp; <%=sbo.getAdmision_date() %></td>
+						<td><strong>Admission Date</strong></td>
+						<td>:&nbsp;&nbsp; <%=sbo.getAdmision_date()%></td>
 					</tr>
 					<tr>
-						<td>Contact</td>
-						<td>:&nbsp;&nbsp; <%=sbo.getContact() %></td>
+						<td><strong>Email</strong></td>
+						<td>:&nbsp;&nbsp; <%=sbo.getEmail() %></td>
 					</tr>
 					<tr>
-						<td>Course</td>
-						<td>:&nbsp;&nbsp;<%=sbo.getCourse() %></td>
+						<td><strong>Contact</strong></td>
+						<td>:&nbsp;&nbsp; <%=sbo.getContact()%></td>
 					</tr>
 					<tr>
-						<td>Fees</td>
-						<td>:&nbsp;&nbsp; <%=sbo.getFees() %></td>
+						<td><strong>Course</strong></td>
+						<td>:&nbsp;&nbsp; <%=sbo.getCourse()%></td>
 					</tr>
 					<tr>
-						<td>Uname</td>
-						<td>:&nbsp;&nbsp;<%=sbo.getUsername() %></td>
+						<td><strong>Fees</strong></td>
+						<td>:&nbsp;&nbsp; <%=sbo.getFees()%></td>
 					</tr>
 					<tr>
-						<td></td>
-						<td><a href="student/seprofile.jsp?id=<%=sid %>"><input type="button"
-								class="btn btn-info " value="Edit Profile" /></a></td>
+						<td><strong>User Name</strong></td>
+						<td>:&nbsp;&nbsp;<%=sbo.getUsername()%></td>
 					</tr>
 				</tbody>
 			</table>
+			<br> <a href="UpdateProfile.jsp"><input type="button"
+				class="btn btn-success " value="Edit Profile" /></a>
 		</div>
 	</div>
 

@@ -108,6 +108,7 @@ public class StudentOpration implements StudentDeclaration {
 				sbo.setFees(results.getDouble(9));
 				sbo.setAdmision_date(results.getDate(10).toString());
 				sbo.setCourse(results.getString(8));
+				sbo.setPassword(results.getString(6));
 			}
 			pst.close();
 			return sbo;
@@ -221,7 +222,32 @@ public class StudentOpration implements StudentDeclaration {
 
 		return c;
 	}
+	@Override
+	public int updateProfile(String sid, StudentBO obj) {
+		int c = 0;
+		String id = sid;
+		try {
 
+			PreparedStatement pst = con.prepareStatement("update student set sname=?,contact=?,email=?,username=?,address=?,password=? where sid=?");
+			pst.setString(1, obj.getSname());
+			  pst.setLong(2, obj.getContact());
+			  pst.setString(3, obj.getEmail());
+			  pst.setString(4,obj.getUsername());
+			  pst.setString(5,obj.getAddress());
+			  pst.setString(6,obj.getPassword()); 
+			  pst.setString(7, id);
+			c = pst.executeUpdate();
+			con.commit();
+			pst.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return c;
+	}
+
+	
 	@Override
 	public int deleteRecord(String sid) {
 		String id = sid;
@@ -285,9 +311,13 @@ public class StudentOpration implements StudentDeclaration {
 
 	}
 	@Override
-	public String loginCheck(String email){
+	public String[] loginCheck(String email){
 		int found=0;
+		String[] mailid=null;
+		String sid=null;
 		String mail=email;
+		String uname=null;
+		String sname=null;
 		String pswd=null;
 		try {
 			
@@ -296,13 +326,18 @@ public class StudentOpration implements StudentDeclaration {
 			found= st.executeUpdate(query);
 			
 			if(found!=0) {
-				
+				mailid=new String[4];
 				ResultSet results=st.executeQuery(query);
 				while(results.next()) {
 				pswd= results.getString(6);
+				sid=results.getLong(1)+"";
+				uname=results.getString(5);
+				sname=results.getString(2);
+				mailid[0]=pswd;
+				mailid[1]=sid;
+				mailid[2]=uname;
+				mailid[3]=sname;
 				}
-			}else {
-					pswd=null;
 			}
 			
 			st.close();
@@ -311,7 +346,8 @@ public class StudentOpration implements StudentDeclaration {
 
 			e.printStackTrace();
 		}
-		return pswd;
+
+		return mailid;
 	}
 	
 	@Override

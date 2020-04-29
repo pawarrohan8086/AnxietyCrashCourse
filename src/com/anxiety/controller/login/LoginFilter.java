@@ -12,8 +12,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/admin/*")
-public class alogin implements Filter {
+@WebFilter(urlPatterns = {"/student/*","/admin/*"})
+public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		Object user=null;
@@ -25,12 +25,14 @@ public class alogin implements Filter {
 			user=session.getAttribute("user");
 		}
 		if (user == null) {
-			RequestDispatcher rd = request.getRequestDispatcher("/ErrorPage.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/Home.jsp");
 			rd.forward(request, response);
 		} else if (user.toString().equals("admin")) {
 			chain.doFilter(request, response);
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("/ErrorPage.jsp");
+		} else if (user.toString().equals("student")) {
+			chain.doFilter(request, response);
+		}else{
+			RequestDispatcher rd = request.getRequestDispatcher("/Home.jsp");
 			rd.forward(request, response);
 		}
 	}

@@ -2,8 +2,6 @@ package com.anxiety.controller.signin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.anxiety.dao.StudentOpration;
 
@@ -26,20 +23,14 @@ public class StudentSignIn extends HttpServlet {
 		String email = request.getParameter("email");
 		ServletContext sc = getServletContext();
 		StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
-				sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
-		String checkmail = so.loginCheck(email);
-
+		sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+		String[] mailid = so.loginCheck(email);
+		String checkmail=mailid[0];
 		// return null when email not exist
 		if (checkmail == null) {
-
-			HttpSession session = request.getSession(true);
-			session.setAttribute("uname", request.getParameter("uname"));
-			session.setAttribute("email", email);
-			session.setAttribute("pswd", request.getParameter("psw"));
-			session.setAttribute("ipaddress", request.getRemoteAddr());
-			session.setAttribute("hostname", request.getRemoteHost());
-			session.setAttribute("date", new Date().toString());
-
+			request.setAttribute("uname", request.getParameter("uname"));
+			request.setAttribute("email", email);
+			request.setAttribute("pswd", request.getParameter("psw"));
 			request.setAttribute("flag", "needs-validation");
 			rd = request.getRequestDispatcher(response.encodeURL("student/StudentEnroll.jsp"));
 			rd.include(request, response);

@@ -1,6 +1,7 @@
 package com.anxiety.controller.login;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -29,28 +30,42 @@ public class Login extends HttpServlet {
 				session.setAttribute("user", user);
 				response.sendRedirect("admin/ShowAllStudent.jsp");
 			} else {
-				response.sendRedirect("Home.jsp#apply");
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('wrong mail or password please try again..!');window.location='Home.jsp#apply'");
+				out.println("</script>");
 			}
 		} else {
 
 			ServletContext sc = getServletContext();
 			StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 					sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
-			String checkpswd = so.loginCheck(email);
-
+			String[] mailid = so.loginCheck(email);
+			String checkpswd=mailid[0];
 			if (checkpswd != null) {
 
 				if (PasswordEnrypt.checkpw(pswd, checkpswd)) {
-
 					so.closeConnection();
+					session.setAttribute("user", user);
+					session.setAttribute("id",mailid[1]);
+					session.setAttribute("uname", mailid[2]);
+					session.setAttribute("sname", mailid[3]);
 					response.sendRedirect("student/profile.jsp");
 				} else {
-
-					response.sendRedirect("Home.jsp#apply");
+					response.setContentType("text/html");
+					PrintWriter out = response.getWriter();
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Wrong email or password');window.location='Home.jsp#apply'");
+					out.println("</script>");
 				}
 
 			} else {
-				response.sendRedirect("Home.jsp#apply");
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Wrong email or password');window.location='Home.jsp#apply'");
+				out.println("</script>");
 			}
 
 		}

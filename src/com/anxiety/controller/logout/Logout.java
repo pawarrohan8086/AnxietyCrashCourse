@@ -1,6 +1,8 @@
 package com.anxiety.controller.logout;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +22,13 @@ public class Logout extends HttpServlet {
 		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
-		response.sendRedirect("http://localhost:8080/AnxietyCrashCourse/Home.jsp");
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<script type=\"text/javascript\">");
+		out.println("alert('Thank you for visit us..!  Now You Are Successfully Logout')");
+		out.println("window.location='Home.jsp'");
+		out.println("</script>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -47,23 +47,25 @@
 								</ul>
 							</li>
 							<li class="active"><a href="contact.jsp">Contact</a></li>
-
-							<!-- second Tier Drop Down -->
-							<li class="log-vj ml-lg-5"><label for="drop-3"
-								class="toggle"> <span class="fa fa-user-circle-o"
-									aria-hidden="true"></span> &nbsp;Student <span
-									class="fa fa-angle-down" aria-hidden="true"></span>
-							</label> <a href="#"> <span class="fa fa-user-circle-o"
-									aria-hidden="true"></span> &nbsp;admin <span
-									class="fa fa-angle-down" aria-hidden="true"></span>
-							</a> <input type="checkbox" id="drop-3" />
-								<ul>
-									<li><a href="../ShowAllStudent.jsp">Student</a></li>
-									<li><a href="../ShowAllSubjects.jsp">Subject</a></li>
-									<li><a href="../ShowAllQuestions.jsp">Question</a></li>
-									<li><a href="../ShowAllOptions.jsp">Option</a></li>
-									<li><a href="../../Logout">Logout</a></li>
-								</ul></li>
+						<%
+						String uname = session.getAttribute("uname").toString();
+						%>
+						<!-- second Tier Drop Down -->
+						<li class="active log-vj ml-lg-5"><label for="drop-3"
+							class="toggle"> <span class="fa fa-user-circle-o"
+								aria-hidden="true"></span> &nbsp;Student <span
+								class="fa fa-angle-down" aria-hidden="true"></span>
+						</label> <a href="#"> <span class="fa fa-user-circle-o"
+								aria-hidden="true"></span> &nbsp;<%=uname %> <span
+								class="fa fa-angle-down" aria-hidden="true"></span>
+						</a> <input type="checkbox" id="drop-3" />
+							<ul>
+								<li><a href="../profile.jsp">Profile</a></li>
+								<li><a href="../UpdateProfile.jsp">Edit Profile</a></li>
+								<li><a href="../exam.jsp">Exam</a></li>
+								<li><a href="../grade.jsp">Result</a></li>
+								<li><a href="../../Logout">Logout</a></li>
+							</ul></li>
 						</ul>
 					</nav>
 					<!-- //nav -->

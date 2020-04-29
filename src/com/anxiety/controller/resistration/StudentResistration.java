@@ -53,17 +53,16 @@ public class StudentResistration extends HttpServlet {
 		if (flag == 0) {
 
 			int sid = Math.abs(UUID.randomUUID().hashCode());
-			HttpSession session = request.getSession(false);
-			String value=request.getParameter("course");
-			String[] cvalue=value.split("-");
-			 String course=cvalue[0];
-			 String fees=cvalue[1];
-			
+			String value = request.getParameter("course");
+			String[] cvalue = value.split("-");
+			String course = cvalue[0];
+			String fees = cvalue[1];
+
 			// hold the data
 			StudentVO sdata = new StudentVO();
-			sdata.setUsername(session.getAttribute("uname").toString());
-			sdata.setEmail(session.getAttribute("email").toString());
-			sdata.setPassword(session.getAttribute("pswd").toString());
+			sdata.setUsername(request.getParameter("uname"));
+			sdata.setEmail(request.getParameter("email"));
+			sdata.setPassword(request.getParameter("pswd"));
 			sdata.setSname(request.getParameter("name"));
 			sdata.setContact(request.getParameter("mobile"));
 			sdata.setAddress(request.getParameter("address"));
@@ -102,7 +101,10 @@ public class StudentResistration extends HttpServlet {
 			if (c == 1) {
 
 				so.closeConnection();
-				request.setAttribute("sid",sid);
+				HttpSession session=request.getSession();
+				session.setAttribute("id", sid);
+				session.setAttribute("uname",sbo.getUsername());
+				session.setAttribute("sname",sbo.getSname());
 				RequestDispatcher rd1 = request.getRequestDispatcher("student/profile.jsp");
 				rd1.include(request, response);
 			} else {
