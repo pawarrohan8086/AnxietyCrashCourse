@@ -1,0 +1,2 @@
+subject:
+create table subject(sub_id number(20) primary key,sub_name varchar(30) not null,sub_tmarks number(4),sub_pmarks number(4),sub_question number(10),sub_fees number(8,2),sub_offer number(10),sub_duration number(10))

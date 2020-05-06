@@ -7,7 +7,7 @@ import com.anxiety.bean.bo.SubjectBO;
 public interface SubjectDeclaration {
 	
 	public int addSubject(SubjectBO sbo);
-	public void closeConnection() ;
+	public  void closeConnection() ;
 	public ArrayList<String> getSubject();
 	public ArrayList<SubjectBO> getAllSubject();
 	public SubjectBO getSubjectBySubId(int sub_id);

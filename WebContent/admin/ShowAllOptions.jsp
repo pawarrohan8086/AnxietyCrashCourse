@@ -45,45 +45,47 @@
 			<%
 				} else {
 			%>
-			<table class=" table  table-secondary table-bordered table-sm">
-				<thead class="thead-dark">
-					<tr>
-						<th>ANSWER_ID</th>
-						<th>QUESTION_ID</th>
-						<th>OPTION_1</th>
-						<th>OPTION_2</th>
-						<th>OPTION_3</th>
-						<th>OPTION_4</th>
-					</tr>
-				</thead>
-				<%
-					ListIterator<OptionBO> li = opal.listIterator();
-						OptionBO opd = null;
-						while (li.hasNext()) {
-							opd = li.next();
-				%>
-				<tbody>
+			<div class="table-wrapper-scroll-y my-custom-scrollbar">
+				<table class=" table  table-secondary table-bordered table-sm">
+					<thead class="thead-dark">
+						<tr>
+							<th>ANSWER_ID</th>
+							<th>QUESTION_ID</th>
+							<th>OPTION_1</th>
+							<th>OPTION_2</th>
+							<th>OPTION_3</th>
+							<th>OPTION_4</th>
+						</tr>
+					</thead>
+					<%
+						ListIterator<OptionBO> li = opal.listIterator();
+							OptionBO opd = null;
+							while (li.hasNext()) {
+								opd = li.next();
+					%>
+					<tbody>
 
-					<tr>
-						<td><%=opd.getOption_id()%></td>
-						<td><a href="ShowQueByID.jsp?id=<%=opd.getQue_id()%>"
-							Style="color: blue;"><%=opd.getQue_id()%></a></td>
-						<td><%=opd.getOption1()%></td>
-						<td><%=opd.getOption2()%></td>
-						<td><%=opd.getOption3()%></td>
-						<td><%=opd.getOption4()%></td>
-						<%
-							}
-								opo.closeConnection();
-						%>
-					</tr>
-				</tbody>
-			</table>
-			<%
-				}
-			%>
+						<tr>
+							<td><%=opd.getOption_id()%></td>
+							<td><a href="ShowQueByID.jsp?id=<%=opd.getQue_id()%>"
+								Style="color: blue;"><%=opd.getQue_id()%></a></td>
+							<td><%=opd.getOption1()%></td>
+							<td><%=opd.getOption2()%></td>
+							<td><%=opd.getOption3()%></td>
+							<td><%=opd.getOption4()%></td>
+							<%
+								}
+									opo.closeConnection();
+							%>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				<%
+					}
+				%>
+			</div>
 		</div>
-	</div>
-	<%@include file="/commonfiles/Footer.jsp"%>
+		<%@include file="/commonfiles/Footer.jsp"%>
 </body>
 </html>

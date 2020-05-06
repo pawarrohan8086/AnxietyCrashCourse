@@ -9,7 +9,7 @@
 <body>
 	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
-<%@include file="common/asidebar.jsp"%>
+		<%@include file="common/asidebar.jsp"%>
 
 		<!-- Page Content Holder -->
 		<div id="content">
@@ -63,63 +63,65 @@
 			<%
 				} else {
 			%>
-			<table class=" table table-condensed table-success">
-				<thead class="table-dark">
-					<tr>
-						<th>SUBJECT ID</th>
-						<th>SUBJECT NAME</th>
-						<th>TOTAL MARKS</th>
-						<th>PASSING MARKS</th>
-						<th>QUESTION</th>
-						<th>FEES</th>
-						<th>DISCOUNT</th>
-						<th>DURATION</th>
-						<th colspan="2">MODIFY</th>
-					</tr>
-				</thead>
+			<div class="table-wrapper-scroll-y my-custom-scrollbar">
+				<table class=" table table-condensed table-success">
+					<thead class="table-dark">
+						<tr>
+							<th>SUBJECT ID</th>
+							<th>SUBJECT NAME</th>
+							<th>TOTAL MARKS</th>
+							<th>PASSING MARKS</th>
+							<th>QUESTION</th>
+							<th>FEES</th>
+							<th>DISCOUNT</th>
+							<th>DURATION</th>
+							<th colspan="2">MODIFY</th>
+						</tr>
+					</thead>
+					<%
+						ListIterator<SubjectBO> li = subal.listIterator();
+							SubjectBO subd = null;
+							while (li.hasNext()) {
+								subd = li.next();
+					%>
+
+
+					<tbody>
+
+						<tr>
+							<td><%=subd.getSub_id()%></td>
+							<td><%=subd.getSub_name()%></td>
+							<td><%=subd.getSub_tmarks()%></td>
+							<td><%=subd.getSub_pmarks()%></td>
+							<td><%=subd.getSub_question()%></td>
+							<td><%=subd.getSub_fees()%></td>
+							<td><%=subd.getSub_offer()%></td>
+							<td><%=subd.getSub_duration()%></td>
+							<td>
+								<form action="UpdateSubject.jsp" method="post">
+									<input type="hidden" name=id value="<%=subd.getSub_id()%>">
+									<button type="submit" class="btn btn-secondary">Edit</button>
+								</form>
+							</td>
+							<td>
+								<form action="../DeleteSubject" method="post">
+									<input type="hidden" name=id value="<%=subd.getSub_id()%>">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</form>
+							</td>
+							<%
+								}
+									subo.closeConnection();
+							%>
+						</tr>
+					</tbody>
+				</table>
+				</div>
 				<%
-					ListIterator<SubjectBO> li = subal.listIterator();
-						SubjectBO subd = null;
-						while (li.hasNext()) {
-							subd = li.next();
+					}
 				%>
-
-
-				<tbody>
-
-					<tr>
-						<td><%=subd.getSub_id()%></td>
-						<td><%=subd.getSub_name()%></td>
-						<td><%=subd.getSub_tmarks()%></td>
-						<td><%=subd.getSub_pmarks()%></td>
-						<td><%=subd.getSub_question()%></td>
-						<td><%=subd.getSub_fees()%></td>
-						<td><%=subd.getSub_offer()%></td>
-						<td><%=subd.getSub_duration()%></td>
-						<td>
-							<form action="UpdateSubject.jsp" method="post">
-								<input type="hidden" name=id value="<%=subd.getSub_id()%>">
-								<button type="submit" class="btn btn-secondary">Edit</button>
-							</form>
-						</td>
-						<td>
-							<form action="../DeleteSubject" method="post">
-								<input type="hidden" name=id value="<%=subd.getSub_id()%>">
-								<button type="submit" class="btn btn-danger">Delete</button>
-							</form>
-						</td>
-						<%
-							}
-								subo.closeConnection();
-						%>
-					</tr>
-				</tbody>
-			</table>
-			<%
-				}
-			%>
+			</div>
 		</div>
-	</div>
-	<%@include file="/commonfiles/Footer.jsp"%>
+		<%@include file="/commonfiles/Footer.jsp"%>
 </body>
 </html>

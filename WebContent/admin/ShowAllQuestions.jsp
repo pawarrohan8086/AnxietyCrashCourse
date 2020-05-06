@@ -9,7 +9,7 @@
 <body>
 	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
-	<%@include file="common/asidebar.jsp"%>
+		<%@include file="common/asidebar.jsp"%>
 		<!-- Page Content Holder -->
 		<div id="content">
 			<button type="button" id="asidebarCollapse"
@@ -60,58 +60,62 @@
 			<%
 				} else {
 			%>
-			<table class=" table  table-warning table-sm">
-				<thead class="thead-dark">
-					<tr>
-						<th>SUBJECT NAME</th>
-						<th>QUESTION ID</th>
-						<th>QUESTION TYPE</th>
-						<th>QUESTION MARK</th>
-						<th>QUESTION</th>
-						<th>ANSWER</th>
-						<th colspan="2">MODIFY</th>
-					</tr>
-				</thead>
-				<%
-					ListIterator<QuestionBO> li = qal.listIterator();
-						QuestionBO qd = null;
-						while (li.hasNext()) {
-							qd = li.next();
-				%>
+			
+			<div class="table-wrapper-scroll-y my-custom-scrollbar">
+				<table class=" table  table-warning table-sm">
+					<thead class="thead-dark">
+						<tr>
+							<th>SUBJECT NAME</th>
+							<th>QUESTION ID</th>
+							<th>QUESTION TYPE</th>
+							<th>QUESTION MARK</th>
+							<th>QUESTION</th>
+							<th>ANSWER</th>
+							<th colspan="2">MODIFY</th>
+						</tr>
+					</thead>
+					<%
+						ListIterator<QuestionBO> li = qal.listIterator();
+							QuestionBO qd = null;
+							while (li.hasNext()) {
+								qd = li.next();
+					%>
 
 
-				<tbody>
+					<tbody>
 
-					<tr>
-						<td><%=qd.getSub_name()%></td>
-						<td><%=qd.getQue_id()%></td>
-						<td><%=qd.getQuestion_type()%></td>
-						<td><%=qd.getQue_marks()%></td>
-						<td><%=qd.getQuetext()%></td>
-						<td><%=qd.getAnstext()%></td>
-						<td>
-							<form action="UpdateQuestion.jsp" method="post">
-								<input type="hidden" name=id value="<%=qd.getQue_id()%>">
-								<button type="submit" class="btn btn-secondary">Edit</button>
-							</form>
-						</td>
-						<td>
-							<form action="../DeleteQuestion" method="post">
-								<input type="hidden" name=id value="<%=qd.getQue_id()%>">
-								<button type="submit" class="btn btn-danger">Delete</button>
-							</form>
-						</td>
-						<%
-							}
-								qo.closeConnection();
-						%>
-					</tr>
-				</tbody>
-			</table>
+						<tr>
+							<td><%=qd.getSub_name()%></td>
+							<td><%=qd.getQue_id()%></td>
+							<td><%=qd.getQuestion_type()%></td>
+							<td><%=qd.getQue_marks()%></td>
+							<td><%=qd.getQuetext()%></td>
+							<td><%=qd.getAnstext()%></td>
+							<td>
+								<form action="UpdateQuestion.jsp" method="post">
+									<input type="hidden" name=id value="<%=qd.getQue_id()%>">
+									<button type="submit" class="btn btn-secondary">Edit</button>
+								</form>
+							</td>
+							<td>
+								<form action="../DeleteQuestion" method="post">
+									<input type="hidden" name=id value="<%=qd.getQue_id()%>">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</form>
+							</td>
+							<%
+								}
+									qo.closeConnection();
+							%>
+						</tr>
+					</tbody>
+				</table>
+
 			<%
 				}
 			%>
 		</div>
+	</div>
 	</div>
 	<%@include file="/commonfiles/Footer.jsp"%>
 </body>

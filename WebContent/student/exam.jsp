@@ -30,20 +30,17 @@
         </button>  
           <br> <br><br><br>
 					
-                            <h4>Exam tour</h4>
+                            <h4>Exam Tour</h4>
                     
                         <div><br>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,<br>
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse<br>
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p> Dear student this is the practice exam and your first attempts of examination is free click below to next,<br>
+                            Question can have four multiple choice option for 30 min don't use refresh button.<br>
+                            after complete the exam if you pass this exam you will be awarded by the anxiety crash course .</p>
                             
-                            <form action="exam.jsp" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
+                            <form action="../AddAnswers" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('after clicking button exam imediatly started'); return false; }">
                                 <input type="checkbox" name="checkbox" value="check" id="agree" />
-                                <strong style="color:blue;">I have read and agree to the Terms and Conditions and Privacy Policy.</strong> <br><br>
-                                <input type="submit" class="btn btn-info " name="submit" value="procced" />
+                                <strong style="color:blue;">After clicking start button exam will be started.</strong> <br><br>
+                                <input type="submit" class="btn btn-info " name="submit" value="Start Exam" />
                             </form>
                        </div>
     		</div> 

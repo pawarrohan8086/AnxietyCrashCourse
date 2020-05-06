@@ -13,4 +13,5 @@ public interface QuestionDeclaration {
 	public int deleteQuestion(int  qid);
 	public int updateQuestion(QuestionBO qbo);
 	public ArrayList<QuestionBO> searchQuestion(String qname);
+	public ArrayList<QuestionBO> getQuestionBySubName(String qtext);
 }

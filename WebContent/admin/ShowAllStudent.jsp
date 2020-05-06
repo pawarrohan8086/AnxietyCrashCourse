@@ -6,18 +6,22 @@
 <%@ page
 	import="com.anxiety.dao.StudentOpration,java.util.ArrayList,com.anxiety.bean.bo.StudentBO,java.util.ListIterator"%>
 <%@include file="/commonfiles/link.jsp"%>
-    <script type="text/javascript">
-        function preventBack() { window.history.forward(); }
-        setTimeout("preventBack()", 0);
-        window.onunload = function () { null };
-    </script>
+<script type="text/javascript">
+	function preventBack() {
+		window.history.forward();
+	}
+	setTimeout("preventBack()", 0);
+	window.onunload = function() {
+		null
+	};
+</script>
 </head>
 <body>
-<%
-response.setHeader("Cache-Control","no-store");
-response.setHeader("Pragma","no-cache");
-response.setHeader ("Expires", "0"); //prevents caching at the proxy server
-%>
+	<%
+		response.setHeader("Cache-Control", "no-store");
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Expires", "0"); //prevents caching at the proxy server
+	%>
 	<%@include file="common/Header.jsp"%>
 	<div class="wrapper">
 		<%@include file="common/asidebar.jsp"%>
@@ -73,67 +77,69 @@ response.setHeader ("Expires", "0"); //prevents caching at the proxy server
 			<%
 				} else {
 			%>
-			<table
-				class=" table table-responsive table-sm table-bordered table-hover">
-				<thead class="table-dark">
-					<tr>
-						<th colspan="2">MODIFY</th>
-						<th>SID</th>
-						<th>SNAME</th>
-						<th>ADDRESS</th>
-						<th>CONTACT</th>
-						<th>EMAIL</th>
-						<th>USERNAME</th>
-						<th>COURSE</th>
-						<th>FEES</th>
-						<th>ADMISION_DATE</th>
-						<th>PASSWORD</th>
-					</tr>
-				</thead>
+			<div class="table-wrapper-scroll-y my-custom-scrollbar">
+				<table
+					class=" table table-responsive table-sm table-bordered table-hover">
+					<thead class="table-dark">
+						<tr>
+							<th colspan="2">MODIFY</th>
+							<th>SID</th>
+							<th>SNAME</th>
+							<th>ADDRESS</th>
+							<th>CONTACT</th>
+							<th>EMAIL</th>
+							<th>USERNAME</th>
+							<th>COURSE</th>
+							<th>FEES</th>
+							<th>ADMISION_DATE</th>
+							<th>PASSWORD</th>
+						</tr>
+					</thead>
+					<%
+						ListIterator<StudentBO> li = sal.listIterator();
+							StudentBO sd = null;
+							while (li.hasNext()) {
+								sd = li.next();
+					%>
+
+
+					<tbody>
+						<tr>
+							<td>
+								<form action="UpdateStudent.jsp" method="post">
+									<input type="hidden" name=id value="<%=sd.getStudentid()%>">
+									<button type="submit" class="btn btn-secondary">Edit</button>
+								</form>
+							</td>
+							<td>
+								<form action="../DeleteStudent" method="post">
+									<input type="hidden" name=id value="<%=sd.getStudentid()%>">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</form>
+							</td>
+							<td><%=sd.getStudentid()%></td>
+							<td><%=sd.getSname()%></td>
+							<td><%=sd.getAddress()%></td>
+							<td><%=sd.getContact()%></td>
+							<td><%=sd.getEmail()%></td>
+							<td><%=sd.getUsername()%></td>
+							<td><%=sd.getCourse()%></td>
+							<td><%=sd.getFees()%></td>
+							<td><%=sd.getAdmision_date()%></td>
+							<td><%=sd.getPassword()%></td>
+							<%
+								}
+									so.closeConnection();
+							%>
+						</tr>
+					</tbody>
+				</table>
+				</div>
 				<%
-					ListIterator<StudentBO> li = sal.listIterator();
-						StudentBO sd = null;
-						while (li.hasNext()) {
-							sd = li.next();
+					}
 				%>
-
-
-				<tbody>
-					<tr>
-						<td>
-							<form action="UpdateStudent.jsp" method="post">
-								<input type="hidden" name=id value="<%=sd.getStudentid()%>">
-								<button type="submit" class="btn btn-secondary">Edit</button>
-							</form>
-						</td>
-						<td>
-							<form action="../DeleteStudent" method="post">
-								<input type="hidden" name=id value="<%=sd.getStudentid()%>">
-								<button type="submit" class="btn btn-danger">Delete</button>
-							</form>
-						</td>
-						<td><%=sd.getStudentid()%></td>
-						<td><%=sd.getSname()%></td>
-						<td><%=sd.getAddress()%></td>
-						<td><%=sd.getContact()%></td>
-						<td><%=sd.getEmail()%></td>
-						<td><%=sd.getUsername()%></td>
-						<td><%=sd.getCourse()%></td>
-						<td><%=sd.getFees()%></td>
-						<td><%=sd.getAdmision_date()%></td>
-						<td><%=sd.getPassword()%></td>
-						<%
-							}
-								so.closeConnection();
-						%>
-					</tr>
-				</tbody>
-			</table>
-			<%
-				}
-			%>
+			</div>
 		</div>
-	</div>
-	<%@include file="/commonfiles/Footer.jsp"%>
+		<%@include file="/commonfiles/Footer.jsp"%>
 </body>
 </html>

@@ -1,5 +1,4 @@
 package com.anxiety.controller.signin;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -25,9 +24,8 @@ public class StudentSignIn extends HttpServlet {
 		StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 		sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 		String[] mailid = so.loginCheck(email);
-		String checkmail=mailid[0];
 		// return null when email not exist
-		if (checkmail == null) {
+		if (mailid == null) {
 			request.setAttribute("uname", request.getParameter("uname"));
 			request.setAttribute("email", email);
 			request.setAttribute("pswd", request.getParameter("psw"));

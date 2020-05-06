@@ -252,6 +252,42 @@ public class QuestionOperation implements QuestionDeclaration {
 		return al;
 
 	}
+	@Override
+	public ArrayList<QuestionBO> getQuestionBySubName(String qtext) {
+		int found=0;
+		String quetext=qtext;
+		ArrayList<QuestionBO> al=null;
+		try {
+			
+			String query="select * from question where sub_name='"+quetext+"'";
+			Statement st = con.createStatement();
+			found= st.executeUpdate(query);
+			if(found!=0) {
+				ResultSet results=st.executeQuery(query);
+				al = new ArrayList<QuestionBO>();
+				while (results.next()) {
+					
+					QuestionBO qbo = new QuestionBO();
+					qbo.setSub_name(results.getString(1));
+					qbo.setQue_id(results.getInt(2));
+					qbo.setQue_marks(results.getInt(3));
+					qbo.setQuestion_type(results.getString(4));
+					qbo.setQuetext(results.getString(5));
+					qbo.setAnstext(results.getString(6));
+					al.add(qbo);
+				}
+				
+			}else {
+					al=null;
+			}
+				st.close();
+				
+		} catch (SQLException e) {
 
+			e.printStackTrace();
+		}
+		return al;
+
+	}
 }
 

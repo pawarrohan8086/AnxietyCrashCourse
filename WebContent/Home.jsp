@@ -539,7 +539,7 @@
 										<label class="form-check-label" for="radio1"
 											style="color: #404747;"> <input type="radio"
 											class="form-check-input" id="radio1" name="user"
-											value="student" checked>student
+											value="student" checked autofocus> student
 										</label>
 									</div>
 									<div class="form-check-inline">
@@ -547,7 +547,7 @@
 											style="color: #404747;">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 											type="radio" class="form-check-input" id="radio2" name="user"
-											value="admin">admin
+											value="admin" autofocus>admin
 										</label>
 									</div>
 								</div>

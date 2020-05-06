@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.anxiety.bean.bo.StudentBO;
+import com.anxiety.bean.dto.PasswordEnrypt;
 import com.anxiety.bean.vo.StudentVO;
 import com.anxiety.dao.StudentOpration;
 
@@ -22,13 +23,11 @@ public class ProfileUpdate extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		String id = session.getAttribute("id").toString();
 		String oldcontact = request.getParameter("oldcontact");
 		String oldemail = request.getParameter("oldemail");
 		String oldpassword = request.getParameter("oldpassword");
-
-		System.out.println("old mail  " + oldemail);
-		HttpSession session = request.getSession(false);
-		String id = session.getAttribute("id").toString();
 		StudentVO sdata = new StudentVO();
 
 		// check contact
@@ -55,6 +54,7 @@ public class ProfileUpdate extends HttpServlet {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Mobile number already Resister');window.location='student/UpdateProfile.jsp'");
 				out.println("</script>");
+				return;
 
 			} else {
 
@@ -71,7 +71,10 @@ public class ProfileUpdate extends HttpServlet {
 		{
 			sdata.setPassword(request.getParameter("password"));
 		} else {
-
+			
+			String pswd=request.getParameter("password");
+			String password=PasswordEnrypt.hashpw(pswd,PasswordEnrypt.gensalt());	
+			sdata.setPassword(password);
 		}
 
 		// check mail
@@ -79,28 +82,25 @@ public class ProfileUpdate extends HttpServlet {
 			sdata.setEmail(request.getParameter("email"));
 		} else {
 			String email = request.getParameter("email");
-			System.out.println("new mail  " + email);
 			ServletContext sc = getServletContext();
 			StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 					sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 			String[] mailid = so.loginCheck(email);
-
 			// return null when email not exist
-			if (mailid == null) {
+			if (mailid==null) {
 
 				sdata.setEmail(email);
 
-			}
-			so.closeConnection();
-			System.out.println("else");
+			}else {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Email id already Resister...:)');window.location='student/UpdateProfile.jsp'");
+			out.println("alert('Email id already Resister...!)');window.location='student/UpdateProfile.jsp'");
 			out.println("</script>");
-
+			return;
+			}
+			so.closeConnection();
 		}
-
 		sdata.setUsername(request.getParameter("uname"));
 		sdata.setSname(request.getParameter("name"));
 		sdata.setAddress(request.getParameter("address"));

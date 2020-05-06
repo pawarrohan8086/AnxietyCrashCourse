@@ -137,6 +137,7 @@
 			<%
 				} else {
 			%>
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
 			<table
 				class=" table table-responsive table-sm table-bordered table-hover">
 				<thead class="table-dark">
@@ -193,6 +194,7 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 			<%
 				}
 			%>

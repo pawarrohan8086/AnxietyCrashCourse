@@ -29,9 +29,7 @@ public class SubjectOperation implements SubjectDeclaration {
 					String query = "create table subject(sub_id number(20) primary key,sub_name varchar(30) not null,sub_tmarks number(4),sub_pmarks number(4),sub_question number(10),sub_fees number(8,2),sub_offer number(10),sub_duration number(10))";
 					int flag = st.executeUpdate(query);
 					if(flag==0) {
-						SubjectOperation.tableFlag=1;
-					}else {
-						SubjectOperation.tableFlag=1;
+						StudentOpration.tableFlag=1;
 					}
 					st.close();
 
@@ -46,9 +44,11 @@ public class SubjectOperation implements SubjectDeclaration {
 			System.out.println("class not found");
 		}
 	}// close constructor
-
+	
+	
+	
 	@Override
-	public void closeConnection() {
+	 public void closeConnection() {
 
 		try {
 			if (con == null)

@@ -58,49 +58,22 @@
 				<strong style="color: blue; align: center;"><%=updateAlert%></strong>
 			</h4>
 			<br>
-			<table class="table  table-sm table-success">
-
-				<tbody>
-					<tr>
-						<td><strong>Student Id</strong></td>
-						<td>:&nbsp;&nbsp; <%=sid%></td>
-					</tr>
-					<tr>
-						<td><strong>Name</strong></td>
-						<td>:&nbsp;&nbsp; <%=sbo.getSname()%></td>
-					</tr>
-					<tr>
-						<td><strong>Address</strong></td>
-						<td>:&nbsp;&nbsp; <%=sbo.getAddress()%></td>
-					</tr>
-					<tr>
-						<td><strong>Admission Date</strong></td>
-						<td>:&nbsp;&nbsp; <%=sbo.getAdmision_date()%></td>
-					</tr>
-					<tr>
-						<td><strong>Email</strong></td>
-						<td>:&nbsp;&nbsp; <%=sbo.getEmail() %></td>
-					</tr>
-					<tr>
-						<td><strong>Contact</strong></td>
-						<td>:&nbsp;&nbsp; <%=sbo.getContact()%></td>
-					</tr>
-					<tr>
-						<td><strong>Course</strong></td>
-						<td>:&nbsp;&nbsp; <%=sbo.getCourse()%></td>
-					</tr>
-					<tr>
-						<td><strong>Fees</strong></td>
-						<td>:&nbsp;&nbsp; <%=sbo.getFees()%></td>
-					</tr>
-					<tr>
-						<td><strong>User Name</strong></td>
-						<td>:&nbsp;&nbsp;<%=sbo.getUsername()%></td>
-					</tr>
-				</tbody>
-			</table>
-			<br> <a href="UpdateProfile.jsp"><input type="button"
+			<div class="col-xs-12 col-sm-8">
+              <ul class="list-group">
+              <li class="list-group-item"><strong>User Id :</strong>&nbsp;&nbsp;<%=sid%></li>
+              <li class="list-group-item"><strong>Name :</strong>&nbsp;&nbsp; <%=sbo.getSname()%></li>
+                <li class="list-group-item"><strong>Admission Date :</strong>&nbsp;&nbsp;<%=sbo.getAdmision_date()%></li>
+                <li class="list-group-item"><strong>Course :</strong>&nbsp;&nbsp;<%=sbo.getCourse()%></li>
+                <li class="list-group-item"><strong>Fees :</strong>&nbsp;&nbsp;<%=sbo.getFees()%></li>
+                <li class="list-group-item"><strong>User Name :</strong>&nbsp;&nbsp;<%=sbo.getUsername()%></li>
+                <li class="list-group-item"><i class="fa fa-envelope"></i>&nbsp;&nbsp;<%=sbo.getEmail() %></li>
+                <li class="list-group-item"><i class="fa fa-phone"></i> &nbsp;&nbsp;<%=sbo.getContact()%> </li>
+                <li class="list-group-item"><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp;<%=sbo.getAddress()%></li>
+              </ul>
+              			<br> <a href="UpdateProfile.jsp"><input type="button"
 				class="btn btn-success " value="Edit Profile" /></a>
+            </div>
+
 		</div>
 	</div>
 

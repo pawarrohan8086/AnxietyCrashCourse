@@ -51,6 +51,7 @@ public class Login extends HttpServlet {
 					session.setAttribute("id",mailid[1]);
 					session.setAttribute("uname", mailid[2]);
 					session.setAttribute("sname", mailid[3]);
+					session.setAttribute("course", mailid[4]);
 					response.sendRedirect("student/profile.jsp");
 				} else {
 					response.setContentType("text/html");

@@ -135,6 +135,7 @@
 			<%
 				} else {
 			%>
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
 			<table class=" table table-condensed table-success">
 				<thead class="table-dark">
 					<tr>
@@ -187,6 +188,7 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 			<%
 				}
 			%>

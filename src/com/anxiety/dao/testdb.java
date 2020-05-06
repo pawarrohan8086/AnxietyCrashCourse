@@ -14,6 +14,10 @@ public class testdb {
 	int num=Math.abs(UUID.randomUUID().hashCode());
 	
 	System.out.println(num);
+	String[] s=null;
+	if(s==null) {
+		System.out.println("hello");
+	}
 	}
 
 }

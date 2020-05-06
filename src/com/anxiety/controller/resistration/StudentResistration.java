@@ -23,7 +23,6 @@ import com.anxiety.dao.StudentOpration;
 @WebServlet("/StudentResistration")
 public class StudentResistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int flag = 5;
@@ -42,8 +41,9 @@ public class StudentResistration extends HttpServlet {
 					flag = 1;
 					PrintWriter out = response.getWriter();
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('Mobile number already Resister');window.location='student/StudentEnroll.jsp'");
+					out.println("alert('Mobile number already Resister');window.location='Home.jsp'");
 					out.println("</script>");
+					return;
 
 				} else {
 					flag = 0;
@@ -110,8 +110,9 @@ public class StudentResistration extends HttpServlet {
 			} else {
 				PrintWriter out = response.getWriter();
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Sorry Something went to wrong please try again');window.location='Home.jsp#apply'");
+				out.println("alert('Sorry Something went to wrong please try again');window.location='Home.jsp'");
 				out.println("</script>");
+				return;
 			}
 
 		}

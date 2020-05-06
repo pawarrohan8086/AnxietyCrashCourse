@@ -326,7 +326,7 @@ public class StudentOpration implements StudentDeclaration {
 			found= st.executeUpdate(query);
 			
 			if(found!=0) {
-				mailid=new String[4];
+				mailid=new String[6];
 				ResultSet results=st.executeQuery(query);
 				while(results.next()) {
 				pswd= results.getString(6);
@@ -337,6 +337,7 @@ public class StudentOpration implements StudentDeclaration {
 				mailid[1]=sid;
 				mailid[2]=uname;
 				mailid[3]=sname;
+				mailid[4]=results.getString(8);
 				}
 			}
 			
