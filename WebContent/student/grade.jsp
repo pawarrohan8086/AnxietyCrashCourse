@@ -36,7 +36,7 @@
                     <thead>
                         <tr>
                             <th>Subject Name</th>
-                            <th>Subject Total Marks</th>
+                            <th>Exam Total Marks</th>
                             <th>Your score</th>
                             <th>Percentage</th>
                             <th>Remark</th>

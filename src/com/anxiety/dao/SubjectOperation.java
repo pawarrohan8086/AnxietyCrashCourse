@@ -267,6 +267,43 @@ public class SubjectOperation implements SubjectDeclaration {
 		return al;
 
 	}
+	@Override
+	public SubjectBO getSubjectData(String subname) {
+		int found=0;
+		String sname=subname;
+		SubjectBO subbo=null;
+		try {
+			
+			String query="select * from subject where SUB_NAME='"+sname+"'";
+			Statement st = con.createStatement();
+			found= st.executeUpdate(query);
+			
+			if(found!=0) {
+				
+				ResultSet results=st.executeQuery(query);
+				while (results.next()) {
+					subbo = new SubjectBO();
+					subbo.setSub_id(results.getInt(1));
+					subbo.setSub_name(results.getString(2));
+					subbo.setSub_tmarks(results.getInt(3));
+					subbo.setSub_pmarks(results.getInt(4));
+					subbo.setSub_question(results.getInt(5));
+					subbo.setSub_fees(results.getDouble(6));
+					subbo.setSub_offer(results.getInt(7));
+					subbo.setSub_duration(results.getInt(8));
+					
+				}
+				
+			}
+			st.close();
+				
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return subbo;
+
+	}
 
 
 }

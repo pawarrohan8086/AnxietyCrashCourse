@@ -26,7 +26,7 @@ public class Logout extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");
-		out.println("alert('Thank you for visit us..!  Now You Are Successfully Logout')");
+		out.println("alert('Thank you for visiting us.Now You Are Successfully Logout')");
 		out.println("window.location='Home.jsp'");
 		out.println("</script>");
 	}

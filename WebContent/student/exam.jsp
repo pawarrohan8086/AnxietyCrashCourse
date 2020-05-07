@@ -36,10 +36,9 @@
                         <p> Dear student this is the practice exam and your first attempts of examination is free click below to next,<br>
                             Question can have four multiple choice option for 30 min don't use refresh button.<br>
                             after complete the exam if you pass this exam you will be awarded by the anxiety crash course .</p>
-                            
-                            <form action="../AddAnswers" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('after clicking button exam imediatly started'); return false; }">
+                            <form action="../exam/exam2.jsp" method="post" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('after clicking button exam imediatly started'); return false; }">
                                 <input type="checkbox" name="checkbox" value="check" id="agree" />
-                                <strong style="color:blue;">After clicking start button exam will be started.</strong> <br><br>
+                                <strong style="color:blue;">exam time is 20 Min after that exam will auto Submit.</strong> <br><br>
                                 <input type="submit" class="btn btn-info " name="submit" value="Start Exam" />
                             </form>
                        </div>

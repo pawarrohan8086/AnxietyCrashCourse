@@ -14,5 +14,6 @@ public interface SubjectDeclaration {
 	public int deleteSubject(int  sub_id);
 	public int updateSubject(SubjectBO obj);
 	public ArrayList<SubjectBO> searchSubject(String name);
+	public SubjectBO getSubjectData(String subname);
 	
 }
