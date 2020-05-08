@@ -3,7 +3,8 @@ package com.anxiety.bean.bo;
 public class AnswerBO {
 	
 	private int qid,qmark;
-	private String sub_name,qtype,quetext,ans,anstext,grade,auid;
+	private long auid;
+	private String sub_name,qtype,quetext,ans,anstext,grade;
 	public int getQid() {
 		return qid;
 	}
@@ -52,10 +53,10 @@ public class AnswerBO {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public String getAuid() {
+	public long getAuid() {
 		return auid;
 	}
-	public void setAuid(String auid) {
+	public void setAuid(long auid) {
 		this.auid = auid;
 	}
 

@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.anxiety.bean.bo.AnswerBO;
+import com.anxiety.bean.bo.GradeBO;
 import com.anxiety.dao.AnswerOperation;
+import com.anxiety.dao.GradeCardOperation;
 
 @WebServlet("/AddAnswers")
 public class AddAnswers extends HttpServlet {
@@ -52,7 +54,7 @@ public class AddAnswers extends HttpServlet {
 				abo.setAns(ans);
 				abo.setQtype(qtype);
 				abo.setSub_name(course);
-				abo.setAuid(auid+"");
+				abo.setAuid(auid);
 				if (ans.equals(anstext)) {
 					abo.setGrade("Right");
 					gmarks=gmarks+qmark;
@@ -74,21 +76,30 @@ public class AddAnswers extends HttpServlet {
 			}
 			if(flag==1) {
 				
-				out.println("completed");
-				out.println(course);
-				out.println(auid);
-				out.println("total"+tmakrs);
-				out.println("getting"+gmarks);
+				GradeBO gbo=new GradeBO();
+				gbo.setSid(Integer.parseInt(session.getAttribute("id").toString()));
+				gbo.setCourse(course);
+				gbo.setAuid(auid);
+				gbo.setScore(gmarks);
+				gbo.setTmark(tmakrs);
 				float perc=(gmarks*100)/tmakrs;
-				out.println(perc); 
+				gbo.setPercentage(perc);
 				if(perc>35.00) {
-					out.println("pass");
+					gbo.setRemark("pass");
 				}else {
-					out.println("fail");
+					gbo.setRemark("fail");
 				}
 				long millis=System.currentTimeMillis();  
-				java.util.Date date=new java.util.Date(millis);  
-				out.println(date); 
+				java.util.Date edate=new java.util.Date(millis); 
+				gbo.setEdate(edate.toString());
+				GradeCardOperation gradeo = new GradeCardOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
+						sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+				int f=gradeo.addGrade(gbo);
+				if(f==1) {
+					response.sendRedirect("student/grade.jsp");
+				}else {
+					out.println("Something went wrong");
+				}
 				
 				
 				

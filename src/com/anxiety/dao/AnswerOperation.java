@@ -29,7 +29,7 @@ public class AnswerOperation implements AnswerDeclaration {
 			if (tableFlag == 0) {
 				try {
 					Statement st = con.createStatement();
-					String query = "create table answer(auid varchar2(30) not null,sub_name varchar(30) not null,que_id number(4),que_type varchar2(20),que_mark number(4),que_text varchar2(500),answer varchar2(500),right_ans varchar2(500),grade varchar2(20))";
+					String query = "create table answer(auid number(20) not null,sub_name varchar(30) not null,que_id number(4),que_type varchar2(20),que_mark number(4),que_text varchar2(500),answer varchar2(500),right_ans varchar2(500),grade varchar2(20))";
 					int flag = st.executeUpdate(query);
 					if(flag==0) {
 						StudentOpration.tableFlag=1;
@@ -75,7 +75,7 @@ public class AnswerOperation implements AnswerDeclaration {
 				PreparedStatement pst = con.prepareStatement("insert into answer values(?,?,?,?,?,?,?,?,?)");
 				while(ltr.hasNext()) {
 				AnswerBO abo=ltr.next();
-				pst.setString(1,abo.getAuid());
+				pst.setLong(1,abo.getAuid());
 				pst.setString(2, abo.getSub_name());
 				pst.setInt(3,abo.getQid());
 				pst.setString(4,abo.getQtype() );
@@ -114,7 +114,7 @@ public class AnswerOperation implements AnswerDeclaration {
 				al = new ArrayList<AnswerBO>();
 				while (results.next()) {
 					AnswerBO abo = new AnswerBO();
-					abo.setAuid(results.getString(1));
+					abo.setAuid(results.getLong(1));
 					abo.setSub_name(results.getString(2));
 					abo.setQid(results.getInt(3));
 					abo.setQtype(results.getString(4));

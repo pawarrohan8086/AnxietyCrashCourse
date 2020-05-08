@@ -49,7 +49,9 @@
 <script src="http://localhost:8080/AnxietyCrashCourse/js/jquery-min.js"></script>
 <script src="http://localhost:8080/AnxietyCrashCourse/js/popper.min.js"></script>
 <script src="http://localhost:8080/AnxietyCrashCourse/js/bootstrap.min.js"></script>
-
+<script language="JavaScript" type="text/javascript">
+window.history.forward(1);
+</script>
 <%@include file="/commonfiles/Footer.jsp" %>
 </body>
 </html> 
