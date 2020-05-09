@@ -7,6 +7,12 @@
 <%@include file="/commonfiles/link.jsp"%>
 </head>
 <body>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+	%>
 	<!-- home -->
 	<div id="home">
 		<!-- banner -->
@@ -39,18 +45,24 @@
 							</ul>
 						</li>
 						<li><a href="contact.jsp">Contact</a></li>
-
+						<%
+						String uname = session.getAttribute("uname").toString();
+						%>
 						<!-- second Tier Drop Down -->
-						<li class="log-vj ml-lg-5"><label for="drop-3" class="toggle">
-								<span class="fa fa-user-circle-o" aria-hidden="true"></span>
-								&nbsp;Student <span class="fa fa-angle-down" aria-hidden="true"></span>
+						<li class="active log-vj ml-lg-5"><label for="drop-3"
+							class="toggle"> <span class="fa fa-user-circle-o"
+								aria-hidden="true"></span> &nbsp;Student <span
+								class="fa fa-angle-down" aria-hidden="true"></span>
 						</label> <a href="#"> <span class="fa fa-user-circle-o"
-								aria-hidden="true"></span> &nbsp;Login <span
+								aria-hidden="true"></span> &nbsp;<%=uname %> <span
 								class="fa fa-angle-down" aria-hidden="true"></span>
 						</a> <input type="checkbox" id="drop-3" />
 							<ul>
-								<li><a href="#apply">login</a></li>
-								<li><a href="#apply">sign up</a></li>
+								<li><a href="../profile.jsp">Profile</a></li>
+								<li><a href="../UpdateProfile.jsp">Edit Profile</a></li>
+								<li><a href="../exam.jsp">Exam</a></li>
+								<li><a href="../grade.jsp">Result</a></li>
+								<li><a href="../../Logout">Logout</a></li>
 							</ul></li>
 					</ul>
 				</nav>
@@ -61,10 +73,10 @@
 		<!-- banner slider -->
 		<div id="homepage-slider" class="st-slider">
 			<input type="radio" class="cs_anchor radio" name="slider" id="play1"
-				checked /> <input type="radio" class="cs_anchor radio" name="slider"
-				id="slide1" /> <input type="radio" class="cs_anchor radio"
-				name="slider" id="slide2" /> <input type="radio"
-				class="cs_anchor radio" name="slider" id="slide3" />
+				checked /> <input type="radio" class="cs_anchor radio"
+				name="slider" id="slide1" /> <input type="radio"
+				class="cs_anchor radio" name="slider" id="slide2" /> <input
+				type="radio" class="cs_anchor radio" name="slider" id="slide3" />
 			<div class="images">
 				<div class="images-inner">
 					<div class="image-slide">
@@ -334,30 +346,36 @@
 				ad minim veniam, quis nostrud exercitation</p>
 			<div class="row no-gutters">
 				<div class="col-md-6 gal-img">
-					<a href="#gal1"><img src="web/images/g1.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal1"><img
+						src="/AnxietyCrashCourse/web/images/g1.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-3 gal-img">
-					<a href="#gal2"><img src="web/images/g2.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal2"><img
+						src="/AnxietyCrashCourse/web/images/g2.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-3 gal-img">
-					<a href="#gal3"><img src="web/images/g3.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal3"><img
+						src="/AnxietyCrashCourse/web/images/g3.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 
 
 				<div class="col-md-3 gal-img ml-auto">
-					<a href="#gal5"><img src="web/images/g5.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal5"><img
+						src="/AnxietyCrashCourse/web/images/g5.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-3 gal-img mr-auto">
-					<a href="#gal6"><img src="web/images/g6.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal6"><img
+						src="/AnxietyCrashCourse/web/images/g6.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 				<div class="col-md-6 gal-img">
-					<a href="#gal4"><img src="web/images/g4.jpg"
-						alt="Gallery Image" class="img-fluid"></a>
+					<a href="#gal4"><img
+						src="/AnxietyCrashCourse/web/images/g4.jpg" alt="Gallery Image"
+						class="img-fluid"></a>
 				</div>
 			</div>
 
@@ -366,7 +384,8 @@
 			<!-- popup-->
 			<div id="gal1" class="pop-overlay animate">
 				<div class="popup">
-					<img src="web/images/g1.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g1.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -376,7 +395,8 @@
 			<!-- popup-->
 			<div id="gal2" class="pop-overlay animate">
 				<div class="popup">
-					<img src="web/images/g2.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g2.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -386,7 +406,8 @@
 			<!-- popup-->
 			<div id="gal3" class="pop-overlay animate">
 				<div class="popup">
-					<img src="web/images/g3.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g3.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -396,7 +417,8 @@
 			<!-- popup-->
 			<div id="gal4" class="pop-overlay animate">
 				<div class="popup">
-					<img src="web/images/g4.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g4.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -406,7 +428,8 @@
 			<!-- popup-->
 			<div id="gal5" class="pop-overlay animate">
 				<div class="popup">
-					<img src="web/images/g5.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g5.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -416,7 +439,8 @@
 			<!-- popup-->
 			<div id="gal6" class="pop-overlay animate">
 				<div class="popup">
-					<img src="web/images/g6.jpg" alt="Popup Image" class="img-fluid" />
+					<img src="/AnxietyCrashCourse/web/images/g6.jpg" alt="Popup Image"
+						class="img-fluid" />
 					<p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque
 						pharetra ac int. placerat placerat dolor.</p>
 					<a class="close" href="#gallery">&times;</a>
@@ -434,7 +458,8 @@
 			<div class="row">
 				<div class="col-lg-7 apply-info px-lg-5">
 					<h3 class="tittle-wthree apply-hd text-white mb-lg-5 mb-3">
-						It's limited seating! Hurry up. Get the Coaching Training for Free</h3>
+						It’s limited seating! Hurry up. Get the Coaching Training for
+						Free</h3>
 					<div class="row wthree-stats-inf">
 						<div class="col-6 stats_w3pvt_counter_grid mt-3">
 							<div class="d-flex">
@@ -467,7 +492,7 @@
 				<div class="col-lg-5 login p-md-5 p-4 mx-auto bg-white mw-100">
 					<h5 class="text-center mb-4">Apply Now</h5>
 					<div>
-						<form action="StudentSignIn" class="needs-validation" method="post" novalidate>
+						<form action="../StudentSignIn" class="needs-validation" method="post" novalidate>
 							<div id="username">
 								<p id="space" class="valid">
 									A <b>space</b> not allowed
@@ -526,7 +551,7 @@
 					</div>
 					<div id="id01" class="modal">
 						<form class="modal-content animate needs-validation"
-							action="Login" method="post" novalidate>
+							action="../Login" method="post" novalidate>
 							<div class="logincontainer">
 								<span
 									onclick="document.getElementById('id01').style.display='none'"
@@ -539,7 +564,7 @@
 										<label class="form-check-label" for="radio1"
 											style="color: #404747;"> <input type="radio"
 											class="form-check-input" id="radio1" name="user"
-											value="student" checked autofocus> student
+											value="student" checked>student
 										</label>
 									</div>
 									<div class="form-check-inline">
@@ -547,7 +572,7 @@
 											style="color: #404747;">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 											type="radio" class="form-check-input" id="radio2" name="user"
-											value="admin" autofocus>admin
+											value="admin">admin
 										</label>
 									</div>
 								</div>
@@ -594,7 +619,8 @@
 						</p>
 						<div class="row mt-4">
 							<div class="col-3 testi-img-res">
-								<img src="web/images/te1.jpg" alt=" " class="img-fluid" />
+								<img src="/AnxietyCrashCourse/web/images/te1.jpg" alt=" "
+									class="img-fluid" />
 							</div>
 							<div class="col-9 testi_grid">
 								<h5 class="mb-2">anjali mehata</h5>
@@ -612,7 +638,8 @@
 						</p>
 						<div class="row mt-4">
 							<div class="col-3 testi-img-res">
-								<img src="web/images/te2.jpg" alt=" " class="img-fluid" />
+								<img src="/AnxietyCrashCourse/web/images/te2.jpg" alt=" "
+									class="img-fluid" />
 							</div>
 							<div class="col-9 testi_grid">
 								<h5 class="mb-2">saurabh bagul</h5>
@@ -630,7 +657,8 @@
 						</p>
 						<div class="row mt-4">
 							<div class="col-3 testi-img-res">
-								<img src="web/images/te3.jpg" alt=" " class="img-fluid" />
+								<img src="/AnxietyCrashCourse/web/images/te3.jpg" alt=" "
+									class="img-fluid" />
 							</div>
 							<div class="col-9 testi_grid">
 								<h5 class="mb-2">Akshay pawar</h5>
