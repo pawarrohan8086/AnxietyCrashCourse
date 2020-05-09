@@ -35,6 +35,7 @@ public class Login extends HttpServlet {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('wrong mail or password please try again..!');window.location='Home.jsp#apply'");
 				out.println("</script>");
+				return;
 			}
 		} else {
 
@@ -42,6 +43,14 @@ public class Login extends HttpServlet {
 			StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 					sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 			String[] mailid = so.loginCheck(email);
+			if(mailid==null) {
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('user mail id not resister please SignIn.');window.location='Home.jsp#apply'");
+				out.println("</script>");
+				return;
+			}
 			String checkpswd=mailid[0];
 			if (checkpswd != null) {
 
@@ -59,6 +68,7 @@ public class Login extends HttpServlet {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Wrong email or password');window.location='Home.jsp#apply'");
 					out.println("</script>");
+					return;
 				}
 
 			} else {
@@ -67,6 +77,7 @@ public class Login extends HttpServlet {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Wrong email or password');window.location='Home.jsp#apply'");
 				out.println("</script>");
+				return;
 			}
 
 		}

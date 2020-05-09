@@ -4,7 +4,7 @@
 <title>student Panel</title>
 <%@include file="/commonfiles/link.jsp"%>
 <%@page
-	import="com.anxiety.dao.GradeCardOperation,com.anxiety.bean.bo.GradeBO,java.util.ArrayList,java.util.ListIterator"%>
+	import="java.math.RoundingMode,java.text.DecimalFormat,java.text.SimpleDateFormat,java.util.Date,com.anxiety.dao.GradeCardOperation,com.anxiety.bean.bo.GradeBO,java.util.ArrayList,java.util.ListIterator"%>
 </head>
 <body>
 	<%@include file="common/Header.jsp"%>
@@ -54,17 +54,18 @@
 					</tr>
 				</thead>
 				<%
-					float progress=0;
+					int count = 0;
+					float progress = 0.0f, perc = 0.0f;
 					ServletContext sc = getServletContext();
 					GradeCardOperation go = new GradeCardOperation(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
 							sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 					ArrayList<GradeBO> gal = go.getAllGrade(session.getAttribute("id").toString());
-					if(gal==null){
-						
-					}else{
-					ListIterator<GradeBO> ltr = gal.listIterator();
-					while (ltr.hasNext()) {
-						GradeBO gbo = ltr.next();
+					if (gal == null) {
+
+					} else {
+						ListIterator<GradeBO> ltr = gal.listIterator();
+						while (ltr.hasNext()) {
+							GradeBO gbo = ltr.next();
 				%>
 				<tbody>
 					<tr>
@@ -73,38 +74,65 @@
 						<td><%=gbo.getScore()%></td>
 						<td><%=gbo.getPercentage()%>%</td>
 						<%
-						String color="";
-						if(gbo.getRemark().equals("pass")){
-							color="blue";
-							progress=progress+33.33f;
-							
-						}else{
-							color="red";
-						}
-						
+							String color = "";
+									if (gbo.getRemark().equals("pass")) {
+										count++;
+										color = "blue";
+										progress = progress + 33.33f;
+										perc = perc + gbo.getPercentage();
+									} else {
+										color = "red";
+									}
 						%>
-						<td style="color:<%=color %>;"><%=gbo.getRemark()%></td>
+						<td style="color:<%=color%>;"><%=gbo.getRemark()%></td>
 						<td><%=gbo.getEdate()%></td>
 					</tr>
 				</tbody>
 				<%
 					}
-					go.closeConnection();
+						go.closeConnection();
 					}
+					String btn = "disabled";
+					if (progress >= 99.00) {
+						btn = "";
+					}
+					//date format
+					String pattern = "dd-mm-yyyy";
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+					String date = simpleDateFormat.format(new Date());
+
+					//precentage format
+					double percet=perc/count;
+					DecimalFormat df = new DecimalFormat("##.##");
+					df.setRoundingMode(RoundingMode.CEILING);
+					
 				%>
 			</table>
 			<div style="margin-top: 100px;">
 				<h4>Exam Progress</h4>
-				<p>After completing this bar you are able to download
-					certificates</p>
+				<br>
+				<form action="../exam/Certificate.jsp" method="post">
+					<input type="hidden" name="sname"
+						value="<%=session.getAttribute("sname")%>"> <input
+						type="hidden" name="date" value="<%=date%>"> <input
+						type="hidden" name="course"
+						value="<%=session.getAttribute("course")%>"> <input
+						type="hidden" name="perc" value="<%=df.format(percet)%>"> <input
+						type="submit" class="btn btn-info" name="certificate"
+						value=" Click to Get Certificate" <%=btn%>>
+				</form>
+
+				<p>
+					<br> <strong>Note.</strong> for downloading the certificate
+					you have to clear <i style="color: tomato;">minimum 3 Attempt.</i>
+				</p>
+
 				<div class="progress">
 					<div
 						class="progress-bar progress-bar-striped progress-bar-animated"
-						style="width:<%=progress %>%"></div>
+						style="width:<%=progress%>%"></div>
 				</div>
-				<a href="#"><input
-					type="button" class="btn btn-info" name="certificate"
-					value=" Click to Get Certificate" disabled></a>
 			</div>
 		</div>
 	</div>

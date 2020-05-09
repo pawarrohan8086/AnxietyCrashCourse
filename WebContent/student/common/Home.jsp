@@ -525,13 +525,13 @@
 									A <b>number</b>
 								</p>
 								<p id="length" class="invalid">
-									Minimum <b>8 characters</b>
+									Minimum <b>6 characters</b>
 								</p>
 							</div>
 							<div class="form-group">
 								<label for="pwd">Password</label> <input type="password"
 									class="form-control" id="psw" name="psw"
-									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
 								<div class="valid-feedback">Valid.</div>
 								<div class="invalid-feedback">Please fill out this field.</div>
 							</div>

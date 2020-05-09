@@ -68,7 +68,7 @@ if(myInput.value.match(numbers)) {
 }
 
 //Validate length
-if(myInput.value.length >= 8) {
+if(myInput.value.length >=6) {
 	length.classList.remove("invalid");
 	length.classList.add("valid");
 } else {
@@ -114,21 +114,3 @@ if (ltr.value.match(spaces)) {
 	space.classList.add("valid");
 }
 }
-//show password
-//function myFunction() {
-//var x = document.getElementById("psw");
-//if (x.type === "password") {
-//  x.type = "text";
-//} else {
-//  x.type = "password";
-//}
-//}
-//alert box
-
-//function validateForm() {
-//var x = document.forms["myForm"]["fname"].value;
-//if (x == "") {
-//  alert("your response recorded");
-//  return false;
-//}
-//}

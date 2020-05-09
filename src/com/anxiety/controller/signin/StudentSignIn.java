@@ -1,4 +1,5 @@
 package com.anxiety.controller.signin;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -22,7 +23,7 @@ public class StudentSignIn extends HttpServlet {
 		String email = request.getParameter("email");
 		ServletContext sc = getServletContext();
 		StudentOpration so = new StudentOpration(sc.getInitParameter("driver"), sc.getInitParameter("dburl"),
-		sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
+				sc.getInitParameter("dbuser"), sc.getInitParameter("dbpswd"));
 		String[] mailid = so.loginCheck(email);
 		// return null when email not exist
 		if (mailid == null) {
@@ -33,11 +34,12 @@ public class StudentSignIn extends HttpServlet {
 			rd = request.getRequestDispatcher(response.encodeURL("student/StudentEnroll.jsp"));
 			rd.include(request, response);
 		} else {
-			
+
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Mail Id already exist');window.location='Home.jsp#apply'");
 			out.println("</script>");
+			return;
 		}
 
 	}

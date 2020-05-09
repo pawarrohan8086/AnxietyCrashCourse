@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.UUID;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -105,8 +103,7 @@ public class StudentResistration extends HttpServlet {
 				session.setAttribute("id", sid);
 				session.setAttribute("uname",sbo.getUsername());
 				session.setAttribute("sname",sbo.getSname());
-				RequestDispatcher rd1 = request.getRequestDispatcher("student/profile.jsp");
-				rd1.include(request, response);
+				response.sendRedirect("student/profile.jsp");
 			} else {
 				PrintWriter out = response.getWriter();
 				out.println("<script type=\"text/javascript\">");

@@ -37,6 +37,7 @@ public class StudentResistrationFilter implements Filter {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('null value inserted');window.location='student/StudentEnroll.jsp'");
 				out.println("</script>");
+				return;
 			}
 
 		} else {
@@ -44,6 +45,7 @@ public class StudentResistrationFilter implements Filter {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('null value inserted');window.location='student/StudentEnroll.jsp'");
 			out.println("</script>");
+			return;
 		}
 
 	}// do get
